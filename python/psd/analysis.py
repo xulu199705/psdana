@@ -19,7 +19,8 @@ class IQAnalysis:
 
 def analyze_iq(samples, psd_config: PSDConfig = PSDConfig(),
                qam_config: Optional["QAMConfig"] = None,
-               power_band: Optional[Tuple[float,float]] = None) -> IQAnalysis:
+               power_band: Optional[Tuple[float,float]] = None, *,
+               dc_mode="legacy_mean") -> IQAnalysis:
     """Compute PSD, optional (left,right) band power and optional blind QAM.
 
     QAM rate must equal PSD fs; QAM requires complex input. No file or plot I/O.
@@ -36,5 +37,5 @@ def analyze_iq(samples, psd_config: PSDConfig = PSDConfig(),
     qam = None
     if qam_config is not None:
         from .qam import analyze_qam
-        qam = analyze_qam(samples, qam_config)
+        qam = analyze_qam(samples, qam_config, dc_mode=dc_mode)
     return IQAnalysis(spectrum,power,qam)

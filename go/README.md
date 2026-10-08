@@ -1,10 +1,26 @@
-# Go PSD Core
+# Go PSD Core / QAM Foundation
 
 Module：`github.com/xulu199705/psdana/go`，复用既有 Go 1.27.1 配置，仅使用 Gonum v0.17.0。
 核心、CSV、CLI 分离；没有 Go 绘图、TypeScript、GUI 或并行 Welch。
 
 完整的必选/可选参数、DefaultConfig 默认值、返回字段及多个程序化/CLI 示例见
-[Go API Reference](API.md)。V2.1.0 的 QAM 功能仅在 Python 实现，本版本 Go 算法和接口不变。
+[Go API Reference](API.md)。V2.1.1 在Python Stage A Gate通过后新增独立QAM数学基础，原PSD/Power算法不变。
+
+## QAM Foundation（V2.1.1）
+
+`qam/` 提供16/64/256星座与Slicer、单位能量RRC、径向/切向/角度/EVM指标、
+Legacy/Joint标量拟合。36组Python共享向量与独立解析/数值边界测试通过。
+全部参数、默认值、返回值与多个调用示例见 [API](API.md#qam-foundationv211)。
+尚未实现Go matched filter/interpolation/timing/CFO或完整Receiver，不集成CLI、不绘图。
+Scalar输入必须是已恢复符号。没有使用已知TX真值或多抽头均衡器。
+
+```shell
+go -C go test -v ./qam
+python python/generate_qam_foundation.py
+```
+
+第二条仅用于明确更新独立foundation向量，不改旧PSD/QAM Golden。
+Gate、已证实的误候选及数值差异见 [V2.1.1验证](../python/reports/v2.1.1_qam_refinement.md)。
 
 ## 接口与算法
 

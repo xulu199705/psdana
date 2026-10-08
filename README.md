@@ -7,7 +7,7 @@ psdana 面向离线采样数据分析和 DSP 算法移植，提供数学定义�
 Python 提供参考计算和独立频谱绘图；Go 提供计算库、CSV 适配和命令行 JSON 输出。
 Python 还提供独立的 QAM 接收链、误差指标和星座图，可与同一 IQ 的 PSD/频段功率组合分析。
 
-当前开发快照：**V2.1.0（未创建发布标签）**，基于 V2.0.1。项目遵循 **Correctness First，Performance Second**。
+当前开发快照：**V2.1.1（未创建发布标签）**，基于 V2.1.0。项目遵循 **Correctness First，Performance Second**。
 
 ## 功能
 
@@ -23,8 +23,27 @@ Python 还提供独立的 QAM 接收链、误差指标和星座图，可与同�
 - Python 64QAM：RRC matched filter、Fractional Timing Recovery、Residual CFO、Blind Scalar Fit。
 - Decision-Directed EVM、径向/切向误差、相位角 RMS，独立发送真值验证及 13 组 QAM Golden。
 - Python 星座图：红色空心理想点、半透明亮黄色恢复符号，默认直接 show。
+- QAM Legacy 兼容模式和可选 Joint DC/Scalar Fit，CFO-aware 定时复查、独立真值矩阵与分阶段性能基线。
+- Go QAM Foundation：16/64/256星座、Slicer、RRC、误差指标及Legacy/Joint标量拟合；完整Go Receiver尚未实现。
 
 当前不提供实时 PSD、GUI、Web 服务或 Go 绘图。
+
+## 分析效果
+
+以下两图由 Python 对仓库真实 `qam64_20MSymPS_160MSPS_RRC0p25.csv` 计算生成。
+PSD 使用原始 IQ：160 MSPS、Hann、16384 点 Periodogram，纵轴为 RBW 校准 dBFS。
+
+![真实64QAM采样的PSD，Hann与16384点FFT](docs/images/psd.png)
+
+星座图使用相同 IQ 的 RRC/定时/CFO 恢复结果，显式启用 Joint DC/Scalar Fit：
+64QAM、20 MSym/s、2026 有效符号、EVM **1.736% RMS**。
+红色空心圆为标准星座，黄色点为恢复符号。默认 Legacy 模式仍为 2.596% RMS。
+
+![真实64QAM采样的恢复星座，Joint EVM1.736%](docs/images/constellation.png)
+
+重建展示图片：`python python/render_readme.py`。这是显式文档导出脚本；
+正常 CLI/API 绘图继续默认直接 show，不保存图片。输入 SHA256 与配置见
+[图片来源记录](docs/images/manifest.json)。
 
 ## 安装
 
@@ -76,6 +95,9 @@ python python/demo.py --input data/qam64_20MSymPS_160MSPS_RRC0p25.csv --sample-f
 
 # 合成 SPS2 QAM；同时指定频段并关闭交互显示
 python python/demo.py --input data/generated/qam/Q11_sps2.csv --qam --symbol-rate 80000000 --freq-left -60000000 --freq-right 60000000 --no-show
+
+# 明确启用V2.1.1联合DC/增益拟合，默认仍为Legacy
+python python/demo.py --input data/qam64_20MSymPS_160MSPS_RRC0p25.csv --sample-format hex_q15 --qam --qam-dc-mode decision_directed_joint --no-show
 ```
 
 正常绘图直接调用 `plt.show()`，不保存图像。绘图层不会重新读取 CSV 或计算 FFT。
@@ -284,6 +306,9 @@ Go B/op 表示分配字节，不能与峰值 RSS 或 Python tracemalloc 直接�
 与 [完整性能表](go/reports/performance.md)。性能结论与输入规模、FFT 方法和环境有关。
 V2.0.1 数值边界、频段分析和安全检查见 [验证报告](go/reports/v2.0.1_validation.md)。
 V2.1.0 QAM 算法、真实输入、独立真值验证和实测指标见 [QAM 验证报告](python/reports/v2.1.0_qam_validation.md)。
+V2.1.1 Joint-fit将真实Blind EVM估计为1.736166%，Legacy仍为2.596191%。用户补充仪器结果为2%以下；
+未知TX真值时，更低Blind EVM不能单独证明物理链路质量更好。误锁案例、CFO/定时矩阵和实测性能见
+[Refinement报告](python/reports/v2.1.1_qam_refinement.md)。
 
 ## 开发路线图
 
@@ -293,7 +318,8 @@ V2.1.0 QAM 算法、真实输入、独立真值验证和实测指标见 [QAM 验
 | Phase 2 | 完成 | Go Core/CSV/CLI、完整跨语言比较、实测性能与 V2.0.0 |
 | V2.0.1 | 完成 | 频段/点频功率分析、零输入峰值及数值边界修复 |
 | V2.1.0 | 开发验证完成，未打 tag | Python QAM Golden、同步/误差分析/星座图、真实捕获验收；Go 代码不变 |
-| Go QAM | 规划 | 移植冻结的 QAMConfig/Result、RRC/插值/CFO/scalar 数学契约，复用独立 QAM Golden |
+| V2.1.1 | 开发验证完成，未打 tag | Legacy兼容、Joint DC拟合、CFO-aware定时、可靠性/性能基线；Go数学基础通过36组向量 |
+| Go QAM Receiver | 后续 | 移植matched filter/插值/timing/CFO，逐级比较中间数据后再验收完整Receiver |
 | Phase 3 | 规划 | FFT workspace/跨调用复用、CSV 分配优化、性能剖析、大质因子精度与性能覆盖 |
 | 后续 | 评估 | 在保持数学契约的前提下扩展其他语言及应用层 |
 

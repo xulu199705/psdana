@@ -1,4 +1,4 @@
-# Python API reference — V2.1.0
+# Python API reference — V2.1.1
 
 将仓库 `python/` 放入 Python import 搜索路径；下面的文件路径均相对仓库根目录。
 API 的路径参数相对调用进程 cwd，只有 `demo.py --input` 相对项目根目录。
@@ -11,7 +11,7 @@ API 的路径参数相对调用进程 cwd，只有 `demo.py --input` 相对项�
 |---|---|---|---|
 | `psd.compute_psd` | `samples`：一维非空实数/复数序列 | `config=PSDConfig()` | PSDResult |
 | `psd.analyze_band_power` | `result`、`freq_left_hz`、`freq_right_hz` | 无 | PowerResult |
-| `psd.analyze_iq` | `samples` | `psd_config=PSDConfig()`、`qam_config=None`、`power_band=None` | IQAnalysis |
+| `psd.analyze_iq` | `samples` | `psd_config=PSDConfig()`、`qam_config=None`、`power_band=None`、keyword-only `dc_mode="legacy_mean"` | IQAnalysis |
 | `psd.csvio.read_csv` | `path`：str/Path | `config=CSVConfig()` | CSVData |
 | `psd.plotting.plot_psd` | `result` | `display="dbfs"`、`freq_unit="MHz"`、`show=True` | `(figure, axes)` |
 | `psd.core.power_to_db` | `power`：非负有限功率数组、`reference_power`：有限正数 | 无 | dB ndarray，零功率为 -Inf |
@@ -92,13 +92,13 @@ Average 不是 mean(PSD) 或 mean(dB)。严格 PSD 密度是 dBFS/Hz，RBW/带�
 
 | 函数（`psd.qam`） | 必选参数 | 可选参数及默认值 | 返回 |
 |---|---|---|---|
-| analyze_qam | samples：一维非空有限 complex IQ | config=QAMConfig() | QAMResult |
-| recover_symbols | samples | config=QAMConfig() | 全量有效符号、判决及诊断 dict，未做绘图抽样 |
+| analyze_qam | samples：一维非空有限 complex IQ | config=QAMConfig()、keyword-only dc_mode="legacy_mean" | QAMResult |
+| recover_symbols | samples | config=QAMConfig()、keyword-only dc_mode="legacy_mean" | 全量有效符号、判决及诊断 dict，未做绘图抽样 |
 | rrc_taps | beta、span_symbols、sps | 无 | 单位能量实数 FIR ndarray |
 | qam_constellation | 无 | order=64 | 完整 complex 标准星座 ndarray |
 | qam_slicer / slicer | symbols：complex 序列 | order=64 | `(decisions, indices)` |
-| scalar_qam_fit | symbols：至少 32 个 complex 符号 | order=64、iterations=5 | eq/decisions/indices/evm_pct/dc/complex_gain/coarse_phase_deg dict |
-| search_residual_cfo | symbols、config：QAMConfig | 无 | scalar fit dict + cfo_hz/boundary/search count/grid resolution |
+| scalar_qam_fit | symbols：至少 32 个 complex 符号 | order=64、iterations=5、keyword-only dc_mode="legacy_mean" | eq/decisions/indices/evm_pct/dc/complex_gain/coarse_phase_deg dict |
+| search_residual_cfo | symbols、config：QAMConfig | keyword-only dc_mode="legacy_mean" | scalar fit dict + cfo_hz/boundary/search count/grid resolution |
 | qam_error_metrics | symbols、decisions：同形非空 complex 数组，decisions 非零 | 无 | 四个 RMS 指标 dict |
 | QAMResult.to_dict | 已有实例 | 无 | 标准 JSON-ready dict |
 | `psd.qam.plotting.plot_constellation` | result：QAMResult | show=True | `(figure, axes)` |
@@ -261,6 +261,84 @@ fig,axes = plot_constellation(r,show=False)
 | --rrc-beta / --rrc-span / --timing-interp | .25 / 10 / 16 | 同 QAMConfig |
 | --max-cfo / --max-analysis-symbols / --constellation-points | 5000 / 30000 / 5000 | 同 QAMConfig |
 | --no-cfo-correction / --q-sign | False / 1 | 关闭 CFO 或显式 Q polarity |
+| --qam-dc-mode | legacy_mean | legacy_mean / decision_directed_joint，显式选择新的符号域联合拟合 |
 
 Python CLI 使用文本输出；标准 JSON 使用上述程序化 API，未增加 --json。
 Packed64 通过 read_packed64 程序化读取，现有 CLI 的 sample-format 语义保持不变。
+
+## V2.1.1：Legacy 与 Joint-fit
+
+默认 `legacy_mean` 保留 V2.1.0 数值、diagnostics.config 与完整旧 JSON 结构，算法版本
+`qam-blind-scalar-1`。QAMConfig 不添加 DC 字段，旧13组 Golden 不重新生成。
+新增 keyword-only `dc_mode="decision_directed_joint"` 明确选择 `qam-blind-scalar-2`：
+
+```text
+z=a*d+c+e
+a=sum(conj(d-mean(d))*(z-mean(z)))/sum(|d-mean(d)|²)
+c=mean(z)-a*mean(d)
+y=(z-c)/a
+```
+
+先用 Legacy Scalar Fit 初始化判决，再至多 iterations 次联合 LS/判决。
+每次对同一原始符号 z 拟合，不累积多轮偏置补偿；分母与增益必须非零且有限。
+最终判决不再改变时 joint_fit_converged=True；不收敛则有限次结束并给 warning。
+没有 TX truth 参与接收机，没有多抽头均衡。新模式所有定时/CFO候选都使用 Joint 评分。
+开启 CFO 时进行一次 CFO-aware 全相位复查；仅相位改变时再搜索一次 CFO。
+这是有界的两次 timing sweep，不是 PLL 或跟踪环。关闭 CFO 时不复查。
+
+新增诊断仅存在于 Joint 模式，不改变 Legacy Golden：
+
+| 字段 | 单位/参考位置 |
+|---|---|
+| dc_estimation_mode | decision_directed_joint |
+| dc_offset | c，CFO 去旋转后的符号域常数，不是 ADC 绝对 DC 电压 |
+| forward_gain | a，符号域理想点到接收点的复数增益，模90° |
+| complex_gain | 1/a，对去 c 后的符号校正；不是误差指标 |
+| joint_fit_iterations / joint_fit_converged | 实际联合 LS 次数 / 判决稳定布尔值；初始化另执行 iterations 次 Legacy fit |
+| cfo_grid_resolution_hz | 最后 fine grid 的间隔，**不等于估计精度或不确定度** |
+| cfo_estimation_error_hz / cfo_estimation_uncertainty_hz | None，运行时没有发送真值或可信的不确定度模型 |
+| cfo_search_evaluations | 所有 CFO 搜索候选总数，默认122或244；关闭为0 |
+| timing_initial_offset_symbols / timing_initial_evm_pct | 未 CFO-aware 复查的初始定时结果 |
+| timing_cfo_refinement_enabled / timing_search_sweeps | 是否复查 / 2或1 |
+| timing_fit_mode / cfo_fit_mode | 当前评分模式，均为 decision_directed_joint |
+
+candidate 只表示残差/占用门限通过，不是锁定证明；warning 表示边界或不收敛。
+明显不可靠的残差/占用返回 `QAMRecoveryError`（ValueError 子类），其 diagnostics.status=unreliable，
+带有限指标/定时/CFO证据，不返回合法 QAMResult。非法输入仍可能直接抛 ValueError。
+平方QAM的 I/Q交换或 Q取反可映射成另一合法星座，单靠 Blind EVM 无法认证极性/bit顺序。
+超范围 CFO、错符号率/RRC和非QAM信号也可能通过 candidate 门限，须结合先验或TX参考验证。
+
+**更低的 Blind EVM 不一定代表更接近真实物理 EVM。** Joint LS 可以消除有限符号均值偏差，
+但同时定义了不同的允许补偿项；未知信道、低SNR或错误判决时不能依据低EVM宣称链路更好。
+正式指标公式/分母、PSD Full Scale与Power积分均不变。
+
+```python
+from psd.csvio import read_csv, CSVConfig
+from psd.qam import analyze_qam
+x = read_csv("data/qam64_20MSymPS_160MSPS_RRC0p25.csv",CSVConfig(sample_format="hex_q15")).samples
+legacy = analyze_qam(x)  # 2.596190680%，兼容基线
+joint = analyze_qam(x,dc_mode="decision_directed_joint")  # 新模式，真实数据没有TX参考
+```
+
+```shell
+python python/demo.py --input data/qam64_20MSymPS_160MSPS_RRC0p25.csv --sample-format hex_q15 --qam --qam-dc-mode decision_directed_joint --no-show
+python python/validate_qam_refinement.py
+python python/benchmark_qam.py --repeats 5
+```
+
+独立TX参考仅用于测试：同一个接收采样/对齐、已知 CFO、一次 numpy.linalg.lstsq 求 a/c。
+同时报告在真实 CFO 与接收估计 CFO 两个参考下的结果，不能把不同 CFO 下的 LS 差当成数值错误。
+新 receiver Golden 在 `data/golden/qam/v2/`，18组，旧13组不变。复数表示仍为分离 real/imag。
+相位比较模90°，定时相位模1 symbol；正确判决对齐只搜索整数时移/象限，不改TX真值。
+新配置和所有诊断、数组/标量容差保存在向量中，深残差不要求逐bit一致。
+Stage A实测矩阵、性能及Go Gate见 [V2.1.1报告](reports/v2.1.1_qam_refinement.md)。
+
+判决收敛表示相邻迭代的decisions不变，不是与TX真值一致。
+已验证的偏斜256QAM（完整星座两轮再加负I半星座）可在608个错误判决处稳定，
+Joint EVM3.251%仍低于Legacy4.004%；因此不要把该标志当作锁定认证。
+Go本版仅移植 [QAM Foundation](../go/API.md#qam-foundationv211)，全receiver仍只在Python。
+36组基础数学向量位于 `data/golden/qam/v2/foundation/`，生成器为generate_qam_foundation.py。
+旧13组与新18组receiver index保持分离，算法2的配置和返回字段已固定。
+
+README两张真实数据展示图可显式运行 `python python/render_readme.py` 重建；
+只有该文档导出脚本保存PNG，库plot_psd/plot_constellation仍默认show。

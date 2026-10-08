@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.0.0",
+  "vector_count": 36,
+  "vectors": [
+    {
+      "id": "constellation_16",
+      "file": "constellation_16.json",
+      "sha256": "18baa9d57614d98ad472567c931c0038aba09575ddc6467818e017c9b982d781"
+    },
+    {
+      "id": "slicer_16",
+      "file": "slicer_16.json",
+      "sha256": "d21d1cf258eb71c5d7a7951a980af025afb56051df9329c03dd896dd3e8db0fb"
+    },
+    {
+      "id": "metrics_16",
+      "file": "metrics_16.json",
+      "sha256": "7ff1bb08c70d8a3ba649105d34bd6e5f17eb099c8ce29dfa21fd7e5234fc60e1"
+    },
+    {
+      "id": "scalar_16_ideal_legacy_mean",
+      "file": "scalar_16_ideal_legacy_mean.json",
+      "sha256": "aa10f586c75ea2d094ae951486b59137fbf1f2eb795587d19c9204f8798bcbe7"
+    },
+    {
+      "id": "scalar_16_ideal_decision_directed_joint",
+      "file": "scalar_16_ideal_decision_directed_joint.json",
+      "sha256": "3f7abc9558e432f9866f471e180348ee7283b1b00e2da63b9e0890a39a2d1442"
+    },
+    {
+      "id": "scalar_16_dc_gain_legacy_mean",
+      "file": "scalar_16_dc_gain_legacy_mean.json",
+      "sha256": "505df343292f91ef0e0b6dcbb4171641543173caac71fad6726f3a036bee1302"
+    },
+    {
+      "id": "scalar_16_dc_gain_decision_directed_joint",
+      "file": "scalar_16_dc_gain_decision_directed_joint.json",
+      "sha256": "d98bd9c86c117564040500a140291a2003b1de5b4ea7a8b612e9897f35b4b6f7"
+    },
+    {
+      "id": "scalar_16_awgn_legacy_mean",
+      "file": "scalar_16_awgn_legacy_mean.json",
+      "sha256": "aafa6cf1cf44ce2235107e7cdd0f05b7f12bded7f22418a9e9910aa71f7fbdb4"
+    },
+    {
+      "id": "scalar_16_awgn_decision_directed_joint",
+      "file": "scalar_16_awgn_decision_directed_joint.json",
+      "sha256": "1f5d908bbd600a1f8fa0559a1767aa1faa5868e47c18a9911075b3cef171770d"
+    },
+    {
+      "id": "constellation_64",
+      "file": "constellation_64.json",
+      "sha256": "b3b3b0c7976b4f3de3ddb6291d35a2c81c09234a9bfb5d30c6d60fc4f6390fa6"
+    },
+    {
+      "id": "slicer_64",
+      "file": "slicer_64.json",
+      "sha256": "497371db8393347597fb39a8d0016b3227585bddeb8b57cbd5a26341e1355fe7"
+    },
+    {
+      "id": "metrics_64",
+      "file": "metrics_64.json",
+      "sha256": "e50a6c24daf9a870e71f5b50b51fbc17610e8fac680b5a8026bfd37a67a3e577"
+    },
+    {
+      "id": "scalar_64_ideal_legacy_mean",
+      "file": "scalar_64_ideal_legacy_mean.json",
+      "sha256": "bafbf563ca2aec9c6c518fcda1002142bdc29e77f031976f4552b4736ee81a13"
+    },
+    {
+      "id": "scalar_64_ideal_decision_directed_joint",
+      "file": "scalar_64_ideal_decision_directed_joint.json",
+      "sha256": "4f30710fa0ee354cb5fe4dce873c50b88af49184fafce44e47670c06d2c4c30e"
+    },
+    {
+      "id": "scalar_64_dc_gain_legacy_mean",
+      "file": "scalar_64_dc_gain_legacy_mean.json",
+      "sha256": "f27e1ddd5e4dad8aa6bff184d67ae20890cd777d04b67ea057b2eb3919be1f86"
+    },
+    {
+      "id": "scalar_64_dc_gain_decision_directed_joint",
+      "file": "scalar_64_dc_gain_decision_directed_joint.json",
+      "sha256": "9c34dd110316ef69e5d98565d7437c2bb3a81e4c496e8282b8ced09fabb622d6"
+    },
+    {
+      "id": "scalar_64_awgn_legacy_mean",
+      "file": "scalar_64_awgn_legacy_mean.json",
+      "sha256": "b74f621eab1fe093c6f41b552ff5cc2fa5fef68fd99da855a739943097edc10c"
+    },
+    {
+      "id": "scalar_64_awgn_decision_directed_joint",
+      "file": "scalar_64_awgn_decision_directed_joint.json",
+      "sha256": "69646b576e9406520e375b38c67a1f8f9b5b7ab3366903f9a2ad79d3e3c43236"
+    },
+    {
+      "id": "constellation_256",
+      "file": "constellation_256.json",
+      "sha256": "cca558ccd0a27af0dc04ab90bd6682018846a3633b576866af319d9277f69150"
+    },
+    {
+      "id": "slicer_256",
+      "file": "slicer_256.json",
+      "sha256": "30a50ed001c7c0d2a9587088849022838a20257698ccd2856ac69182ce197e86"
+    },
+    {
+      "id": "metrics_256",
+      "file": "metrics_256.json",
+      "sha256": "cf3f1f74f3bf797ee2706343df9268d62d439745b0932cf77a8cbd67c315c3a1"
+    },
+    {
+      "id": "scalar_256_ideal_legacy_mean",
+      "file": "scalar_256_ideal_legacy_mean.json",
+      "sha256": "126315d007c3b605419a75d4dbaa77d7ba08f6bbbc039820cec0e0868da488d6"
+    },
+    {
+      "id": "scalar_256_ideal_decision_directed_joint",
+      "file": "scalar_256_ideal_decision_directed_joint.json",
+      "sha256": "b35a7866c477391e2a92ba84bd8fa5cc452fd9aafcf0bf6d99bd0dc3d3bfb6ab"
+    },
+    {
+      "id": "scalar_256_dc_gain_legacy_mean",
+      "file": "scalar_256_dc_gain_legacy_mean.json",
+      "sha256": "484f94935b0dcf0287418c3ac2b1ed97bb1a0871dbc7d69f23c5ed2f54815e20"
+    },
+    {
+      "id": "scalar_256_dc_gain_decision_directed_joint",
+      "file": "scalar_256_dc_gain_decision_directed_joint.json",
+      "sha256": "62a0f2055f0a918b12d64bda015d2e750aec39e2116c6b32988c49eb52097325"
+    },
+    {
+      "id": "scalar_256_awgn_legacy_mean",
+      "file": "scalar_256_awgn_legacy_mean.json",
+      "sha256": "b227171926944e2797738fbd023e8336023da7ad423ad429fcb907ae68207ea1"
+    },
+    {
+      "id": "scalar_256_awgn_decision_directed_joint",
+      "file": "scalar_256_awgn_decision_directed_joint.json",
+      "sha256": "d652a982ef245534c5df83f2436d49db62b1e9aa856dd38e3a1212ff27a8466f"
+    },
+    {
+      "id": "rrc_0_10_2",
+      "file": "rrc_0_10_2.json",
+      "sha256": "cae06bea2f40f3cdeb9068a7573853efb6e903ac7200705d95bf1ac012b5d15b"
+    },
+    {
+      "id": "rrc_0_10_8",
+      "file": "rrc_0_10_8.json",
+      "sha256": "2a294c2198e7641f099b5a0d41c2480ec3860eade374bf9cd6a494be7e22fb80"
+    },
+    {
+      "id": "rrc_0_3_3",
+      "file": "rrc_0_3_3.json",
+      "sha256": "3f99400f8b5f24415ae7126c610e971c8455f05462348bff701dd769520320cc"
+    },
+    {
+      "id": "rrc_0.25_10_2",
+      "file": "rrc_0.25_10_2.json",
+      "sha256": "87285bc45b17f7f6a1aebca1ec8501538f6c0a338229a77100ebbfe4ebeb7d82"
+    },
+    {
+      "id": "rrc_0.25_10_8",
+      "file": "rrc_0.25_10_8.json",
+      "sha256": "0bab03720df925dd1f6ac6226ddc6dd92e203be952c22fecb7fa101fab71480a"
+    },
+    {
+      "id": "rrc_0.25_3_3",
+      "file": "rrc_0.25_3_3.json",
+      "sha256": "8511d42ba4d877302a2bdfe0a7e7083814b52eaf1d2596c16513d4acf15141dc"
+    },
+    {
+      "id": "rrc_1_10_2",
+      "file": "rrc_1_10_2.json",
+      "sha256": "30be2fac58275661e1d5e7f590a5b1f6305a45e6b65dcaf09ad115d0ffa26ba3"
+    },
+    {
+      "id": "rrc_1_10_8",
+      "file": "rrc_1_10_8.json",
+      "sha256": "5cf9998086e2fbc9c860220419ce171ef92ed741a868e96b3b6da75b2f150cf4"
+    },
+    {
+      "id": "rrc_1_3_3",
+      "file": "rrc_1_3_3.json",
+      "sha256": "43753e520d328dc10624ed7eb2af29304f7cc183d262e50686c5e5029ed566ae"
+    }
+  ],
+  "comparison_rules": "No extra LS fit; scalar coordinates compared directly, modulo-90 alignment only if explicitly required. Zero/disabled values never become NaN/Infinity."
+}

@@ -40,9 +40,66 @@ def qam_slicer(symbols, order=64):
 slicer = qam_slicer
 
 
-def scalar_qam_fit(symbols, order=64, iterations=5):
-    """Remove mean, normalize RMS, recover modulo-90 phase and fit one scalar."""
+DC_MODES = ("legacy_mean", "decision_directed_joint")
+
+
+def validate_dc_mode(dc_mode):
+    if dc_mode not in DC_MODES:
+        raise ValueError("dc_mode must be legacy_mean or decision_directed_joint")
+
+
+def _joint_fit(symbols, order, iterations):
+    """Fit z=a*d+c to fixed input z; no TX reference or multi-tap compensation."""
+    z = complex_vector(symbols, 32)
+    try:
+        with np.errstate(over="raise", invalid="raise", divide="raise"):
+            initial = scalar_qam_fit(z, order, iterations)
+    except FloatingPointError as exc:
+        raise ValueError("joint initialization exceeds supported numeric range") from exc
+    decisions = initial["decisions"]
+    z_mean = np.mean(z)
+    centered_z = z-z_mean
+    converged = False
+    with np.errstate(over="raise", invalid="raise", divide="raise"):
+        try:
+            for used in range(1, iterations+1):
+                d_mean = np.mean(decisions)
+                centered_d = decisions-d_mean
+                energy = float(np.sum(abs(centered_d)**2))
+                if not np.isfinite(energy) or energy <= 0:
+                    raise ValueError("joint fit requires nonzero centered decision energy")
+                forward_gain = np.vdot(centered_d, centered_z)/energy
+                if not np.isfinite(forward_gain) or abs(forward_gain) == 0:
+                    raise ValueError("joint fit requires finite nonzero gain")
+                dc = z_mean-forward_gain*d_mean
+                y = (z-dc)/forward_gain
+                updated, indices = qam_slicer(y, order)
+                converged = bool(np.array_equal(updated, decisions))
+                decisions = updated
+                if converged:
+                    break
+            gain = 1/forward_gain
+            evm = float(100*np.sqrt(np.sum(abs(y-decisions)**2)/np.sum(abs(decisions)**2)))
+        except FloatingPointError as exc:
+            raise ValueError("joint fit exceeds supported numeric range") from exc
+    if not np.isfinite(evm) or not np.isfinite(gain) or not np.isfinite(dc):
+        raise ValueError("joint fit is nonfinite")
+    return dict(eq=y, decisions=decisions, indices=indices, evm_pct=evm, dc=dc,
+                complex_gain=gain, coarse_phase_deg=initial["coarse_phase_deg"],
+                forward_gain=forward_gain, joint_fit_iterations=used,
+                joint_fit_converged=converged)
+
+
+def scalar_qam_fit(symbols, order=64, iterations=5, *, dc_mode="legacy_mean"):
+    """Blind scalar fit: legacy mean removal or explicit affine decision LS.
+
+    No TX truth is used. Phase is identifiable only modulo 90 degrees.
+    Joint DC is measured in the supplied symbol domain, before scalar correction.
+    """
     positive_int(iterations, "iterations")
+    validate_dc_mode(dc_mode)
+    if dc_mode == "decision_directed_joint":
+        return _joint_fit(symbols, order, iterations)
     y = complex_vector(symbols, 32).copy()
     dc = np.mean(y)
     y -= dc

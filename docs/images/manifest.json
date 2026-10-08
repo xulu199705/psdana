@@ -1,0 +1,49 @@
+{
+  "input_file": "data/qam64_20MSymPS_160MSPS_RRC0p25.csv",
+  "input_sha256": "5f59fc3f1a3698cf44d52e9e49bc59db6493d1471efac64bdad5b1ce62640b70",
+  "csv_config": {
+    "sample_format": "hex_q15",
+    "input_type": "auto",
+    "header": "auto",
+    "delimiter": null,
+    "real_column": null,
+    "i_column": "i",
+    "q_column": "q"
+  },
+  "psd_config": {
+    "fs": 160000000.0,
+    "window": "hann",
+    "fft_points": "all",
+    "overlap": 0.5,
+    "detrend": "none"
+  },
+  "qam_config": {
+    "sample_rate_hz": 160000000.0,
+    "symbol_rate_hz": 20000000.0,
+    "qam_order": 64,
+    "rrc_beta": 0.25,
+    "rrc_span_symbols": 10,
+    "timing_interp": 16,
+    "timing_kaiser_beta": 8.0,
+    "extra_edge_trim_symbols": 6,
+    "enable_cfo_correction": true,
+    "max_residual_cfo_hz": 5000.0,
+    "cfo_coarse_steps": 81,
+    "cfo_fine_steps": 41,
+    "cfo_search_max_symbols": 12000,
+    "max_analysis_symbols": 30000,
+    "constellation_points": 5000,
+    "q_sign": 1,
+    "scalar_fit_iterations": 5,
+    "min_analysis_symbols": 200,
+    "max_decision_evm_pct": 12.0
+  },
+  "dc_mode": "decision_directed_joint",
+  "qam_algorithm_version": "qam-blind-scalar-2",
+  "evm_pct_rms": 1.7361659061297878,
+  "recovered_symbol_count": 2026,
+  "output_files": [
+    "psd.png",
+    "constellation.png"
+  ]
+}

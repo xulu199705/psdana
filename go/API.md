@@ -1,7 +1,7 @@
-# Go API reference — PSD / Power
+# Go API reference — PSD / Power / QAM Foundation
 
-Module `github.com/xulu199705/psdana/go`。V2.1.0 只扩展 Python QAM，Go 的公开实现仍为 V2.0.1。
-本页说明已有接口，不引入 Go QAM 或改变算法。Go 函数不能省略参数；配置字段的默认值由
+Module `github.com/xulu199705/psdana/go`。V2.1.1 新增独立 QAM 数学基础；原 PSD/Power 算法不变。
+尚未实现 Go QAM Receiver、timing/CFO 或 QAM CLI。Go 函数不能省略参数；配置字段的默认值由
 DefaultConfig 显式提供，不能将 struct 零值当成完整默认配置。
 
 ## 函数参数与返回值
@@ -17,6 +17,12 @@ DefaultConfig 显式提供，不能将 struct 零值当成完整默认配置。
 | csvio.Read(stream, config) | stream io.Reader、config CSVConfig | 调用者管理 stream 生命周期 | (CSVData,error) |
 | csvio.ParseColumn(value) | value string | 十进制索引，否则名称；有效性由读取器验证 | *Column |
 | CSVData.SampleCount() | 已有 receiver 实例 | 无 | int |
+| qam.DefaultScalarConfig() | 无 | 64QAM / 5 iterations / legacy_mean | ScalarConfig |
+| qam.GenerateConstellation(order) | order int | 16 / 64 / 256，无省略默认值 | ([]complex128,error) |
+| qam.SliceQAM(samples, order) | samples []complex128、order int | 最近点；精确距离相同选较低坐标 | ([]complex128,[]int,error) |
+| qam.GenerateRRCTaps(beta, span, sps) | 三个参数均必选 | 单位能量，奇数 tap；无省略默认值 | ([]float64,error) |
+| qam.ComputeQAMMetrics(samples, decisions) | 对应顺序的两个 []complex128 | 不拟合/判决/同步；参考符号非零 | (Metrics,error) |
+| qam.ScalarQAMFit(samples, config) | samples []complex128、config ScalarConfig | 用 DefaultScalarConfig 明确取得默认配置 | (ScalarResult,error) |
 
 所有普通非法输入返回 error，调用者必须检查，不能继续使用错误结果。
 Core 不依赖 CSV/CLI/绘图。real/complex 由函数区分，虚部全零仍按 complex 处理。
@@ -195,4 +201,84 @@ go -C go run ./cmd/psdana --freq-left 0 --freq-right 0 --json
 go -C go run ./cmd/psdana --freq-left 39990000 --freq-right 40010000 --json
 ```
 
-Go QAM 尚未实现；未来移植参考独立 `data/golden/qam/index.json`，不能调用当前 Go PSD API 获得 EVM。
+## QAM Foundation（V2.1.1）
+
+导入 `github.com/xulu199705/psdana/go/qam`。仅数学基础，输入须已是符号而非原 ADC IQ。
+没有 AnalyzeQAM、完整 QAMConfig/QAMResult 或自动同步接口，不能把原始采样直接当成正式 EVM。
+所有函数使用独立工作数组，不修改输入，无共享可变状态，不依赖 CSV/绘图。
+
+### ScalarConfig
+
+三个字段均可通过 DefaultScalarConfig 获得默认值，直接 struct 零值非法。
+
+| 字段 | 是否必选显式修改 | 默认 | 约束 |
+|---|---|---|---|
+| Order | 可选 | 64 | 16 / 64 / 256 |
+| Iterations | 可选 | 5 | 正整数；Legacy执行该次数，Joint初始化另执行同次数并至多再迭代该次数 |
+| DCMode | 可选 | legacy_mean | legacy_mean / decision_directed_joint |
+
+ScalarQAMFit 至少32符号；空、常量零功率、NaN/Inf及不可表示的累积量返回error。
+Joint 使用 `z=a*d+c` centered LS。不是 TX-aided fit，没有均衡或锁定认证。
+GenerateRRCTaps 所有参数必选；beta有限[0,1]、span/sps正整数，单位能量，
+tap数=span*sps+1（偶数再加1），群延时=(tap数−1)/2。明确限制最多1048576 taps避免异常内存请求。
+SliceQAM 用 I-major/Q-minor索引，有限坐标超出边缘饱和到最外理想点，精确距离平局选较低坐标。
+
+### 返回字段
+
+| 类型/字段 | 单位/含义 |
+|---|---|
+| Metrics.EVMPctRMS | 100 sqrt(sum|y-d|² / sum|d|²) |
+| Metrics.AmplitudeErrorPctRMS | 径向误差，% RMS |
+| Metrics.PhaseErrorPctRMS | 切向误差，% RMS；不是相位角百分比 |
+| Metrics.PhaseErrorDegRMS | principal angle(y conj(d))，deg RMS |
+| ScalarResult.Equalized / Decisions / Indices | 对应顺序的完整校正符号/判决/I-major索引 |
+| EVMPct | 使用最终相同y/d的decision-directed EVM % RMS |
+| DC / ComplexGain | 符号域偏置 / 去偏置后校正增益；不是ADC绝对增益或DC |
+| ForwardGain | Joint的a；Legacy不提供此诊断，Go字段零值不能解释为测量 |
+| CoarsePhaseDeg | 四阶矩粗相位，模90°；不是绝对发送相位 |
+| DCMode | 实际模式 |
+| JointIterations / JointConverged | Joint执行次数/判决是否稳定；Legacy不适用 |
+
+ScalarResult 实现 json.Marshaler，输出 Python primitive 名称：eq/decisions以
+`{"real":[...],"imag":[...]}` 表示，dc/complex_gain以real/imag标量表示。
+Legacy不导出Joint字段，Joint额外forward_gain/joint_fit_iterations/joint_fit_converged。
+非有限值返回JSON编码错误，不输出NaN/Infinity；foundation没有“未估计CFO”字段。
+EVM平方分解保持成立。**判决稳定或Blind EVM较低不证明锁定，也不证明真实物理EVM更低。**
+偏斜256QAM测试已确认可能稳定在错误判决。
+
+### 程序化示例
+
+```go
+// 1. 生成标准星座并判决，所有参数必选。
+points, err := qam.GenerateConstellation(64)
+if err != nil { panic(err) }
+decisions, indices, err := qam.SliceQAM(points, 64)
+if err != nil { panic(err) }
+// decisions等于points；indices为0..63，先I后Q。
+_, _ = decisions, indices
+```
+
+```go
+// 2. RRC不是PSD窗；匹配滤波仍由未来receiver实现。
+taps, err := qam.GenerateRRCTaps(0.25, 10, 8)
+if err != nil { panic(err) }
+// 81 taps、单位能量、群时延40 samples。
+_ = taps
+```
+
+```go
+// 3. 对已恢复符号显式Joint fit，不进行timing/CFO。
+config := qam.DefaultScalarConfig()
+config.DCMode = qam.DecisionDirectedJoint
+fit, err := qam.ScalarQAMFit(recoveredSymbols, config)
+if err != nil { panic(err) }
+metrics, err := qam.ComputeQAMMetrics(fit.Equalized, fit.Decisions)
+if err != nil { panic(err) }
+encoded, err := json.Marshal(fit)
+if err != nil { panic(err) }
+_, _ = metrics, encoded
+```
+
+36组跨语言数学向量位于 `data/golden/qam/v2/foundation/`，独立index及SHA256。
+接收机旧13组与新18组Golden仍属于Python全链路，不能称为已通过Go receiver验证。
+测试：`go -C go test -v ./qam`；端点/异常/解析指标、输入不变和Example函数同时验证。

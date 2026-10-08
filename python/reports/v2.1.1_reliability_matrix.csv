@@ -1,0 +1,23 @@
+input,mode,accepted,status,evm_pct,cfo_hz,timing,explanation
+pure_awgn,legacy_mean,False,unreliable,18.784343812737674,4990.625,0.703125,QAM decisions unreliable: EVM/constellation occupancy failed; no equalizer applied
+pure_awgn,decision_directed_joint,False,unreliable,18.669604708348356,4906.25,0.71875,QAM decisions unreliable: EVM/constellation occupancy failed; no equalizer applied
+single_tone,legacy_mean,False,unreliable,12.67753669463091,-12.5,0.4609375,QAM decisions unreliable: EVM/constellation occupancy failed; no equalizer applied
+single_tone,decision_directed_joint,False,unreliable,12.21952573636381,-3462.5,0.4453125,QAM decisions unreliable: EVM/constellation occupancy failed; no equalizer applied
+two_tones,legacy_mean,False,unreliable,12.677536685822052,12.5,0.75,QAM decisions unreliable: EVM/constellation occupancy failed; no equalizer applied
+two_tones,decision_directed_joint,False,unreliable,12.219525736289016,-3462.5,0.7421875,QAM decisions unreliable: EVM/constellation occupancy failed; no equalizer applied
+random_phase,legacy_mean,False,unreliable,18.085184652053115,-237.5,0.578125,QAM decisions unreliable: EVM/constellation occupancy failed; no equalizer applied
+random_phase,decision_directed_joint,False,unreliable,17.94860983864897,-56.25,0.5390625,QAM decisions unreliable: EVM/constellation occupancy failed; no equalizer applied
+wrong_rate,legacy_mean,False,unreliable,13.82568754132842,-31.25,0.984375,QAM decisions unreliable: EVM/constellation occupancy failed; no equalizer applied
+wrong_rate,decision_directed_joint,False,unreliable,13.755634611837184,6.25,0.0,QAM decisions unreliable: EVM/constellation occupancy failed; no equalizer applied
+wrong_rrc,legacy_mean,True,candidate,5.856193133531595,0.0,0.0,candidate is not a proof of correct modulation/polarity
+wrong_rrc,decision_directed_joint,True,candidate,5.382812839334633,0.0,0.0,candidate is not a proof of correct modulation/polarity
+low_snr,legacy_mean,False,unreliable,13.919423901839531,43.75,0.953125,QAM decisions unreliable: EVM/constellation occupancy failed; no equalizer applied
+low_snr,decision_directed_joint,False,unreliable,13.754874749710982,287.5,0.9921875,QAM decisions unreliable: EVM/constellation occupancy failed; no equalizer applied
+sample_order,legacy_mean,True,candidate,3.506025942394046,0.0,0.0,candidate is not a proof of correct modulation/polarity
+sample_order,decision_directed_joint,True,candidate,2.6254311422306253,0.0,0.0,candidate is not a proof of correct modulation/polarity
+swapped_iq,legacy_mean,True,candidate,2.5517023658027393,0.0,0.0,candidate is not a proof of correct modulation/polarity
+swapped_iq,decision_directed_joint,True,candidate,1.0522489730940858,0.0,0.0,candidate is not a proof of correct modulation/polarity
+wrong_q_polarity,legacy_mean,True,candidate,2.5517023658027393,0.0,0.0,candidate is not a proof of correct modulation/polarity
+wrong_q_polarity,decision_directed_joint,True,candidate,1.0522489730940865,0.0,0.0,candidate is not a proof of correct modulation/polarity
+out_of_range_cfo,legacy_mean,False,unreliable,12.123949387400982,5000.0,0.984375,QAM decisions unreliable: EVM/constellation occupancy failed; no equalizer applied
+out_of_range_cfo,decision_directed_joint,True,warning,11.978723327134272,5000.0,0.0,candidate is not a proof of correct modulation/polarity

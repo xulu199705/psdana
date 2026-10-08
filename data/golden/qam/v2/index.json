@@ -1,0 +1,98 @@
+{
+  "schema_version": "2.0.0",
+  "algorithm_version": "qam-blind-scalar-2",
+  "vector_count": 18,
+  "input_path_base": "vector_directory",
+  "vectors": [
+    {
+      "id": "Q01",
+      "file": "Q01.json",
+      "sha256": "0ddc39819746f19526efba7b50eac19aeddd1d899b2bd2e21c15333e5a291e57"
+    },
+    {
+      "id": "Q02",
+      "file": "Q02.json",
+      "sha256": "fff499143040de910bebbf02d18520b1a322adfccca4c73ee92bbbe4957e2d93"
+    },
+    {
+      "id": "Q03",
+      "file": "Q03.json",
+      "sha256": "5f560b0f1510b07824449333a4e726c303e8d76b9af7f038ac923899cbff799d"
+    },
+    {
+      "id": "Q04",
+      "file": "Q04.json",
+      "sha256": "fb875a008c7085d1f2def2f7383d7d5d0b0644e788c0038cc88334f85d711199"
+    },
+    {
+      "id": "Q05",
+      "file": "Q05.json",
+      "sha256": "7b6d0d21b56d4f95785b790474d2e8abed8672e4ebe0eb207bd46e6ff60ce8c5"
+    },
+    {
+      "id": "Q06",
+      "file": "Q06.json",
+      "sha256": "35c88fced01f8ca796ef7edd623f3c1edf4cbd6d16d2b4e657fb8fc8682409b8"
+    },
+    {
+      "id": "Q07",
+      "file": "Q07.json",
+      "sha256": "4f6b2e35bb777f11d797d4d81370400f693745171b6acf2539d2c69b80e40f06"
+    },
+    {
+      "id": "Q08",
+      "file": "Q08.json",
+      "sha256": "ba3e1a4b6893ada146df41e53f8dca2325fb42c83dd904c24d03a7ccc55a0f32"
+    },
+    {
+      "id": "Q09",
+      "file": "Q09.json",
+      "sha256": "c7408e395d696093f519987072dd49e09cb4d2e221e8d8dc9223d44c19dab8fb"
+    },
+    {
+      "id": "Q10",
+      "file": "Q10.json",
+      "sha256": "109bd9c2945cb9afd28438e05384edb2a4273df5719152736d81856261e10821"
+    },
+    {
+      "id": "Q11",
+      "file": "Q11.json",
+      "sha256": "ef24b1b9b6dfc6a9b4fc239b5a118e61528fbcaf79892873d38ef40d406b425f"
+    },
+    {
+      "id": "Q12",
+      "file": "Q12.json",
+      "sha256": "18f5825e263cc33689afca17e0e0994215f058218c2adc28bd6940eaa528e832"
+    },
+    {
+      "id": "IDEAL_256",
+      "file": "IDEAL_256.json",
+      "sha256": "6f0ec8ead36049be44850f9a53c6b9d18c84a02a249d9d5004bce5da94ad7778"
+    },
+    {
+      "id": "IDEAL_512",
+      "file": "IDEAL_512.json",
+      "sha256": "fdb53764b12bdd976904a23b46086e6e46916f05c070813eab526e56a79b4f03"
+    },
+    {
+      "id": "IDEAL_1024",
+      "file": "IDEAL_1024.json",
+      "sha256": "05a81567c59233bb7a3829d746646315d61e4a6a917042a39bede00270d85978"
+    },
+    {
+      "id": "IDEAL_4096",
+      "file": "IDEAL_4096.json",
+      "sha256": "ab0450a9a647e67c6d1a4c5e7f2e1ff9e022c238d3346ae263c4fe22b8e04296"
+    },
+    {
+      "id": "IDEAL_16384",
+      "file": "IDEAL_16384.json",
+      "sha256": "0bde74e5c477b3667226b0ca06f7c96478bdd2fb88263463495884afab0f6932"
+    },
+    {
+      "id": "REAL64",
+      "file": "REAL64.json",
+      "sha256": "1749df0ba516979ea4c8ac55a076b20a87fe7b606c6d63abbd1ef6fb2e53afe0"
+    }
+  ]
+}

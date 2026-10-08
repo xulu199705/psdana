@@ -2,13 +2,14 @@
 
 import numpy as np
 
-from .constellation import complex_vector, scalar_qam_fit
+from .constellation import complex_vector, scalar_qam_fit, validate_dc_mode
 
 
-def search_residual_cfo(symbols, config):
+def search_residual_cfo(symbols, config, *, dc_mode="legacy_mean"):
+    validate_dc_mode(dc_mode)
     symbols = complex_vector(symbols, config.min_analysis_symbols)
     if not config.enable_cfo_correction:
-        fit = scalar_qam_fit(symbols, config.qam_order, config.scalar_fit_iterations)
+        fit = scalar_qam_fit(symbols, config.qam_order, config.scalar_fit_iterations, dc_mode=dc_mode)
         fit.update(cfo_hz=None, cfo_boundary_hit=False, cfo_search_symbols=0, cfo_grid_resolution_hz=None)
         return fit
     length = min(len(symbols), config.cfo_search_max_symbols)
@@ -18,7 +19,7 @@ def search_residual_cfo(symbols, config):
 
     def score(frequency):
         corrected = subset*np.exp(-2j*np.pi*frequency*n)
-        return scalar_qam_fit(corrected, config.qam_order, config.scalar_fit_iterations)["evm_pct"]
+        return scalar_qam_fit(corrected, config.qam_order, config.scalar_fit_iterations, dc_mode=dc_mode)["evm_pct"]
 
     bound = config.max_residual_cfo_hz
     coarse = np.linspace(-bound, bound, config.cfo_coarse_steps)
@@ -30,7 +31,7 @@ def search_residual_cfo(symbols, config):
     frequency = float(fine[np.argmin(fine_scores)])
     resolution = float(fine[1]-fine[0])
     full_n = np.arange(len(symbols))/config.symbol_rate_hz
-    fit = scalar_qam_fit(symbols*np.exp(-2j*np.pi*frequency*full_n), config.qam_order, config.scalar_fit_iterations)
+    fit = scalar_qam_fit(symbols*np.exp(-2j*np.pi*frequency*full_n), config.qam_order, config.scalar_fit_iterations, dc_mode=dc_mode)
     # One coarse grid interval defines "near boundary". Fine search clipping
     # halves its step near the edge, so a fine-step threshold would miss it.
     fit.update(cfo_hz=frequency, cfo_boundary_hit=abs(frequency) >= bound-step,

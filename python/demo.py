@@ -59,6 +59,7 @@ def main(argv=None):
     parser.add_argument("--constellation-points", type=int, default=5000)
     parser.add_argument("--no-cfo-correction", action="store_true")
     parser.add_argument("--q-sign", type=int, choices=[-1,1], default=1)
+    parser.add_argument("--qam-dc-mode", choices=["legacy_mean","decision_directed_joint"], default="legacy_mean")
     args = parser.parse_args(argv)
     if (args.freq_left is None) != (args.freq_right is None):
         parser.error("freq-left and freq-right must be provided together")
@@ -81,7 +82,8 @@ def main(argv=None):
                 enable_cfo_correction=not args.no_cfo_correction, q_sign=args.q_sign)
         analysis = analyze_iq(capture.samples,
             PSDConfig(args.fs, args.window, args.fft_points, args.overlap, args.detrend),
-            qam_config, (args.freq_left,args.freq_right) if args.freq_left is not None else None)
+            qam_config, (args.freq_left,args.freq_right) if args.freq_left is not None else None,
+            dc_mode=args.qam_dc_mode)
         result, metrics = analysis.psd, analysis.power_metrics
     except (ValueError, OSError) as exc:
         parser.error(str(exc))
@@ -114,6 +116,9 @@ def main(argv=None):
               f"Phase angle: {qam.phase_error_deg_rms:.9f} deg RMS")
         print(f"Frequency Error: {cfo}; timing: {qam.timing_offset_symbols:.9g} symbol; "
               f"valid symbols: {qam.recovered_symbol_count}; status: {qam.diagnostics['status']}")
+        if args.qam_dc_mode != "legacy_mean":
+            print(f"DC mode: {args.qam_dc_mode}; joint iterations: {qam.diagnostics['joint_fit_iterations']}; "
+                  f"converged: {qam.diagnostics['joint_fit_converged']}")
         for warning in qam.diagnostics["warnings"]:
             print(f"QAM warning: {warning}")
         from psd.qam.plotting import plot_constellation

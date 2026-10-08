@@ -375,3 +375,45 @@ RRC 连续公式/直接 FIR、解析误差分解、已知 CFO/定时及不可靠
 没有真实捕获时相关测试明确 skip/BLOCKED，不以合成样本代替真实验收。
 
 真实默认结果、全部测试与限制见 [V2.1.0 验证报告](reports/v2.1.0_qam_validation.md)。
+
+## V2.1.1：显式 Joint-fit 与可靠性评估
+
+默认 Legacy 原样保留，仍使用 qam-blind-scalar-1，旧13组QAM及17组PSD Golden不变。
+新增可选 keyword-only `dc_mode="decision_directed_joint"`，适用于 analyze_qam、recover_symbols、
+scalar_qam_fit、search_residual_cfo、analyze_iq；QAMConfig 不添加字段，保持 Legacy JSON 兼容。
+新算法版本 qam-blind-scalar-2，对同一输入符号 z 联合估计 z=a*d+c，再用 (z-c)/a 校正。
+DC 在符号域定义，不是 ADC 绝对电压；初始化和每轮判决仍为 Blind，不使用发送真值。
+定时/CFO评分使用同一模式，新模式额外做一次 CFO-aware 全相位复查，仅相位改变时再次搜索CFO。
+
+```shell
+python python/demo.py --input data/qam64_20MSymPS_160MSPS_RRC0p25.csv --sample-format hex_q15 --qam --qam-dc-mode decision_directed_joint --no-show
+python python/validate_qam_refinement.py
+python python/benchmark_qam.py --repeats 5
+python -m pytest python/tests -q
+```
+
+Q01 Legacy=2.551702%，Joint=1.052249%；一次独立已知符号联合LS得到1.052249%。
+真实输入 Legacy=2.596191%，Joint=1.736166%，与用户补充的频谱仪“2%以下”一致；
+真实数据没有 TX truth，**更低的 Blind EVM 不一定代表更接近真实物理 EVM**。
+不能把 CFO fine grid 步长当成精度，新模式未知估计误差/不确定度均为 None。
+保留 candidate/warning，拒绝结果通过 QAMRecoveryError 提供 unreliable 诊断。
+纯噪声等反例、超范围CFO、错RRC/时序/极性均有实际扫描记录，不把低EVM作为绝对锁定证明。
+
+新 `data/golden/qam/v2/` 有18个Joint receiver向量，另有5组短/长记录数据在 generated/qam/v2。
+生成脚本 generate_qam_v2.py 只写新目录，不重新生成原Golden。
+qam_joint_reference.py 用已知CFO与单次lstsq独立验证 a/c，同时报告同一接收输出的TX真值EVM及判决错误。
+时移/90°模糊仅作对齐，TX符号不修改，无额外自适应均衡。
+
+Benchmark覆盖16384、65536、262144、1048576 IQ，七项组件/整体，预热后5次median/p90。
+每规模/模式独立进程，BLAS线程数1，输入生成/启动/I/O不计时；插值数组精确增长到256 MiB。
+Windows working-set peak是整个worker历史峰值，含导入/生成/预热，不是单阶段或接收机专属峰值。
+测试矩阵、实际性能及条件Go Gate见 [V2.1.1报告](reports/v2.1.1_qam_refinement.md)
+和 [Benchmark明细](reports/v2.1.1_qam_benchmark.md)。
+
+Stage A Gate已通过，Go本版仅新增数学Foundation；36组共享向量由
+`python/generate_qam_foundation.py` 写入独立 `data/golden/qam/v2/foundation/`。
+完整Go QAM receiver仍未实现。已确认偏斜256QAM可在错误判决处稳定，
+因此 joint_fit_converged 不能解释为 TX truth 锁定。
+
+根README展示的PSD与星座PNG由真实CSV实际计算，重建命令：
+`python python/render_readme.py`。这是明确的文档导出功能，库绘图默认仍仅show。
