@@ -3,6 +3,9 @@
 Module：`github.com/xulu199705/psdana/go`，复用既有 Go 1.27.1 配置，仅使用 Gonum v0.17.0。
 核心、CSV、CLI 分离；没有 Go 绘图、TypeScript、GUI 或并行 Welch。
 
+完整的必选/可选参数、DefaultConfig 默认值、返回字段及多个程序化/CLI 示例见
+[Go API Reference](API.md)。V2.1.0 的 QAM 功能仅在 Python 实现，本版本 Go 算法和接口不变。
+
 ## 接口与算法
 
 ```go
@@ -84,7 +87,7 @@ Python 使用现有 Conda 环境，没有修改依赖版本。
 
 结果见 [工程报告](reports/phase2_validation.md) 和 [性能表](reports/performance.md)。
 
-## V2.0.1：频段与点频功率（待发布）
+## V2.0.1：频段与点频功率
 
 ```go
 // 先检查 PSD 计算错误，再调用；函数不修改 result。

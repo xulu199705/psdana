@@ -1,12 +1,13 @@
 # psdana
 
-**可复现的 PSD 分析工具：Python Golden Reference 与 Go Core。**
+**可复现的 PSD、频段功率与 QAM 分析工具：Python Golden Reference 与 Go PSD Core。**
 
 psdana 面向离线采样数据分析和 DSP 算法移植，提供数学定义一致的 Periodogram / Welch、
 实数及复数 IQ 输入、明确的 Full Scale 参考，以及可供其他语言复用的 Golden Vector。
 Python 提供参考计算和独立频谱绘图；Go 提供计算库、CSV 适配和命令行 JSON 输出。
+Python 还提供独立的 QAM 接收链、误差指标和星座图，可与同一 IQ 的 PSD/频段功率组合分析。
 
-当前开发快照：**V2.0.1（待发布）**，基于 V2.0.0。项目遵循 **Correctness First，Performance Second**。
+当前开发快照：**V2.1.0（未创建发布标签）**，基于 V2.0.1。项目遵循 **Correctness First，Performance Second**。
 
 ## 功能
 
@@ -19,6 +20,9 @@ Python 提供参考计算和独立频谱绘图；Go 提供计算库、CSV 适配
 - Python Matplotlib Line 绘图；Go CLI 文本摘要及机器可解析 JSON。
 - 17 个冻结 Golden Vector、独立数学测试、SciPy 对照及直接 Python-Go 比较。
 - 可复现的 Core / CSV Decode / End-to-End Benchmark，覆盖百万点输入。
+- Python 64QAM：RRC matched filter、Fractional Timing Recovery、Residual CFO、Blind Scalar Fit。
+- Decision-Directed EVM、径向/切向误差、相位角 RMS，独立发送真值验证及 13 组 QAM Golden。
+- Python 星座图：红色空心理想点、半透明亮黄色恢复符号，默认直接 show。
 
 当前不提供实时 PSD、GUI、Web 服务或 Go 绘图。
 
@@ -26,8 +30,8 @@ Python 提供参考计算和独立频谱绘图；Go 提供计算库、CSV 适配
 
 ### Python
 
-需要 Python 3.9+。可使用现有 Python/Conda 环境；运行依赖 NumPy、Matplotlib，
-测试额外使用 pytest、SciPy。
+需要 Python 3.9+。可使用现有 Python/Conda 环境；运行依赖 NumPy、SciPy、Matplotlib，
+测试额外使用 pytest。PSD Core 仍仅依赖 NumPy，SciPy 用于 QAM 与独立验证。
 
 ```shell
 git clone https://github.com/xulu199705/psdana.git
@@ -66,6 +70,12 @@ python python/demo.py --freq-left 39000000 --freq-right 41000000 --no-show
 
 # Q1.15 输入
 python python/demo.py --input data/generated/T09_q15_iq.csv --sample-format q15
+
+# 同一份真实 IQ：PSD + QAM，默认直接显示两张图，不保存
+python python/demo.py --input data/qam64_20MSymPS_160MSPS_RRC0p25.csv --sample-format hex_q15 --qam --symbol-rate 20000000
+
+# 合成 SPS2 QAM；同时指定频段并关闭交互显示
+python python/demo.py --input data/generated/qam/Q11_sps2.csv --qam --symbol-rate 80000000 --freq-left -60000000 --freq-right 60000000 --no-show
 ```
 
 正常绘图直接调用 `plt.show()`，不保存图像。绘图层不会重新读取 CSV 或计算 FFT。
@@ -129,7 +139,35 @@ power, err := psd.AnalyzeBandPower(result, 39e6, 41e6)
 
 Go 的零值配置不表示默认值；请使用 DefaultConfig。
 real / complex 由公开接口明确区分，complex128 虚部全零仍按复数处理。
-详细字段、错误行为和线程安全边界见 [Python API](python/README.md) 与 [Go API](go/README.md)。
+完整必选/可选参数、默认值、返回字段、错误行为与多个示例见
+[Python API Reference](python/API.md) 与 [Go API Reference](go/API.md)。
+
+| 接口 | 必选参数 | 可选参数 / 默认值 |
+|---|---|---|
+| Python compute_psd | samples | config=PSDConfig() |
+| Python read_csv | path | config=CSVConfig()，默认 float |
+| Python analyze_band_power | result、freq_left_hz、freq_right_hz | 无 |
+| Python analyze_qam | complex samples | config=QAMConfig()，64QAM / 160 MSPS / 20 MSym/s |
+| Python analyze_iq | samples | psd_config=PSDConfig()、qam_config=None、power_band=None |
+| Python plot_psd / plot_constellation | 对应 result | show=True；PSD 另有 display="dbfs"、freq_unit="MHz" |
+| Go ComputeRealPSD / ComputeComplexPSD | 对应 samples、config | 无可省略参数；使用 psd.DefaultConfig() |
+| Go AnalyzeBandPower | result、left、right | 无 |
+| Go ReadCSV / Read | path 或 io.Reader、config | 无可省略参数；使用 csvio.DefaultConfig() |
+
+Python QAM 程序化组合示例（在 python/ import 路径下）：
+
+```python
+from psd import analyze_iq, PSDConfig
+from psd.csvio import read_csv, CSVConfig
+from psd.qam import QAMConfig
+x = read_csv("data/qam64_20MSymPS_160MSPS_RRC0p25.csv",CSVConfig(sample_format="hex_q15")).samples
+analysis = analyze_iq(x,PSDConfig(),QAMConfig(),(-15e6,15e6))
+print(analysis.qam_metrics.evm_pct_rms,analysis.power_metrics.average_power_dbfs)
+```
+
+该例路径相对进程 cwd；库函数不执行 I/O 或显示。qam_config=None 时只保留原 PSD/Power 流程。
+QAMResult JSON 使用 to_dict()；Python CLI 当前为文本输出，Go CLI 保留原 JSON 结构。
+当前没有 Go QAM API。
 
 ### 配置与结果
 
@@ -192,14 +230,29 @@ PowerResult 提供边界、点频标志、峰值频率、Peak/Average dBFS、绝
 ## 数据与验证
 
 ```text
-data/       原始 CSV、10 组生成输入、17 组冻结 Golden JSON
-python/     NumPy Golden、CSV、Matplotlib、pytest、比较和性能脚本
+data/       原始 CSV、10 组 PSD 输入、17 组冻结 PSD Golden；另有 generated/qam 与 golden/qam
+python/     PSD/Power、QAM、CSV/packed IQ、Matplotlib、pytest、比较和性能脚本
 go/         Gonum Core、CSV、CLI、数学/Golden/集成测试、Benchmark、报告
 ```
 
 随附原始 capture 为表头 `q,i`、8192 点、16-bit hexadecimal IQ。
 默认配置得到 +40 MHz 主峰，约 -9.087628044 dBFS，积分功率约 0.123377849348。
 Golden 是跨语言回归契约；解析测试和 SciPy 作为独立正确性依据。
+
+真实 QAM 捕获是 q,i 表头的 16-bit HEX IQ，共 16384 样本；明确选择 hex_q15。
+默认 160 MSPS / 20 MSym/s、β=.25、span10 得到 EVM 2.596190680% RMS、CFO 0 Hz、
+定时 .0625 symbol、2026 个有效符号。此真实捕获无发送符号参考，结果属于 Blind Decision-Directed EVM。
+幅度与相位百分比是残余误差矢量的正交分量，满足 EVM²=Amplitude²+Phase²；
+Phase Error (%) 与角度 RMS 不同。固定 gain/phase/CFO 被规定的同步步骤补偿，没有自适应均衡器。
+有限 RRC、短记录均值去除、超范围 CFO 及未知信道会影响结果，详见 Python API 的限制说明。
+
+```shell
+python python/qam_gen.py
+python python/generate_qam_golden.py
+```
+
+只生成 QAM 子目录；12 组固定 seed 合成数据保存发送真值，QAM Golden 独立 index，
+不替换 17 组 PSD Golden。日常测试应复用冻结向量，不重新生成以掩盖差异。
 
 ```shell
 python -m pytest python/tests -q
@@ -230,6 +283,7 @@ Go B/op 表示分配字节，不能与峰值 RSS 或 Python tracemalloc 直接�
 实际数值误差、性能结果和已发现边界见 [工程报告](go/reports/phase2_validation.md)
 与 [完整性能表](go/reports/performance.md)。性能结论与输入规模、FFT 方法和环境有关。
 V2.0.1 数值边界、频段分析和安全检查见 [验证报告](go/reports/v2.0.1_validation.md)。
+V2.1.0 QAM 算法、真实输入、独立真值验证和实测指标见 [QAM 验证报告](python/reports/v2.1.0_qam_validation.md)。
 
 ## 开发路线图
 
@@ -237,7 +291,9 @@ V2.0.1 数值边界、频段分析和安全检查见 [验证报告](go/reports/v
 |---|---|---|
 | Phase 1 | 完成 | Python 数学参考、CSV、绘图、独立验证、Golden Vector |
 | Phase 2 | 完成 | Go Core/CSV/CLI、完整跨语言比较、实测性能与 V2.0.0 |
-| V2.0.1 | 待发布 | 频段/点频功率分析、零输入峰值及数值边界修复 |
+| V2.0.1 | 完成 | 频段/点频功率分析、零输入峰值及数值边界修复 |
+| V2.1.0 | 开发验证完成，未打 tag | Python QAM Golden、同步/误差分析/星座图、真实捕获验收；Go 代码不变 |
+| Go QAM | 规划 | 移植冻结的 QAMConfig/Result、RRC/插值/CFO/scalar 数学契约，复用独立 QAM Golden |
 | Phase 3 | 规划 | FFT workspace/跨调用复用、CSV 分配优化、性能剖析、大质因子精度与性能覆盖 |
 | 后续 | 评估 | 在保持数学契约的前提下扩展其他语言及应用层 |
 

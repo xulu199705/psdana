@@ -5,8 +5,9 @@ from pathlib import Path
 
 import numpy as np
 
-from psd import PSDConfig, compute_psd, analyze_band_power
+from psd import PSDConfig
 from psd.csvio import CSVConfig, read_csv
+from psd.analysis import analyze_iq
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INPUT = ROOT / "data" / "sine_+40MHz_160MSPS.csv"
@@ -47,6 +48,17 @@ def main(argv=None):
     parser.add_argument("--real-column", type=column)
     parser.add_argument("--i-column", type=column)
     parser.add_argument("--q-column", type=column)
+    parser.add_argument("--qam", action="store_true", help="enable Python-only blind QAM receiver")
+    parser.add_argument("--qam-order", type=int, default=64)
+    parser.add_argument("--symbol-rate", type=float, default=20e6)
+    parser.add_argument("--rrc-beta", type=float, default=0.25)
+    parser.add_argument("--rrc-span", type=int, default=10)
+    parser.add_argument("--timing-interp", type=int, default=16)
+    parser.add_argument("--max-cfo", type=float, default=5000)
+    parser.add_argument("--max-analysis-symbols", type=int, default=30000)
+    parser.add_argument("--constellation-points", type=int, default=5000)
+    parser.add_argument("--no-cfo-correction", action="store_true")
+    parser.add_argument("--q-sign", type=int, choices=[-1,1], default=1)
     args = parser.parse_args(argv)
     if (args.freq_left is None) != (args.freq_right is None):
         parser.error("freq-left and freq-right must be provided together")
@@ -59,8 +71,18 @@ def main(argv=None):
             delimiter=args.delimiter, real_column=args.real_column,
             i_column=args.i_column, q_column=args.q_column,
         ))
-        result = compute_psd(capture.samples, PSDConfig(args.fs, args.window, args.fft_points, args.overlap, args.detrend))
-        metrics = analyze_band_power(result, args.freq_left, args.freq_right) if args.freq_left is not None else None
+        qam_config = None
+        if args.qam:
+            from psd.qam import QAMConfig
+            qam_config = QAMConfig(sample_rate_hz=args.fs, symbol_rate_hz=args.symbol_rate,
+                qam_order=args.qam_order, rrc_beta=args.rrc_beta, rrc_span_symbols=args.rrc_span,
+                timing_interp=args.timing_interp, max_residual_cfo_hz=args.max_cfo,
+                max_analysis_symbols=args.max_analysis_symbols, constellation_points=args.constellation_points,
+                enable_cfo_correction=not args.no_cfo_correction, q_sign=args.q_sign)
+        analysis = analyze_iq(capture.samples,
+            PSDConfig(args.fs, args.window, args.fft_points, args.overlap, args.detrend),
+            qam_config, (args.freq_left,args.freq_right) if args.freq_left is not None else None)
+        result, metrics = analysis.psd, analysis.power_metrics
     except (ValueError, OSError) as exc:
         parser.error(str(exc))
     peak = int(np.argmax(result.psd_linear))
@@ -81,7 +103,25 @@ def main(argv=None):
         print(f"Band Peak Frequency: {frequency}; Peak Power (dBFS): {metrics.peak_power_dbfs:.9f}; "
               f"Average Power (dBFS): {metrics.average_power_dbfs:.9f}")
     from psd.plotting import plot_psd
-    plot_psd(result, display=args.display, show=not args.no_show)
+    if analysis.qam_metrics is None:
+        plot_psd(result, display=args.display, show=not args.no_show)
+    else:
+        qam = analysis.qam_metrics
+        cfo = "not estimated" if qam.frequency_error_hz is None else f"{qam.frequency_error_hz:.9g} Hz"
+        print(f"QAM: {qam.qam_order}; EVM: {qam.evm_pct_rms:.9f}% RMS; "
+              f"Amplitude Error: {qam.amplitude_error_pct_rms:.9f}% RMS; "
+              f"Phase Error: {qam.phase_error_pct_rms:.9f}% RMS; "
+              f"Phase angle: {qam.phase_error_deg_rms:.9f} deg RMS")
+        print(f"Frequency Error: {cfo}; timing: {qam.timing_offset_symbols:.9g} symbol; "
+              f"valid symbols: {qam.recovered_symbol_count}; status: {qam.diagnostics['status']}")
+        for warning in qam.diagnostics["warnings"]:
+            print(f"QAM warning: {warning}")
+        from psd.qam.plotting import plot_constellation
+        plot_psd(result, display=args.display, show=False)
+        plot_constellation(qam, show=False)
+        if not args.no_show:
+            import matplotlib.pyplot as plt
+            plt.show()
     return result
 
 

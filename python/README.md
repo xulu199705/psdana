@@ -6,8 +6,9 @@
 `plotting.py` 仅接受 PSDResult，用 Matplotlib 绘制 Line。导入 `psd` 不会导入 Matplotlib。
 `demo.py` 是命令行入口；两个生成脚本分别负责测试 CSV 和标准 JSON Golden Vector。
 
-Python 3.9+，运行依赖 `requirements.txt`（numpy、matplotlib）；
-测试依赖 `requirements-test.txt`（额外 pytest、scipy）。SciPy 不参与核心计算。
+Python 3.9+，运行依赖 `requirements.txt`（NumPy、SciPy、Matplotlib）；
+测试依赖 `requirements-test.txt`（额外 pytest）。SciPy 用于 QAM 卷积/插值和测试交叉验证，
+不参与 PSD Core 计算。完整必选/可选参数、默认值和多种调用示例见 [API Reference](API.md)。
 
 从项目根目录安装与验证：
 
@@ -246,7 +247,7 @@ JSON 的 dB 数组中 `null` 表示零功率的负无穷；线性 PSD 和频率�
 不实现隐式补零、补尾、自动幅度归一化或实数信号强制双边选择。
 Go 已完成对应 Core；TypeScript 尚未实现。移植应保持 FFT 归一化、实数偶/奇端点和 JSON null 语义一致。
 
-## V2.0.1：频段与点频功率（待发布）
+## V2.0.1：频段与点频功率
 
 ```python
 from psd import PowerResult, analyze_band_power
@@ -302,3 +303,75 @@ python -m pytest python/tests -q
 test_power.py 使用解析单音/双音、精确有理数周期积分和真实 CSV 验证；比较脚本同时执行
 共享 PSD 与独立 PSD 两种跨语言验证，并检查异常边界。原 17 组 Golden 保持冻结。
 结果见 [V2.0.1 报告](../go/reports/v2.0.1_validation.md)。
+
+## V2.1.0：Python QAM Golden Reference
+
+单路接收链为：原始 IQ → 单位能量 RRC matched filter → polyphase 分数定时搜索 →
+粗/细 residual CFO 搜索 → DC/RMS/固定相位和复数 scalar fit → 最终判决及指标。
+没有自适应均衡器、DFE、CMA/LMS 或 image cancellation。QAM 的符号归一化不改变原始 PSD。
+Core 不读取 CSV，不加载 Matplotlib；绘图只消费 QAMResult，不重新解调。
+公开 QAMConfig/QAMResult、全部参数和数学公式见 [QAM API](API.md#qam-api)。
+
+EVM 是 Decision-Directed RMS EVM，不是有发送参考的实测 Data-Aided EVM。
+Amplitude Error 和 Phase Error 分别为误差矢量的径向/切向归一化 RMS，满足
+`EVM²=AmplitudeError²+PhaseError²`。Phase Error (%) 不是 Phase Error (deg RMS)，
+后者是主值角度误差的 RMS。全部指标用相同的正式有效符号及判决；绘图抽样不影响指标。
+
+64QAM levels=±1/±3/±5/±7，除以 sqrt(42)，平均理想星座功率 1。
+Blind receiver 具有 90° 相位模糊，不恢复 bit 序列；gain/phase/DC 是同步诊断，
+不应解释为 ADC 绝对增益或绝对载波相位。默认 CFO 范围 ±5000 Hz，正输入旋转对应正 Frequency Error。
+关闭 CFO 时输出 None，不能解释为 0 Hz。边界告警按一个粗网格间隔定义，
+超范围频偏可能落入内部局部最小，未必触发边界告警。高残余 EVM/低星座占用/短捕获明确报错。
+
+真实输入 `data/qam64_20MSymPS_160MSPS_RRC0p25.csv` 已检查为：
+表头 q,i，逗号分隔，每行一个 IQ，16384 样本，16-bit HEX two's complement Q1.15；
+I=列 1，Q=列 0。无 valid、序号或时间戳，CSV 本身不能证明无丢样。
+应显式使用 hex_q15，不能根据文件名猜测数字格式。
+
+```shell
+# 真实捕获，PSD + 星座先创建 figure，再统一一次 show；不保存图片
+python python/demo.py --input data/qam64_20MSymPS_160MSPS_RRC0p25.csv --sample-format hex_q15 --qam --symbol-rate 20000000 --rrc-beta .25 --rrc-span 10
+# 增加频段功率并禁止交互窗口
+python python/demo.py --input data/qam64_20MSymPS_160MSPS_RRC0p25.csv --sample-format hex_q15 --qam --freq-left -15000000 --freq-right 15000000 --no-show
+# SPS=2 合成数据
+python python/demo.py --input data/generated/qam/Q11_sps2.csv --qam --symbol-rate 80000000 --no-show
+# 关闭 CFO / 调整绘图点数
+python python/demo.py --input data/generated/qam/Q01_ideal.csv --qam --no-cfo-correction --constellation-points 300
+```
+
+程序化组合 `analyze_iq(samples, psd_config=PSDConfig(), qam_config=None, power_band=None)`
+返回 IQAnalysis(psd,power_metrics,qam_metrics)，共享同一份 IQ，不把 QAM 加入 compute_psd。
+QAMResult.to_dict 可导出标准 JSON；复杂诊断分离 real/imag，未估计 CFO 为 null，非有限结果拒绝。
+当前 Python CLI 仍为文本模式。Packed64 可由新增 iqio.read_packed64 明确读取，不改变 csvio 既有语义。
+
+星座图 `plot_constellation(result,show=True)` 返回 figure/axes；
+完整理想点是 #FF3B30 红色空心圆，恢复符号是 #FFE45C 亮黄色、alpha=.4 小圆点，I/Q 比例 1:1。
+show=False 支持自动测试，默认 plt.show，不 save；绘图坐标是恢复后的符号，而不是 ADC 样本。
+
+### QAM 数据、真值与 Golden
+
+```shell
+python python/qam_gen.py
+python python/generate_qam_golden.py
+python -m pytest python/tests -q
+```
+
+生成器只写 `data/generated/qam/`，12 组 Q01–Q12 覆盖理想、AWGN、正负 CFO、固定相位、
+gain、IQ imbalance、DC、综合损伤、Q1.15、SPS2、SPS8/分数定时。
+采用固定 seed、三周期 RRC 成形后提取中间周期，保留未修改的发送符号 CSV。
+manifest 记录所有注入量、SHA256、样本功率、32767 量化乘数与 32768 解码除数及 clipping 数。
+Q10 另提供 packed64，两采样字的时序/IQ 布局见 API；不进行隐式补样。
+不同 fixture seed 的有限样本 DC 估计与 RRC 截断 ISI 会使理想信号有非零 EVM，
+注入 AWGN 的百分比是设定的噪声比，不是强制的接收 EVM Golden。
+
+独立 qam_reference.py 仅用于合成真值验证：整数符号时移及 90° 象限对齐，
+对同一盲接收输出用 Cartesian 公式独立计算 Data-Aided 指标，不重新做 scalar/reference fitting。
+RRC 连续公式/直接 FIR、解析误差分解、已知 CFO/定时及不可靠输入测试提供独立依据。
+
+独立 `data/golden/qam/index.json` 当前含 13 组向量（12 组合成 + REAL64），
+输入路径相对向量目录，验证源 CSV/vector SHA256，保存完整配置/指标、128 个绘图点、
+全部理想点和诊断/容差。旧 PSD index 与 17 组向量不变。
+生成 Golden 是显式维护操作；日常回归不要重写向量以绕过失败。
+没有真实捕获时相关测试明确 skip/BLOCKED，不以合成样本代替真实验收。
+
+真实默认结果、全部测试与限制见 [V2.1.0 验证报告](reports/v2.1.0_qam_validation.md)。

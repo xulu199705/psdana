@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_version": "qam-blind-scalar-1",
+  "vector_count": 13,
+  "input_path_base": "vector_directory",
+  "nonfinite_policy": "reject; unestimated CFO uses null",
+  "vectors": [
+    {
+      "id": "Q01",
+      "file": "Q01.json",
+      "sha256": "fd30cb8ccfe323130fab7a7696fe8a46cc62f66a218405e8693d1dcbf4605790"
+    },
+    {
+      "id": "Q02",
+      "file": "Q02.json",
+      "sha256": "af28ba55b9fe00a247d195cf042f60d24a7092dd7d00ad7183761d8e161403e3"
+    },
+    {
+      "id": "Q03",
+      "file": "Q03.json",
+      "sha256": "72a69d842eb28fb5c3674a49113fc85e2d78ed0e8739ed3a5a4f8a831f26876d"
+    },
+    {
+      "id": "Q04",
+      "file": "Q04.json",
+      "sha256": "5f710887ac3babed673fbd4e36ba65ad02e2ea0ce303ddd0fc3561d38be25581"
+    },
+    {
+      "id": "Q05",
+      "file": "Q05.json",
+      "sha256": "d0d97b487a880ef520b5202e62be4cd0c0976f0bdc1db3d80b9da7e28e3058ed"
+    },
+    {
+      "id": "Q06",
+      "file": "Q06.json",
+      "sha256": "037bd331c1ac8f288c977fb70ef6040e8c3f2cb1abc19ef7794e06ddc8b05ff7"
+    },
+    {
+      "id": "Q07",
+      "file": "Q07.json",
+      "sha256": "ac2131bb5850c11df1531d2bd0beee908fb6eb21fdc81f1b096a6ef162360cf0"
+    },
+    {
+      "id": "Q08",
+      "file": "Q08.json",
+      "sha256": "2dbb993529e715671f0b936b0fc54d4d3e5acb2436a9d16987d00638d54f7b7f"
+    },
+    {
+      "id": "Q09",
+      "file": "Q09.json",
+      "sha256": "023ab107cf7500bb4ee760db8d3a640a7e95d38b391f3ac708138156d016aaad"
+    },
+    {
+      "id": "Q10",
+      "file": "Q10.json",
+      "sha256": "2b874ad19aed2497e2c7e3a055968e571349de90a16e9d219cd380f4eda9323f"
+    },
+    {
+      "id": "Q11",
+      "file": "Q11.json",
+      "sha256": "5296f0f7ba4913c0733490959adf65daa7e45c02cdbc0bee50928be76701c2be"
+    },
+    {
+      "id": "Q12",
+      "file": "Q12.json",
+      "sha256": "d88eeb2afb2037594b6d0b7f0af6aa17b64b56477ee2d1d086a0455a1392c66f"
+    },
+    {
+      "id": "REAL64",
+      "file": "REAL64.json",
+      "sha256": "1ac4e88264d3abd6db8bec9f3feb732932eb3d100c457bcada8289af57a79199"
+    }
+  ]
+}
