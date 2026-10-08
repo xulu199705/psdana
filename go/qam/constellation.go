@@ -36,24 +36,9 @@ func SliceQAM(samples []complex128, order int) ([]complex128, []int, error) {
 	for i := range levels {
 		levels[i] = real(points[i*root])
 	}
-	nearest := func(v float64) int {
-		if v <= levels[0] {
-			return 0
-		}
-		if v >= levels[root-1] {
-			return root - 1
-		}
-		best, distance := 0, math.Abs(v-levels[0])
-		for i := 1; i < root; i++ {
-			if d := math.Abs(v - levels[i]); d < distance {
-				best, distance = i, d
-			}
-		}
-		return best
-	}
 	d, indices := make([]complex128, len(samples)), make([]int, len(samples))
 	for k, z := range samples {
-		indices[k] = nearest(real(z))*root + nearest(imag(z))
+		indices[k] = nearestLevel(real(z), levels)*root + nearestLevel(imag(z), levels)
 		d[k] = points[indices[k]]
 	}
 	return d, indices, nil

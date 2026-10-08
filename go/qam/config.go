@@ -1,4 +1,4 @@
-// Package qam provides validated QAM mathematical primitives, not a receiver.
+// Package qam provides a blind scalar QAM receiver and mathematical primitives.
 package qam
 
 import (

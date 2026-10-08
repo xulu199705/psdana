@@ -1,8 +1,7 @@
-# Go API reference — PSD / Power / QAM Foundation
+# Go API reference — PSD / Power / QAM Receiver (V2.1.2)
 
-Module `github.com/xulu199705/psdana/go`。V2.1.1 新增独立 QAM 数学基础；原 PSD/Power 算法不变。
-尚未实现 Go QAM Receiver、timing/CFO 或 QAM CLI。Go 函数不能省略参数；配置字段的默认值由
-DefaultConfig 显式提供，不能将 struct 零值当成完整默认配置。
+Module `github.com/xulu199705/psdana/go`。V2.1.2 新增独立 QAM Receiver，复用 V2.1.1 Foundation。
+Go 函数不能省略参数；使用对应 DefaultConfig / DefaultQAMConfig，struct 零值不是完整配置。
 
 ## 函数参数与返回值
 
@@ -259,7 +258,7 @@ _, _ = decisions, indices
 ```
 
 ```go
-// 2. RRC不是PSD窗；匹配滤波仍由未来receiver实现。
+// 2. RRC不是PSD窗；MatchedFilter可用于接收IQ。
 taps, err := qam.GenerateRRCTaps(0.25, 10, 8)
 if err != nil { panic(err) }
 // 81 taps、单位能量、群时延40 samples。
@@ -280,5 +279,96 @@ _, _ = metrics, encoded
 ```
 
 36组跨语言数学向量位于 `data/golden/qam/v2/foundation/`，独立index及SHA256。
-接收机旧13组与新18组Golden仍属于Python全链路，不能称为已通过Go receiver验证。
+旧13组Legacy、新18组Joint与新增两组32768点Golden同时验证Go全接收链。
 测试：`go -C go test -v ./qam`；端点/异常/解析指标、输入不变和Example函数同时验证。
+
+## QAM Receiver（V2.1.2）
+
+Core 无 CSV、CLI、绘图或 Python 进程依赖。所有输入均为独立的 `[]complex128`，调用不修改输入。
+
+| 公开入口 | 返回值 | 含义 |
+|---|---|---|
+| DefaultQAMConfig() | QAMConfig | Python 当前默认；Legacy 模式 |
+| QAMConfig.Validate() | error | 校验整数 SPS、所有接收参数与数值范围 |
+| QAMConfig.SamplesPerSymbol() | int | 验证配置后的整数 SPS |
+| MatchedFilter(samples, taps) | ([]complex128,error) | scipy fftconvolve same 对齐语义，直接 FIR；长度保持为 IQ 长度 |
+| InterpolationTaps(up, beta) | ([]float64,error) | firwin Kaiser 系数乘 up；up=1 为 identity |
+| Interpolate(samples, up, beta) | ([]complex128,error) | resample_poly(up,1)，zero padding，补偿 FIR 延迟 |
+| SearchTimingPhases(up, config, cfo) | (TimingResult,error) | cfo 为 *float64；nil 为初始搜索，否则按该 CFO 评分 |
+| SearchResidualCFO(symbols, config) | (CFOResult,error) | 粗/细网格与完整 ScalarResult，disabled CFO 为 nil |
+| RecoverSymbols(samples, config) | (RecoveryResult,error) | 完整恢复符号；质量不合格返回 RecoveryError |
+| AnalyzeQAM(samples, config) | (QAMResult,error) | 正式结果与有界诊断 |
+| BuildQAMResult(recovery, inputCount, config) | (QAMResult,error) | 格式化已有通过质量检查的 recovery；调用者必须先检查 RecoverSymbols 的 error |
+
+RecoverSymbols 在质量拒绝时同时保留 RecoveryResult 供调试；它不属于接受结果。
+其他参数/数值错误可能返回零结果。RecoveryError.Diagnostics.status 为 unreliable。
+TimingResult 包含 SymbolsRaw、PhaseUp、EVMPct、CurveEVMPct、TrimSymbols、FirstSymbolIndex。
+CFOResult 包含 FrequencyHz、BoundaryHit、SearchSymbols、GridResolutionHz 及粗细评分网格。
+
+### QAMConfig 默认与约束
+
+| 字段 | 默认 | 单位/约束 |
+|---|---:|---|
+| SampleRateHz / SymbolRateHz | 160e6 / 20e6 | Hz；比例必须为整数 SPS≥2 |
+| QAMOrder | 64 | 16 / 64 / 256；本版端到端重点64QAM |
+| RRCBeta / RRCSpanSymbols | 0.25 / 10 | β∈[0,1]；span 正整数 |
+| TimingInterp / TimingKaiserBeta | 16 / 8 | 整数倍插值；Kaiser β≥0 |
+| ExtraEdgeTrimSymbols | 6 | 每边裁剪 span/2 floor + extra |
+| EnableCFOCorrection | true | false 时 FrequencyErrorHz=nil，JSON null |
+| MaxResidualCFOHz | 5000 | Hz，范围小于 symbol_rate/2；启用时>0 |
+| CFOCoarseSteps / CFOFineSteps | 81 / 41 | 奇数≥3，first-minimum tie |
+| CFOSearchMaxSymbols | 12000 | CFO 中心子集，上限≥MinAnalysisSymbols |
+| MaxAnalysisSymbols | 30000 | Timing 符号中心截取，上限≥MinAnalysisSymbols |
+| ConstellationPoints | 5000 | 仅影响图示/JSON抽样，正整数 |
+| QSign | +1 | +1 / -1，仅QAM使用，PSD仍使用原始IQ |
+| ScalarFitIterations | 5 | 正整数，Joint 初始化后有界迭代 |
+| MinAnalysisSymbols | 200 | ≥32，短于边缘裁剪要求时报错 |
+| MaxDecisionEVMPct | 12 | 正有限数，百分比 RMS |
+| DCMode | legacy_mean | 显式可选 decision_directed_joint |
+
+Go 实现资源边界：SPS≤1e6、RRC span*SPS≤1e6、TimingInterp≤4096、Kaiser β≤700、
+ExtraEdgeTrimSymbols≤1e6、每个 CFO grid≤1000001、ScalarFitIterations≤1e6、MinAnalysisSymbols≤1e9。
+这些限制用于防止异常整数或不可表示 FIR，并非性能或实时保证。Foundation 原接口保持兼容。
+DCMode 的 JSON 配置字段省略以对应 Python config；实际模式另在 diagnostics.dc_estimation_mode 中保存。
+
+Joint 流程：初始 timing → CFO → CFO-aware timing；相位变化时再搜索一次 CFO，至此结束。
+迭代未收敛时，gain/DC 是最后一次对**上一次判决**的 LS；输出 decisions 是该 LS 输出的重新切片。
+本版保留此 V2.1.1 契约，不做额外隐藏拟合。JointConverged=false 会产生 warning。
+
+### QAMResult / JSON
+
+QAMResult 使用 Python 字段名：qam_order、sample_rate_hz、symbol_rate_hz、samples_per_symbol、
+evm_pct_rms、amplitude_error_pct_rms、phase_error_pct_rms、phase_error_deg_rms、frequency_error_hz、
+timing_offset_symbols、recovered_symbol_count、constellation_i/q、ideal_i/q、diagnostics。
+指标对全部有效恢复符号计算，满足 EVM²=AmplitudeError²+PhaseError²。
+抽样采用 uniform_indices_inclusive_endpoints；星座固定 I-major/Q-minor，90°相位模糊不进行额外对齐。
+diagnostics 保留算法版本、配置、Scalar/DC、Timing curve、CFO range/resolution、收敛及 warnings，
+新增 timing_phase_up、cfo_estimate_hz、Legacy 的显式 dc_estimation_mode；完整插值数组不进入正式 JSON。
+复数诊断使用 real/imag。非有限计算返回 error，标准 json.Marshal 拒绝任何 NaN/Infinity。
+candidate/warning 表示盲候选，不能证明绝对锁定；占用<8或 EVM>门限则 unreliable/error。
+
+```go
+// iq来自调用者解码，signed int16必须除以32768，不依赖当前峰值。
+config := qam.DefaultQAMConfig()
+config.DCMode = qam.DecisionDirectedJoint
+result, err := qam.AnalyzeQAM(iq, config)
+if err != nil { panic(err) }
+encoded, err := json.Marshal(result)
+if err != nil { panic(err) }
+_ = encoded
+```
+
+### QAM CLI
+
+新增 --qam、--qam-order、--symbol-rate、--rrc-beta、--rrc-span、--timing-interp、--max-cfo、
+--max-analysis-symbols、--constellation-points、--qam-dc-mode、--no-cfo-correction、--q-sign。
+fs、格式、FFT、频段边界仍复用原旗标；不会根据QAM文件名猜测格式。
+
+```shell
+go -C go run ./cmd/psdana --input data/generated/qam/Q13_32768_q15.csv --sample-format q15 --fs 160000000 --fft-points 32768 --qam --qam-order 64 --symbol-rate 20000000 --rrc-beta 0.25 --qam-dc-mode decision_directed_joint --json
+```
+
+未启用QAM时原 JSON 完全保持；启用增加 qam_metrics，传频段增加 power_metrics，PSD字段仍在顶层。
+stdout 仅JSON，错误写stderr/非零退出；既不绘图也不调用Python。
+
+逐级验证、相同IQ的Benchmark入口和实际数据见 [V2.1.2报告](reports/v2.1.2_qam_validation.md)。

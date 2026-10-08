@@ -1,13 +1,13 @@
 # psdana
 
-**可复现的 PSD、频段功率与 QAM 分析工具：Python Golden Reference 与 Go PSD Core。**
+**可复现的 PSD、频段功率与 QAM 分析工具：Python Golden Reference 与独立 Go Receiver。**
 
 psdana 面向离线采样数据分析和 DSP 算法移植，提供数学定义一致的 Periodogram / Welch、
 实数及复数 IQ 输入、明确的 Full Scale 参考，以及可供其他语言复用的 Golden Vector。
 Python 提供参考计算和独立频谱绘图；Go 提供计算库、CSV 适配和命令行 JSON 输出。
 Python 还提供独立的 QAM 接收链、误差指标和星座图，可与同一 IQ 的 PSD/频段功率组合分析。
 
-当前开发快照：**V2.1.1（未创建发布标签）**，基于 V2.1.0。项目遵循 **Correctness First，Performance Second**。
+当前开发快照：**V2.1.2（未创建发布标签）**，基于 V2.1.1。项目遵循 **Correctness First → Cross-Language Consistency → Performance → Integration**。
 
 ## 功能
 
@@ -24,7 +24,8 @@ Python 还提供独立的 QAM 接收链、误差指标和星座图，可与同�
 - Decision-Directed EVM、径向/切向误差、相位角 RMS，独立发送真值验证及 13 组 QAM Golden。
 - Python 星座图：红色空心理想点、半透明亮黄色恢复符号，默认直接 show。
 - QAM Legacy 兼容模式和可选 Joint DC/Scalar Fit，CFO-aware 定时复查、独立真值矩阵与分阶段性能基线。
-- Go QAM Foundation：16/64/256星座、Slicer、RRC、误差指标及Legacy/Joint标量拟合；完整Go Receiver尚未实现。
+- Go 独立 QAM Receiver：复用Foundation，完成RRC/Polyphase/Timing/CFO/Legacy与Joint；CLI增加qam_metrics。
+- 32768点合成Q1.15与16384点真实捕获分别验收，逐级数组比较及Python/Go性能报告。
 
 当前不提供实时 PSD、GUI、Web 服务或 Go 绘图。
 
@@ -319,9 +320,25 @@ V2.1.1 Joint-fit将真实Blind EVM估计为1.736166%，Legacy仍为2.596191%。�
 | V2.0.1 | 完成 | 频段/点频功率分析、零输入峰值及数值边界修复 |
 | V2.1.0 | 开发验证完成，未打 tag | Python QAM Golden、同步/误差分析/星座图、真实捕获验收；Go 代码不变 |
 | V2.1.1 | 开发验证完成，未打 tag | Legacy兼容、Joint DC拟合、CFO-aware定时、可靠性/性能基线；Go数学基础通过36组向量 |
-| Go QAM Receiver | 后续 | 移植matched filter/插值/timing/CFO，逐级比较中间数据后再验收完整Receiver |
+| V2.1.2 | 开发验证完成，未打 tag | 独立Go QAM Receiver、CLI、32768 Q1.15与真实捕获、逐级跨语言比较及性能优化；见下方报告 |
 | Phase 3 | 规划 | FFT workspace/跨调用复用、CSV 分配优化、性能剖析、大质因子精度与性能覆盖 |
 | 后续 | 评估 | 在保持数学契约的前提下扩展其他语言及应用层 |
 
 Phase 3 优先根据实测瓶颈优化，并在每次更改后复跑 Golden、解析测试和直接比较。
 并行 Welch、实时处理与前端属于后续独立设计，不是当前接口的既有能力。
+
+## V2.1.2 Go QAM 使用与验证
+
+```shell
+go -C go run ./cmd/psdana --input data/generated/qam/Q13_32768_q15.csv --sample-format q15 --fs 160000000 --fft-points 32768 --qam --qam-order 64 --symbol-rate 20000000 --rrc-beta 0.25 --qam-dc-mode decision_directed_joint --json
+```
+
+新数据来自qam_gen，4096 TX symbols、32768 IQ samples，量化/解码系数均为32768，固定seed与SHA256在
+`data/generated/qam/manifest_v2.1.2.json`。有效恢复符号4074个，EVM不包括裁剪边缘。
+真实文件保持16384点，使用hex_q15解码，没有复制/补零。
+JSON保持原顶层PSD，启用QAM只增加qam_metrics，频段分析仍增加power_metrics。
+Full Scale、FFT all、Periodogram/Welch规则不变；CFO disabled使用null。
+旧17 PSD、13 Legacy、18 Joint与36 Foundation Golden不重写。
+
+逐级数值、误锁限制、32768点性能及完整测试见 [V2.1.2验证报告](go/reports/v2.1.2_qam_validation.md)。
+开发比较/Benchmark入口见 [Go README](go/README.md#qam-receiverv212)，详细配置见 [Go API](go/API.md#qam-receiverv212)。

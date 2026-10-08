@@ -63,6 +63,25 @@ func dot(x, y []complex128) complex128 {
 	return s
 }
 
+// Search scoring needs only EVM, not radial/tangential/angle metrics. Keep
+// identical magnitude accumulation; full metrics are computed for final output.
+func decisionEVM(y, d []complex128) (float64, error) {
+	var energy, total float64
+	for k, v := range y {
+		a, b := cmplx.Abs(d[k]), cmplx.Abs(v-d[k])
+		energy += a * a
+		total += b * b
+	}
+	if !finite(energy) || energy <= 0 || !finite(total) {
+		return 0, fmt.Errorf("EVM exceeds supported numeric range")
+	}
+	evm := 100 * math.Sqrt(total/energy)
+	if !finite(evm) {
+		return 0, fmt.Errorf("nonfinite EVM")
+	}
+	return evm, nil
+}
+
 // ScalarQAMFit performs bounded blind scalar fitting; it never modifies samples.
 // There is no timing/CFO search or quality-lock claim in this primitive API.
 func ScalarQAMFit(samples []complex128, config ScalarConfig) (ScalarResult, error) {
@@ -121,11 +140,11 @@ func ScalarQAMFit(samples []complex128, config ScalarConfig) (ScalarResult, erro
 			break
 		}
 	}
-	metrics, err := ComputeQAMMetrics(result.Equalized, result.Decisions)
+	evm, err := decisionEVM(result.Equalized, result.Decisions)
 	if err != nil || !finiteComplex(result.ComplexGain) {
 		return ScalarResult{}, fmt.Errorf("joint fit exceeds numeric range: %v", err)
 	}
-	result.EVMPct = metrics.EVMPctRMS
+	result.EVMPct = evm
 	return result, nil
 }
 
@@ -173,10 +192,10 @@ func legacyFit(samples []complex128, config ScalarConfig) (ScalarResult, error) 
 	if err != nil {
 		return ScalarResult{}, err
 	}
-	metrics, err := ComputeQAMMetrics(y, d)
+	evm, err := decisionEVM(y, d)
 	if err != nil || !finiteComplex(gain) || cmplx.Abs(gain) == 0 {
 		return ScalarResult{}, fmt.Errorf("scalar fit exceeds numeric range: %v", err)
 	}
-	return ScalarResult{Equalized: y, Decisions: d, Indices: indices, EVMPct: metrics.EVMPctRMS,
+	return ScalarResult{Equalized: y, Decisions: d, Indices: indices, EVMPct: evm,
 		DC: dc, ComplexGain: gain, CoarsePhaseDeg: phase * 180 / math.Pi, DCMode: LegacyMean}, nil
 }

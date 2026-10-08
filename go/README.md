@@ -1,4 +1,4 @@
-# Go PSD Core / QAM Foundation
+# Go PSD / Power / QAM Receiver
 
 Module：`github.com/xulu199705/psdana/go`，复用既有 Go 1.27.1 配置，仅使用 Gonum v0.17.0。
 核心、CSV、CLI 分离；没有 Go 绘图、TypeScript、GUI 或并行 Welch。
@@ -11,7 +11,7 @@ Module：`github.com/xulu199705/psdana/go`，复用既有 Go 1.27.1 配置，仅
 `qam/` 提供16/64/256星座与Slicer、单位能量RRC、径向/切向/角度/EVM指标、
 Legacy/Joint标量拟合。36组Python共享向量与独立解析/数值边界测试通过。
 全部参数、默认值、返回值与多个调用示例见 [API](API.md#qam-foundationv211)。
-尚未实现Go matched filter/interpolation/timing/CFO或完整Receiver，不集成CLI、不绘图。
+V2.1.2 在该Foundation上完成 matched RRC、Kaiser Polyphase插值、Timing/CFO、完整Receiver及CLI JSON。
 Scalar输入必须是已恢复符号。没有使用已知TX真值或多抽头均衡器。
 
 ```shell
@@ -21,6 +21,34 @@ python python/generate_qam_foundation.py
 
 第二条仅用于明确更新独立foundation向量，不改旧PSD/QAM Golden。
 Gate、已证实的误候选及数值差异见 [V2.1.1验证](../python/reports/v2.1.1_qam_refinement.md)。
+
+## QAM Receiver（V2.1.2）
+
+`qam.AnalyzeQAM(samples, qam.DefaultQAMConfig())` 独立执行接收链，无Python进程依赖。
+默认Legacy；显式设置 config.DCMode=qam.DecisionDirectedJoint 使用联合DC/增益拟合与CFO-aware定时。
+默认160 MSPS、20 MSym/s、64QAM、RRC β=.25/span10、16倍Timing、±5000 Hz CFO。
+
+```shell
+go -C go run ./cmd/psdana --input data/generated/qam/Q13_32768_q15.csv --sample-format q15 --fs 160000000 --fft-points 32768 --qam --qam-dc-mode decision_directed_joint --json
+go -C go run ./cmd/psdana --input data/qam64_20MSymPS_160MSPS_RRC0p25.csv --sample-format hex_q15 --qam --qam-dc-mode legacy_mean --json
+```
+
+第一个文件是固定seed的32768点合成Q1.15；第二个保留原16384点真实捕获。
+signed int16/32768，complex P_FS=1。FFT all/Periodogram/Welch/短输入报错语义保持。
+JSON保持顶层PSD字段，新增qam_metrics；质量失败返回error，candidate/warning不是锁定证明。
+
+```shell
+go -C go build -o ../.cache/v212/qamcheck.exe ./cmd/qamcheck
+go -C go build -o ../.cache/v212/qambench.exe ./cmd/qambench
+go -C go build -o ../.cache/v212/psdana.exe ./cmd/psdana
+python python/compare_qam_go.py
+python python/validate_qam_go_v212.py
+python python/benchmark_qam_v212.py
+python python/benchmark_qam_v212.py --real-capture
+```
+
+以上开发工具在项目根目录运行；先创建.cache/v212。Go Benchmark排除编译、启动、CSV生成及JSON。
+完整数值对比、性能、内存范围和实际限制见 [V2.1.2报告](reports/v2.1.2_qam_validation.md)。
 
 ## 接口与算法
 

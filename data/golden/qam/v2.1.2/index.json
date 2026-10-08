@@ -1,0 +1,16 @@
+{
+  "schema_version": "2.1.2",
+  "vector_count": 2,
+  "vectors": [
+    {
+      "id": "Q13_32768_legacy_mean",
+      "file": "legacy_mean.json",
+      "sha256": "0e2f4fd3e84b96e0ffb96150c1e56139fd330aa1ef437b630f90bfe0e5d08f09"
+    },
+    {
+      "id": "Q13_32768_decision_directed_joint",
+      "file": "decision_directed_joint.json",
+      "sha256": "77a567597d11bc06199ad4c4f48e73cfed2031dd9b575948ce5c73c734345237"
+    }
+  ]
+}

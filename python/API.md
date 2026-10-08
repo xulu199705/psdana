@@ -1,4 +1,4 @@
-# Python API reference — V2.1.1
+# Python API reference — V2.1.2
 
 将仓库 `python/` 放入 Python import 搜索路径；下面的文件路径均相对仓库根目录。
 API 的路径参数相对调用进程 cwd，只有 `demo.py --input` 相对项目根目录。
@@ -336,9 +336,22 @@ Stage A实测矩阵、性能及Go Gate见 [V2.1.1报告](reports/v2.1.1_qam_refi
 判决收敛表示相邻迭代的decisions不变，不是与TX真值一致。
 已验证的偏斜256QAM（完整星座两轮再加负I半星座）可在608个错误判决处稳定，
 Joint EVM3.251%仍低于Legacy4.004%；因此不要把该标志当作锁定认证。
-Go本版仅移植 [QAM Foundation](../go/API.md#qam-foundationv211)，全receiver仍只在Python。
+V2.1.2完成 [Go Receiver](../go/API.md#qam-receiverv212)，Python公开函数、默认值与数学定义不变。
 36组基础数学向量位于 `data/golden/qam/v2/foundation/`，生成器为generate_qam_foundation.py。
 旧13组与新18组receiver index保持分离，算法2的配置和返回字段已固定。
 
 README两张真实数据展示图可显式运行 `python python/render_readme.py` 重建；
 只有该文档导出脚本保存PNG，库plot_psd/plot_constellation仍默认show。
+
+## V2.1.2 验证入口
+
+`generate_qam_v212.py` 仅创建32768点合成Q1.15/4096 TX truth、独立版本manifest与两组Golden，
+不覆盖旧13/18/36组或真实捕获。`compare_qam_go.py` 比较完整中间数组，报告只保存有界取样与误差统计。
+`validate_qam_go_v212.py` 对比可靠性反例和Go CLI的PSD/Power/QAM JSON；
+`benchmark_qam_v212.py` 对同一IQ比较两种语言，排除启动、编译、CSV生成、绘图及JSON。
+开发命令/参数见 [Go README](../go/README.md#qam-receiverv212)，结果见 [V2.1.2报告](../go/reports/v2.1.2_qam_validation.md)。
+
+Slicer内部改为等间隔网格的相邻距离比较，16/64/256QAM在门限及相邻浮点值上对照旧argmin。
+极大有限值的距离舍入并列仍保留原argmin首索引语义；没有改变星座次序或测量公式。
+迭代上限处Joint gain/DC对应上一组decisions，最终输出decisions是最后LS输出的重新切片；
+该V2.1.1行为保持，新增独立回归说明此关系。

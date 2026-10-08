@@ -3,6 +3,7 @@
 import numpy as np
 
 from .config import positive_int
+from ._slicer import nearest_level_indices
 
 
 def qam_constellation(order: int = 64) -> np.ndarray:
@@ -31,8 +32,8 @@ def qam_slicer(symbols, order=64):
     points = qam_constellation(order)
     root = int(np.sqrt(order))
     levels = points[::root].real
-    ii = np.argmin(abs(z.real[:,None]-levels), axis=1)
-    qq = np.argmin(abs(z.imag[:,None]-levels), axis=1)
+    ii = nearest_level_indices(z.real, levels)
+    qq = nearest_level_indices(z.imag, levels)
     indices = ii*root+qq
     return points[indices], indices
 

@@ -12,6 +12,7 @@ import (
 
 	"github.com/xulu199705/psdana/go/csvio"
 	"github.com/xulu199705/psdana/go/psd"
+	"github.com/xulu199705/psdana/go/qam"
 )
 
 func projectRoot() (string, error) {
@@ -50,6 +51,19 @@ func run(args []string) error {
 	jsonOutput := flags.Bool("json", false, "stdout contains only complete PSDResult JSON")
 	left := flags.Float64("freq-left", 0, "band left boundary in Hz; requires --freq-right")
 	right := flags.Float64("freq-right", 0, "band right boundary in Hz; requires --freq-left")
+	qc := qam.DefaultQAMConfig()
+	qamEnabled := flags.Bool("qam", false, "enable independent blind QAM receiver")
+	flags.IntVar(&qc.QAMOrder, "qam-order", qc.QAMOrder, "16, 64 or 256")
+	flags.Float64Var(&qc.SymbolRateHz, "symbol-rate", qc.SymbolRateHz, "symbol rate Hz; integer SPS required")
+	flags.Float64Var(&qc.RRCBeta, "rrc-beta", qc.RRCBeta, "RRC roll-off")
+	flags.IntVar(&qc.RRCSpanSymbols, "rrc-span", qc.RRCSpanSymbols, "RRC span symbols")
+	flags.IntVar(&qc.TimingInterp, "timing-interp", qc.TimingInterp, "fractional interpolation factor")
+	flags.Float64Var(&qc.MaxResidualCFOHz, "max-cfo", qc.MaxResidualCFOHz, "residual CFO search range Hz")
+	flags.IntVar(&qc.MaxAnalysisSymbols, "max-analysis-symbols", qc.MaxAnalysisSymbols, "center analysis limit")
+	flags.IntVar(&qc.ConstellationPoints, "constellation-points", qc.ConstellationPoints, "JSON constellation sample limit")
+	flags.StringVar(&qc.DCMode, "qam-dc-mode", qc.DCMode, "legacy_mean or decision_directed_joint")
+	noCFO := flags.Bool("no-cfo-correction", false, "disable CFO estimation; frequency error is null")
+	flags.IntVar(&qc.QSign, "q-sign", qc.QSign, "QAM-only Q polarity, +1 or -1")
 	if err := flags.Parse(args); err != nil {
 		return err
 	}
@@ -134,6 +148,21 @@ func run(args []string) error {
 		metrics = &p
 	}
 	if *jsonOutput {
+		if *qamEnabled {
+			if data.InputType != "complex" {
+				return fmt.Errorf("QAM requires complex IQ input")
+			}
+			qc.SampleRateHz, qc.EnableCFOCorrection = c.FS, !*noCFO
+			qr, err := qam.AnalyzeQAM(data.Complex, qc)
+			if err != nil {
+				return err
+			}
+			return json.NewEncoder(os.Stdout).Encode(struct {
+				psd.PSDResult
+				PowerMetrics *psd.PowerResult `json:"power_metrics,omitempty"`
+				QAMMetrics   qam.QAMResult    `json:"qam_metrics"`
+			}{r, metrics, qr})
+		}
 		if metrics != nil {
 			return json.NewEncoder(os.Stdout).Encode(struct {
 				psd.PSDResult
@@ -141,6 +170,18 @@ func run(args []string) error {
 			}{r, metrics})
 		}
 		return json.NewEncoder(os.Stdout).Encode(r)
+	}
+	var qr *qam.QAMResult
+	if *qamEnabled {
+		if data.InputType != "complex" {
+			return fmt.Errorf("QAM requires complex IQ input")
+		}
+		qc.SampleRateHz, qc.EnableCFOCorrection = c.FS, !*noCFO
+		result, err := qam.AnalyzeQAM(data.Complex, qc)
+		if err != nil {
+			return err
+		}
+		qr = &result
 	}
 	peak := -1
 	for j, p := range r.PSDLinear {
@@ -165,6 +206,9 @@ func run(args []string) error {
 			end = "]"
 		}
 		fmt.Printf("Frequency Range: [%.12g, %.12g%s Hz; point=%t\nBand Peak Frequency: %s\nPeak Power (dBFS): %.9f\nAverage Power (dBFS): %.9f\n", metrics.FreqLeftHz, metrics.FreqRightHz, end, metrics.IsPoint, f, metrics.PeakPowerDBFS, metrics.AveragePowerDBFS)
+	}
+	if qr != nil {
+		fmt.Printf("QAM Order: %d\nQAM EVM: %.9f %%\nRecovered Symbols: %d\nQAM Status: %s\n", qr.QAMOrder, qr.EVMPctRMS, qr.RecoveredSymbolCount, qr.Diagnostics["status"])
 	}
 	return nil
 }
