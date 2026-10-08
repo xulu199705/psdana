@@ -73,13 +73,33 @@ def _validate(config: PSDConfig, sample_count: int) -> int:
 
 def power_to_db(power: np.ndarray, reference_power: float) -> np.ndarray:
     """Zero power maps to -inf; the plotting layer may use a finite floor."""
-    values = np.asarray(power, dtype=np.float64) / reference_power
+    power = np.asarray(power, dtype=np.float64)
+    if not np.isfinite(reference_power) or reference_power <= 0 or not np.all(np.isfinite(power)) or np.any(power < 0):
+        raise ValueError("power must be finite and nonnegative; reference must be finite and positive")
+    # Preserve the normal path exactly; use log-domain division only at limits.
+    with np.errstate(over="ignore", under="ignore"):
+        values = power / reference_power
     output = np.full(values.shape, -np.inf, dtype=np.float64)
     np.log10(values, out=output, where=values > 0)
+    exceptional = (power > 0) & ((values == 0) | ~np.isfinite(values))
+    output[exceptional] = np.log10(power[exceptional]) - np.log10(reference_power)
     return 10.0 * output
 
 
 def compute_psd(samples, config: PSDConfig = PSDConfig()) -> PSDResult:
+    """Compute the Golden PSD contract, rejecting unrepresentable intermediates.
+
+    Extreme finite inputs may exceed float64 FFT/power arithmetic. Such inputs
+    raise ValueError instead of silently returning NaN/+Inf or invalid units.
+    """
+    try:
+        with np.errstate(over="raise", invalid="raise", divide="raise"):
+            return _compute_psd(samples, config)
+    except (FloatingPointError, OverflowError, ZeroDivisionError) as exc:
+        raise ValueError("PSD computation exceeds supported float64 range") from exc
+
+
+def _compute_psd(samples, config: PSDConfig) -> PSDResult:
     """Auto Periodogram (N=M) / Welch (N<M); real one-sided, IQ shifted two-sided.
 
     overlap_samples=floor(N*overlap); hop=N-overlap_samples. Incomplete trailing
@@ -103,6 +123,10 @@ def compute_psd(samples, config: PSDConfig = PSDConfig()) -> PSDResult:
     window_power_sum = float(np.dot(window, window))
     window_sum = float(np.sum(window))
     enbw = fs * window_power_sum / window_sum**2
+    denominator = fs * window_power_sum
+    if (not np.isfinite(denominator) or denominator <= 0 or not np.isfinite(enbw)
+            or enbw <= 0 or fs / size == 0 or fs / 2 == 0):
+        raise ValueError("sample rate/window normalization exceeds supported float64 range")
     gain = window_sum / size
     welch = size < x.size
     overlap_samples = int(np.floor(size * config.overlap)) if welch else 0
@@ -114,11 +138,15 @@ def compute_psd(samples, config: PSDConfig = PSDConfig()) -> PSDResult:
         if config.detrend == "mean":
             segment = segment - np.mean(segment)
         spectrum = np.fft.fft(segment * window)
-        density += np.abs(spectrum)**2 / (fs * window_power_sum)
+        density += np.abs(spectrum)**2 / denominator
     density /= segment_count  # average linear PSD, then convert to dB
+    # NumPy fftfreq computes 1/(N*d). Its N/fs intermediate can overflow
+    # for a tiny finite fs even when the final df and signed axis are valid.
+    direct_axis = not np.isfinite(size * (1.0 / fs))
     if is_complex:
         density = np.fft.fftshift(density)
-        frequency = np.fft.fftshift(np.fft.fftfreq(size, d=1.0 / fs))
+        frequency = ((np.arange(size) - size // 2) * (fs / size) if direct_axis
+                     else np.fft.fftshift(np.fft.fftfreq(size, d=1.0 / fs)))
         reference_power = 1.0
     else:
         density = density[:size // 2 + 1].copy()
@@ -126,9 +154,12 @@ def compute_psd(samples, config: PSDConfig = PSDConfig()) -> PSDResult:
             density[1:-1] *= 2.0
         else:
             density[1:] *= 2.0
-        frequency = np.fft.rfftfreq(size, d=1.0 / fs)
+        frequency = (np.arange(size // 2 + 1) * (fs / size) if direct_axis
+                     else np.fft.rfftfreq(size, d=1.0 / fs))
         reference_power = 0.5
     used_count = (segment_count - 1) * hop + size
+    if not np.isfinite(np.sum(density) * (fs / size)):
+        raise ValueError("integrated power exceeds supported float64 range")
     return PSDResult(
         frequency_hz=frequency, psd_linear=density,
         psd_dbfs_per_hz=power_to_db(density, reference_power),

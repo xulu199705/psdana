@@ -6,7 +6,7 @@ psdana 面向离线采样数据分析和 DSP 算法移植，提供数学定义�
 实数及复数 IQ 输入、明确的 Full Scale 参考，以及可供其他语言复用的 Golden Vector。
 Python 提供参考计算和独立频谱绘图；Go 提供计算库、CSV 适配和命令行 JSON 输出。
 
-当前版本：**V2.0.0**。项目遵循 **Correctness First，Performance Second**。
+当前开发快照：**V2.0.1（待发布）**，基于 V2.0.0。项目遵循 **Correctness First，Performance Second**。
 
 ## 功能
 
@@ -14,6 +14,7 @@ Python 提供参考计算和独立频谱绘图；Go 提供计算库、CSV 适配
 - Periodic Hann / Rectangle；可选逐段 mean detrend。
 - 复数 IQ 双边 fftshift 频谱；实数单边频谱，正确处理 DC 与 Nyquist。
 - 同时输出绝对线性 PSD、dBFS/Hz 密度、ENBW 校准 dBFS 频谱和积分功率。
+- 指定有符号频段的 Peak / Average Power；支持点频、部分 bin 积分和周期性 Nyquist 单元。
 - float、decimal Q1.15、16-bit hexadecimal Q1.15 CSV；支持表头、列选择和 BOM。
 - Python Matplotlib Line 绘图；Go CLI 文本摘要及机器可解析 JSON。
 - 17 个冻结 Golden Vector、独立数学测试、SciPy 对照及直接 Python-Go 比较。
@@ -61,6 +62,7 @@ python python/demo.py --fft-points 1024 --overlap 0.5
 # 严格 PSD 密度显示，或禁用交互窗口
 python python/demo.py --display dbfs_per_hz
 python python/demo.py --no-show
+python python/demo.py --freq-left 39000000 --freq-right 41000000 --no-show
 
 # Q1.15 输入
 python python/demo.py --input data/generated/T09_q15_iq.csv --sample-format q15
@@ -75,11 +77,13 @@ python python/demo.py --input data/generated/T09_q15_iq.csv --sample-format q15
 go -C go run ./cmd/psdana
 go -C go run ./cmd/psdana --fft-points 1024 --overlap 0.5 --detrend mean
 go -C go run ./cmd/psdana --json
+go -C go run ./cmd/psdana --freq-left 40000000 --freq-right 40000000 --json
 go -C go run ./cmd/psdana --input data/generated/T09_q15_iq.csv --sample-format q15 --json
 ```
 
 也可进入 `go/` 后执行 `go run ./cmd/psdana`，或运行编译后的二进制。
 Go 不打开窗口；`--json` 时 stdout 仅含完整 PSDResult，错误写入 stderr 并返回非零退出码。
+同时提供 `--freq-left` / `--freq-right`（Hz）时，JSON 增加 `power_metrics`；未提供时保持 V2.0.0 结构。
 默认输入及相对路径从 cwd 或二进制所在位置向上定位项目根目录。
 独立分发二进制时，可使用绝对输入路径和明确的 sample-format。
 
@@ -94,13 +98,15 @@ real/I/Q 列选择。未知的双列顺序必须显式指定，不能自动猜�
 
 ```python
 import numpy as np
-from psd import PSDConfig, compute_psd
+from psd import PSDConfig, compute_psd, analyze_band_power
 from psd.csvio import CSVConfig, read_csv
 from psd.plotting import plot_psd
 
 samples = np.exp(2j * np.pi * np.arange(1024) / 4)
 result = compute_psd(samples, PSDConfig(fs=160e6))
 print(result.integrated_power)  # 约 1.0
+power = analyze_band_power(result, 39e6, 41e6)
+print(power.peak_power_dbfs, power.average_power_dbfs)  # 约 0 dBFS
 plot_psd(result, display="dbfs", freq_unit="MHz", show=True)
 
 # capture = read_csv(path, CSVConfig(sample_format="hex_q15"))
@@ -115,6 +121,8 @@ plot_psd(result, display="dbfs", freq_unit="MHz", show=True)
 config := psd.DefaultConfig()
 config.FFTPoints = psd.FFTPoints{N: 1024} // 或 FFTPoints{All: true}
 result, err := psd.ComputeComplexPSD(iqSamples, config)
+// 检查 err 后可调用：
+power, err := psd.AnalyzeBandPower(result, 39e6, 41e6)
 // 实数：psd.ComputeRealPSD(realSamples, config)
 // CSV：csvio.ReadCSV(path, csvio.DefaultConfig())
 ```
@@ -162,6 +170,25 @@ FFT 为未归一化 forward FFT。复数 Full Scale 是单位模单音，P_FS=1�
 一般加窗序列的 PSD 积分恢复窗加权功率估计，不保证等于未加窗平均功率。
 Hann N=1 非法；N=2 及 DC/Nyquist 等边界详见 API 文档。
 
+### 频段与点频功率
+
+`analyze_band_power` / `AnalyzeBandPower` 接收已算好的 PSDResult，不读取 CSV、不重算 FFT、不修改输入。
+频率边界严格满足 `-fs/2 <= left <= right <= fs/2`。
+
+- **Peak Power**：所有与频段有正宽度重叠的 bin 中，最大的 `Pxx*ENBW`，转换为 dBFS。
+- **Average Power**：时间平均带内功率估计，`sum(Pxx*overlap_width)`，转换为 dBFS；不是 bin/dB 的算术平均。
+- **点频**：left=right，选择最近的 bin，Peak 和 Average 均使用其 RBW 校准功率；距离或功率相同选较低频率。
+
+积分单元以 FFT 网格中心为中心，宽度 df；Nyquist 单元超出边界的部分周期性折回。
+右边界为排除端，`right=+fs/2` 不增加 +fs/2 bin；`left=right=+fs/2` 特例选择严格小于该边界的最高中心。
+全带积分恢复 PSDResult.integrated_power。实数单边 PSD 拆为等效双边谱，内部正负频点各承担一半，DC/偶数 Nyquist 唯一。
+因此实数单音在单侧频段中的峰值通常比原单边图低约 3 dB，P_FS=0.5 未改变。
+
+PowerResult 提供边界、点频标志、峰值频率、Peak/Average dBFS、绝对线性功率和参与 bin 数。
+零功率时峰值频率无效，dB 为 -Inf；标准 JSON 使用 null。点频的 band_power_linear 表示所选 bin 的 RBW 功率。
+非零频段的功率估计依赖 df 和窗函数：Hann 相干单音的单 bin 积分为总功率的 2/3，包含完整主瓣才恢复总功率。
+极端输入导致 float64 中间值溢出时明确报错；未引入幅度归一化或功率裁剪。
+
 ## 数据与验证
 
 ```text
@@ -181,6 +208,7 @@ go -C go vet ./...
 go -C go test ./...
 go -C go test -v ./...
 python python/compare_go.py
+python python/compare_power_go.py
 ```
 
 原数据与 Golden 已随仓库提供。需要复现 Phase 1 数据时，可运行 `generate_test_data.py` 和
@@ -201,6 +229,7 @@ Go B/op 表示分配字节，不能与峰值 RSS 或 Python tracemalloc 直接�
 
 实际数值误差、性能结果和已发现边界见 [工程报告](go/reports/phase2_validation.md)
 与 [完整性能表](go/reports/performance.md)。性能结论与输入规模、FFT 方法和环境有关。
+V2.0.1 数值边界、频段分析和安全检查见 [验证报告](go/reports/v2.0.1_validation.md)。
 
 ## 开发路线图
 
@@ -208,6 +237,7 @@ Go B/op 表示分配字节，不能与峰值 RSS 或 Python tracemalloc 直接�
 |---|---|---|
 | Phase 1 | 完成 | Python 数学参考、CSV、绘图、独立验证、Golden Vector |
 | Phase 2 | 完成 | Go Core/CSV/CLI、完整跨语言比较、实测性能与 V2.0.0 |
+| V2.0.1 | 待发布 | 频段/点频功率分析、零输入峰值及数值边界修复 |
 | Phase 3 | 规划 | FFT workspace/跨调用复用、CSV 分配优化、性能剖析、大质因子精度与性能覆盖 |
 | 后续 | 评估 | 在保持数学契约的前提下扩展其他语言及应用层 |
 

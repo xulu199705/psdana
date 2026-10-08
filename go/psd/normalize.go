@@ -1,12 +1,19 @@
 package psd
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 func dbPower(v, reference float64) float64 {
 	if v == 0 {
 		return math.Inf(-1)
 	}
-	return 10 * math.Log10(v/reference)
+	ratio := v / reference
+	if !finite(ratio) || ratio == 0 {
+		return 10 * (math.Log10(v) - math.Log10(reference))
+	}
+	return 10 * math.Log10(ratio)
 }
 
 func reverse(values []float64) {
@@ -15,7 +22,7 @@ func reverse(values []float64) {
 	}
 }
 
-func finish(density []float64, n, m int, c PSDConfig, energy, gain, enbw float64, isComplex bool) PSDResult {
+func finish(density []float64, n, m int, c PSDConfig, energy, gain, enbw float64, isComplex bool) (PSDResult, error) {
 	// Rotate right by floor(N/2) once per call, then normalize in place.
 	// This preserves NumPy odd/even fftshift without per-segment reordering.
 	if isComplex {
@@ -43,6 +50,9 @@ func finish(density []float64, n, m int, c PSDConfig, energy, gain, enbw float64
 		FFTSize: n, FSHz: c.FS, FrequencyResolutionHz: c.FS / float64(n), ENBWHZ: enbw, CoherentGain: gain, WindowPowerSum: energy, SegmentCount: count,
 		Window: c.Window, InputType: kind, ReferencePower: reference, Method: method, OverlapSamples: overlap, HopSize: hop, InputSampleCount: m, UsedSampleCount: used, DiscardedTailSamples: m - used, Detrend: c.Detrend}
 	for j := range density {
+		if !finite(density[j]) || density[j] < 0 {
+			return PSDResult{}, fmt.Errorf("PSD accumulation exceeds supported float64 range at bin %d", j)
+		}
 		bin := j
 		if isComplex {
 			bin = j - n/2
@@ -56,7 +66,13 @@ func finish(density []float64, n, m int, c PSDConfig, energy, gain, enbw float64
 		r.PSDDBFSPerHz[j] = dbPower(p, reference)
 		r.RBWPowerDBFS[j] = dbPower(p*enbw, reference)
 		r.IntegratedPower += p
+		if !finite(p) || !finite(p*enbw) || !finite(r.IntegratedPower) || !finite(r.FrequencyHz[j]) {
+			return PSDResult{}, fmt.Errorf("PSD normalization exceeds supported float64 range at bin %d", j)
+		}
 	}
 	r.IntegratedPower *= r.FrequencyResolutionHz
-	return r
+	if !finite(r.IntegratedPower) {
+		return PSDResult{}, fmt.Errorf("integrated power exceeds supported float64 range")
+	}
+	return r, nil
 }

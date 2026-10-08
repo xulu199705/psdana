@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"math"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -47,11 +48,25 @@ func run(args []string) error {
 	iColumn := flags.String("i-column", "", "I name or zero-based index")
 	qColumn := flags.String("q-column", "", "Q name or zero-based index")
 	jsonOutput := flags.Bool("json", false, "stdout contains only complete PSDResult JSON")
+	left := flags.Float64("freq-left", 0, "band left boundary in Hz; requires --freq-right")
+	right := flags.Float64("freq-right", 0, "band right boundary in Hz; requires --freq-left")
 	if err := flags.Parse(args); err != nil {
 		return err
 	}
 	if flags.NArg() != 0 {
 		return fmt.Errorf("unexpected positional arguments")
+	}
+	hasLeft, hasRight := false, false
+	flags.Visit(func(f *flag.Flag) {
+		if f.Name == "freq-left" {
+			hasLeft = true
+		}
+		if f.Name == "freq-right" {
+			hasRight = true
+		}
+	})
+	if hasLeft != hasRight {
+		return fmt.Errorf("freq-left and freq-right must be provided together")
 	}
 	if *points != "all" {
 		n, err := strconv.Atoi(*points)
@@ -110,17 +125,47 @@ func run(args []string) error {
 	if err != nil {
 		return err
 	}
+	var metrics *psd.PowerResult
+	if hasLeft {
+		p, err := psd.AnalyzeBandPower(r, *left, *right)
+		if err != nil {
+			return err
+		}
+		metrics = &p
+	}
 	if *jsonOutput {
+		if metrics != nil {
+			return json.NewEncoder(os.Stdout).Encode(struct {
+				psd.PSDResult
+				PowerMetrics *psd.PowerResult `json:"power_metrics"`
+			}{r, metrics})
+		}
 		return json.NewEncoder(os.Stdout).Encode(r)
 	}
-	peak := 0
+	peak := -1
 	for j, p := range r.PSDLinear {
-		if p > r.PSDLinear[peak] {
+		if p > 0 && (peak < 0 || p > r.PSDLinear[peak]) {
 			peak = j
 		}
 	}
-	fmt.Printf("Samples: %d\nInput Type: %s\nFFT Size: %d\nMethod: %s\nWindow: %s\nSegment Count: %d\nPeak Frequency: %.12g Hz\nPeak RBW Power: %.9f dBFS\nPeak PSD: %.9f dBFS/Hz\nFrequency Resolution: %.12g Hz\nENBW: %.12g Hz\nIntegrated Power: %.12g\n",
-		r.InputSampleCount, r.InputType, r.FFTSize, r.Method, r.Window, r.SegmentCount, r.FrequencyHz[peak], r.RBWPowerDBFS[peak], r.PSDDBFSPerHz[peak], r.FrequencyResolutionHz, r.ENBWHZ, r.IntegratedPower)
+	peakFrequency, rbw, density := "N/A", math.Inf(-1), math.Inf(-1)
+	if peak >= 0 {
+		peakFrequency = fmt.Sprintf("%.12g Hz", r.FrequencyHz[peak])
+		rbw, density = r.RBWPowerDBFS[peak], r.PSDDBFSPerHz[peak]
+	}
+	fmt.Printf("Samples: %d\nInput Type: %s\nFFT Size: %d\nMethod: %s\nWindow: %s\nSegment Count: %d\nPeak Frequency: %s\nPeak RBW Power: %.9f dBFS\nPeak PSD: %.9f dBFS/Hz\nFrequency Resolution: %.12g Hz\nENBW: %.12g Hz\nIntegrated Power: %.12g\n",
+		r.InputSampleCount, r.InputType, r.FFTSize, r.Method, r.Window, r.SegmentCount, peakFrequency, rbw, density, r.FrequencyResolutionHz, r.ENBWHZ, r.IntegratedPower)
+	if metrics != nil {
+		f := "N/A"
+		if metrics.PeakFrequencyHz != nil {
+			f = fmt.Sprintf("%.12g Hz", *metrics.PeakFrequencyHz)
+		}
+		end := ")"
+		if metrics.IsPoint {
+			end = "]"
+		}
+		fmt.Printf("Frequency Range: [%.12g, %.12g%s Hz; point=%t\nBand Peak Frequency: %s\nPeak Power (dBFS): %.9f\nAverage Power (dBFS): %.9f\n", metrics.FreqLeftHz, metrics.FreqRightHz, end, metrics.IsPoint, f, metrics.PeakPowerDBFS, metrics.AveragePowerDBFS)
+	}
 	return nil
 }
 func main() {

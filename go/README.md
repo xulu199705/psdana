@@ -1,4 +1,4 @@
-# Go PSD Core — Phase 2
+# Go PSD Core
 
 Module：`github.com/xulu199705/psdana/go`，复用既有 Go 1.27.1 配置，仅使用 Gonum v0.17.0。
 核心、CSV、CLI 分离；没有 Go 绘图、TypeScript、GUI 或并行 Welch。
@@ -83,3 +83,51 @@ Go 不在 PATH 时，通过 Python 脚本 --go / PSD_GO 指定工具链。
 Python 使用现有 Conda 环境，没有修改依赖版本。
 
 结果见 [工程报告](reports/phase2_validation.md) 和 [性能表](reports/performance.md)。
+
+## V2.0.1：频段与点频功率（待发布）
+
+```go
+// 先检查 PSD 计算错误，再调用；函数不修改 result。
+power, err := psd.AnalyzeBandPower(result, 39e6, 41e6)
+point, err := psd.AnalyzeBandPower(result, 40e6, 40e6)
+```
+
+PowerResult：FreqLeftHz/FreqRightHz、IsPoint、PeakFrequencyHz (*float64，零功率 nil)、
+PeakPowerDBFS、AveragePowerDBFS、BandPowerLinear、ContributingBins；JSON tags 与 Python 同名。
+MarshalJSON 将 -Inf dB 和无效峰值频率编码为 null，拒绝 NaN/+Inf。
+BandPowerLinear 是绝对输入单位平方，点频时表示所选 bin 的 RBW 功率；ContributingBins 按 distinct signed bin 计数。
+
+`-fs/2 <= left <= right <= fs/2` 严格检查，非有限值/逆序/越界返回 error。
+非零频段为 `[left,right)`：宽度 df 的 centered bin 单元与该范围取重叠宽度，Nyquist 跨界部分以 fs 为周期折回。
+FFT 网格由 bin 序号与 df 建立；PSDResult 轴一致性验证只允许与机器精度成比例的舍入差异，无固定 MHz epsilon。
+Peak 为所有正宽度重叠 bin 的 max(Pxx*ENBW)，不按重叠宽度缩小 Peak；Average 为 sum(Pxx*width) 的 dBFS。
+部分重叠或周期折回时，返回的 bin 中心可在请求范围外；正端 Nyquist 单元的中心表示为 -fs/2。
+Average 是时间平均带内信号功率估计；不是 mean(PSD)、mean(dBFS) 或 sum(RBW)。密度仍以 dBFS/Hz 表示。
+全 Nyquist 积分等于原 integrated_power，浮点加法次序只产生舍入差异。
+
+点频按中心距离选最近 bin，等距或等功率选择较低频率；Peak=Average=该 bin RBW 功率。
+`+fs/2` 点频特例选择 signed 频率表示中严格低于该边界的最高 bin，不增加虚构 bin。
+偶数 Nyquist 中心表示为 -fs/2，单元在两端各占一半；right=+fs/2 为排除端点。
+
+实数单边谱内部 bin 正负各一半，DC/偶数 Nyquist 唯一，奇数末正 bin 也拆分。
+单侧实数峰值通常较原单边图低约 3 dB；Full Scale 不变：real=.5，complex=1。
+Hann 相干单音单 bin 积分为总功率 2/3，完整主瓣恢复总功率；频段估计受 df、窗泄漏和 Welch 统计影响。
+零功率返回 -Inf/nil，无任意噪声门限。核心拒绝使 FFT 平方、mean、PSD 累加、RBW 或积分溢出的有限输入，
+以及不可表示的归一化尺度/df；普通输入的算法路径、归一化与 Golden 不变。float64 下溢可能成为零。
+
+```shell
+go -C go run ./cmd/psdana --freq-left 39000000 --freq-right 41000000
+go -C go run ./cmd/psdana --freq-left 0 --freq-right 0 --json
+python python/compare_power_go.py
+```
+
+参数必须成对；显式 0 合法。未提供时 JSON 完全保留 V2.0.0 的 22 个 PSDResult 字段；
+提供时额外增加 power_metrics。零输入文本峰值显示 N/A，不再把第一个 bin 作为有效峰值。
+安全扫描按 [Go 官方方式](https://go.dev/doc/security/vuln/) 安装并运行 govulncheck：
+
+```shell
+go install golang.org/x/vuln/cmd/govulncheck@latest
+govulncheck ./...
+```
+
+复用已有工具即可。测试、跨语言误差及实际扫描状态见 [V2.0.1 验证报告](reports/v2.0.1_validation.md)。

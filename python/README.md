@@ -244,4 +244,61 @@ JSON 的 dB 数组中 `null` 表示零功率的负无穷；线性 PSD 和频率�
 统计验证使用一个固定噪声 seed，不等同于广泛 Monte Carlo 统计资格验证。
 极端动态范围受 float64 溢出/下溢限制；超出 Nyquist 的信号会按采样理论 alias。
 不实现隐式补零、补尾、自动幅度归一化或实数信号强制双边选择。
-Go / TypeScript 尚未实现；需特别保持 FFT 的归一化、实数偶/奇端点和 JSON null 语义一致。
+Go 已完成对应 Core；TypeScript 尚未实现。移植应保持 FFT 归一化、实数偶/奇端点和 JSON null 语义一致。
+
+## V2.0.1：频段与点频功率（待发布）
+
+```python
+from psd import PowerResult, analyze_band_power
+
+power = analyze_band_power(result, 39e6, 41e6)
+print(power.peak_frequency_hz, power.peak_power_dbfs, power.average_power_dbfs)
+# 标准 JSON：json.dumps(power.to_dict(), allow_nan=False)
+point = analyze_band_power(result, 40e6, 40e6)
+```
+
+函数只消费已有 PSDResult；不重算 FFT、不读取 CSV、不修改数组、不依赖 Matplotlib。
+验证 fs/df/ENBW、输入类型、Full Scale、数组维度、非负有限 PSD 和 FFT 频率轴；非法输入抛出 ValueError。
+
+| PowerResult 字段 | 语义 |
+|---|---|
+| freq_left_hz / freq_right_hz | 原请求边界，Hz |
+| is_point | 两边界相等 |
+| peak_frequency_hz | 实际选中 signed bin 中心；零功率为 None |
+| peak_power_dbfs | max(Pxx*ENBW) 相对 P_FS 的 dB |
+| average_power_dbfs | 带内积分功率相对 P_FS 的 dB；点频时与 Peak 相等 |
+| band_power_linear | 绝对输入单位平方；点频时为 RBW 功率 |
+| contributing_bins | 正重叠宽度的 distinct signed bin 数；点频为 1，零功率 bin 仍计数 |
+
+边界严格满足 `-fs/2 <= left <= right <= fs/2`；NaN/Inf、逆序、越界报错，没有固定 MHz epsilon。
+非零带宽采用 `[left,right)`，bin 单元为 `[center-df/2,center+df/2)`，以 fs 为周期折回 Nyquist 两端。
+网格由 FFT bin 序号与 df 建立，频率轴一致性检查仅允许与 float64 精度成比例的舍入误差。
+带内功率为 `sum(Pxx*overlap_width)`；Peak 对参与 bin 的完整 RBW 功率取最大，不按重叠比例缩小 Peak。
+部分重叠或周期折回时，返回的 bin 中心可以位于请求范围外；例如正端 Nyquist 单元的中心表示为 -fs/2。
+全 Nyquist 积分与原 integrated_power 一致。Average 是时间平均信号功率估计，不是 mean(PSD)、mean(dB) 或 sum(RBW)。
+
+点频按网格中心距离选最近 bin，等距选较低频率；功率并列也选较低频率。
+`left=right=+fs/2` 从左侧逼近，选择当前 signed 表示中严格低于 +fs/2 的最高 bin，不创建 +fs/2 bin。
+偶数 Nyquist 中心表示为 -fs/2，其积分单元在两个边界各占一半；点频 -fs/2 可直接选择该中心。
+
+实数输入先构建等效双边谱：内部单边 PSD 正负各一半，DC/偶数 Nyquist 不分裂，奇数最后正频率仍需分裂。
+正负实数单音频段互为镜像；单侧 Peak 常比原单边图低 3.0103 dB，Full Scale 仍为 P_FS=0.5。
+PSD 密度单位 dBFS/Hz；Peak 和带内 Average 单位 dBFS。Hann 相干单音的单 bin 积分只有总功率的 2/3；
+包含完整主瓣或全带才能恢复总功率。非相干信号、窄带和噪声结果受 FFT 分辨率、窗泄漏及 Welch 估计影响。
+
+零功率输出 -Inf，峰值频率 None；PowerResult.to_dict() 将这两种情况转换为标准 JSON null。
+极端有限输入若使 PSD/功率中间值溢出、归一化尺度或 df 无法表示，compute_psd 明确抛出 ValueError。
+极小 fs 下使用等价 bin*df 频率轴，避免 NumPy 的 N/fs 中间值溢出；正常参数保持原计算路径。
+float64 功率下溢可能成为精确零；没有额外噪声门限，也不裁剪超过 0 dBFS 的值。
+
+CLI 支持成对的 Hz 参数，显式 0 与未提供区分：
+
+```shell
+python python/demo.py --freq-left 40000000 --freq-right 40000000 --no-show
+python python/compare_power_go.py
+python -m pytest python/tests -q
+```
+
+test_power.py 使用解析单音/双音、精确有理数周期积分和真实 CSV 验证；比较脚本同时执行
+共享 PSD 与独立 PSD 两种跨语言验证，并检查异常边界。原 17 组 Golden 保持冻结。
+结果见 [V2.0.1 报告](../go/reports/v2.0.1_validation.md)。
