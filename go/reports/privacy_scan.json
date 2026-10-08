@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "candidate_file_count": 80,
+  "main_history_commit_count": 1,
+  "findings": [],
+  "excluded": "Ignored caches, binaries and temporary benchmark CSVs; release uses a single V2.0.0 root commit. Old V1 tag, tool snapshot ref, reflogs and unreachable objects are removed during publication."
+}

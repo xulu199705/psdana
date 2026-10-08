@@ -1,0 +1,3811 @@
+{
+  "case_count": 20,
+  "passed": 20,
+  "db_significance_psd_threshold": 1e-20,
+  "cases": [
+    {
+      "id": "original8192",
+      "passed": true,
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 0,
+          "frequency_hz": -80000000.0,
+          "actual": -80000000.0,
+          "expected": -80000000.0
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 9.317362419797304e-21,
+          "max_relative_error_nonzero_expected": 8976.447908684439,
+          "bin": 6144,
+          "frequency_hz": 40000000.0,
+          "actual": 4.211297257741283e-06,
+          "expected": 4.211297257741292e-06
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 7.105427357601002e-15,
+          "max_relative_error_nonzero_expected": 1.321796333597374e-16,
+          "bin": 6143,
+          "frequency_hz": 39980468.75,
+          "actual": -59.7764409380691,
+          "expected": -59.77644093806909
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 3.552713678800501e-15,
+          "max_relative_error_nonzero_expected": 2.351509183504751e-16,
+          "bin": 6145,
+          "frequency_hz": 40019531.25,
+          "actual": -15.108227957270584,
+          "expected": -15.108227957270588
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 8192,
+          "expected": 8192
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 160000000,
+          "expected": 160000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 19531.25,
+          "expected": 19531.25
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 8.36735125631094e-11,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 29296.875000000084,
+          "expected": 29296.875
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 1.6653345369377348e-16,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.49999999999999983,
+          "expected": 0.5
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 6.821210263296962e-12,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 3072.000000000007,
+          "expected": 3072.0
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "hann",
+          "expected": "hann"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "complex",
+          "expected": "complex"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "periodogram",
+          "expected": "periodogram"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 8192,
+          "expected": 8192
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 8192,
+          "expected": 8192
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 8192,
+          "expected": 8192
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "none",
+          "expected": "none"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 2.7755575615628914e-16,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 0.12337784934788916,
+          "expected": 0.12337784934788944
+        }
+      ]
+    },
+    {
+      "id": "tone1024_hann",
+      "passed": true,
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 0,
+          "frequency_hz": -80000000.0,
+          "actual": -80000000.0,
+          "expected": -80000000.0
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 8.470329472543003e-22,
+          "max_relative_error_nonzero_expected": 0.6026603625904721,
+          "bin": 768,
+          "frequency_hz": 40000000.0,
+          "actual": 4.266666666666666e-06,
+          "expected": 4.266666666666667e-06
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 767,
+          "frequency_hz": 39843750.0,
+          "actual": -59.71971276399743,
+          "expected": -59.71971276399743
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 3.552713678800501e-15,
+          "max_relative_error_nonzero_expected": 5.900929691349139e-16,
+          "bin": 767,
+          "frequency_hz": 39843750.0,
+          "actual": -6.020599913279496,
+          "expected": -6.020599913279493
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 1024,
+          "expected": 1024
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 160000000,
+          "expected": 160000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 156250,
+          "expected": 156250.0
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 1.4551915228366852e-10,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 234374.99999999985,
+          "expected": 234375.0
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 2.220446049250313e-16,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5000000000000002,
+          "expected": 0.5
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 1.1368683772161603e-13,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 384.0000000000001,
+          "expected": 384.0
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "hann",
+          "expected": "hann"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "complex",
+          "expected": "complex"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "periodogram",
+          "expected": "periodogram"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 1024,
+          "expected": 1024
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 1024,
+          "expected": 1024
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 1024,
+          "expected": 1024
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "none",
+          "expected": "none"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 3.3306690738754696e-16,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 0.9999999999999997,
+          "expected": 1.0
+        }
+      ]
+    },
+    {
+      "id": "tone1024_rectangle",
+      "passed": true,
+      "config": {
+        "fs": 160000000.0,
+        "window": "rectangle",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 0,
+          "frequency_hz": -80000000.0,
+          "actual": -80000000.0,
+          "expected": -80000000.0
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 2.565854121688508e-49,
+          "max_relative_error_nonzero_expected": 3.396717334432037e-14,
+          "bin": 209,
+          "frequency_hz": -47343750.0,
+          "actual": 5.061446134737151e-34,
+          "expected": 5.061446134737154e-34
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 768,
+          "frequency_hz": 40000000.0,
+          "actual": -51.938200260161125,
+          "expected": -51.938200260161125
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 768,
+          "frequency_hz": 40000000.0,
+          "actual": 0.0,
+          "expected": 0.0
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 1024,
+          "expected": 1024
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 160000000,
+          "expected": 160000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 156250,
+          "expected": 156250.0
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 156250,
+          "expected": 156250.0
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1024,
+          "expected": 1024.0
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "rectangle",
+          "expected": "rectangle"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "complex",
+          "expected": "complex"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "periodogram",
+          "expected": "periodogram"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 1024,
+          "expected": 1024
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 1024,
+          "expected": 1024
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 1024,
+          "expected": 1024
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "none",
+          "expected": "none"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 1,
+          "expected": 1.0
+        }
+      ]
+    },
+    {
+      "id": "multitone4096",
+      "passed": true,
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 0,
+          "frequency_hz": -80000000.0,
+          "actual": -80000000.0,
+          "expected": -80000000.0
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 2.0328790734103208e-20,
+          "max_relative_error_nonzero_expected": 1.5048509571049822,
+          "bin": 2779,
+          "frequency_hz": 28554687.5,
+          "actual": 8.362666666666652e-06,
+          "expected": 8.362666666666672e-06
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 1.4210854715202004e-14,
+          "max_relative_error_nonzero_expected": 2.3047900939550016e-16,
+          "bin": 1845,
+          "frequency_hz": -7929687.5,
+          "actual": -61.65791302415872,
+          "expected": -61.6579130241587
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 3.552713678800501e-15,
+          "max_relative_error_nonzero_expected": 5.733810080788339e-16,
+          "bin": 1844,
+          "frequency_hz": -7968750.0,
+          "actual": -20.000000000000142,
+          "expected": -20.000000000000146
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 4096,
+          "expected": 4096
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 160000000,
+          "expected": 160000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 39062.5,
+          "expected": 39062.5
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 1.1641532182693481e-10,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 58593.75000000012,
+          "expected": 58593.75
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 5.551115123125783e-17,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.49999999999999994,
+          "expected": 0.5
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 2.7284841053187847e-12,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1536.0000000000027,
+          "expected": 1536.0
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "hann",
+          "expected": "hann"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "complex",
+          "expected": "complex"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "periodogram",
+          "expected": "periodogram"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 4096,
+          "expected": 4096
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 4096,
+          "expected": 4096
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 4096,
+          "expected": 4096
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "none",
+          "expected": "none"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 1.2212453270876722e-15,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 0.539999999999999,
+          "expected": 0.5400000000000003
+        }
+      ]
+    },
+    {
+      "id": "noise65536_all_0.5_none",
+      "passed": true,
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 0,
+          "frequency_hz": -80000000.0,
+          "actual": -80000000.0,
+          "expected": -80000000.0
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 4.549493369041652e-24,
+          "max_relative_error_nonzero_expected": 1.4786265614086187e-13,
+          "bin": 11276,
+          "frequency_hz": -52470703.125,
+          "actual": 1.1129006689275651e-09,
+          "expected": 1.1129006689275697e-09
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 6.536993168992922e-13,
+          "max_relative_error_nonzero_expected": 4.508446095367275e-15,
+          "bin": 47393,
+          "frequency_hz": 35705566.40625,
+          "actual": -144.99437346517556,
+          "expected": -144.9943734651749
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 6.252776074688882e-13,
+          "max_relative_error_nonzero_expected": 5.717761664798862e-15,
+          "bin": 47393,
+          "frequency_hz": 35705566.40625,
+          "actual": -109.35706035429645,
+          "expected": -109.35706035429583
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 65536,
+          "expected": 65536
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 160000000,
+          "expected": 160000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 2441.40625,
+          "expected": 2441.40625
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 1.0459189070388675e-11,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 3662.1093750000105,
+          "expected": 3662.109375
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 1.1102230246251565e-16,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5000000000000001,
+          "expected": 0.5
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 8.36735125631094e-11,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 24576.000000000084,
+          "expected": 24576.0
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "hann",
+          "expected": "hann"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "complex",
+          "expected": "complex"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "periodogram",
+          "expected": "periodogram"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 65536,
+          "expected": 65536
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 65536,
+          "expected": 65536
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 65536,
+          "expected": 65536
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "none",
+          "expected": "none"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 9.71445146547012e-17,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 0.019878533985245094,
+          "expected": 0.019878533985244997
+        }
+      ]
+    },
+    {
+      "id": "noise65536_1024_0.5_none",
+      "passed": true,
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": 1024,
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 0,
+          "frequency_hz": -80000000.0,
+          "actual": -80000000.0,
+          "expected": -80000000.0
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 1.809457589959748e-25,
+          "max_relative_error_nonzero_expected": 1.3052304756016372e-15,
+          "bin": 632,
+          "frequency_hz": 18750000.0,
+          "actual": 1.6710035881050624e-10,
+          "expected": 1.6710035881050642e-10
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 2.842170943040401e-14,
+          "max_relative_error_nonzero_expected": 2.90030843696609e-16,
+          "bin": 12,
+          "frequency_hz": -78125000.0,
+          "actual": -99.26981288339869,
+          "expected": -99.26981288339871
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 1.4210854715202004e-14,
+          "max_relative_error_nonzero_expected": 3.202331084281712e-16,
+          "bin": 3,
+          "frequency_hz": -79531250.0,
+          "actual": -45.12023805049739,
+          "expected": -45.12023805049738
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 1024,
+          "expected": 1024
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 160000000,
+          "expected": 160000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 156250,
+          "expected": 156250.0
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 1.4551915228366852e-10,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 234374.99999999985,
+          "expected": 234375.0
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 2.220446049250313e-16,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5000000000000002,
+          "expected": 0.5
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 1.1368683772161603e-13,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 384.0000000000001,
+          "expected": 384.0
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 127,
+          "expected": 127
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "hann",
+          "expected": "hann"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "complex",
+          "expected": "complex"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "welch",
+          "expected": "welch"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 512,
+          "expected": 512
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 512,
+          "expected": 512
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 65536,
+          "expected": 65536
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 65536,
+          "expected": 65536
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "none",
+          "expected": "none"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 1.3877787807814457e-17,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 0.020013492631269593,
+          "expected": 0.020013492631269607
+        }
+      ]
+    },
+    {
+      "id": "noise65536_333_0.25_mean",
+      "passed": true,
+      "config": {
+        "fs": 160000000.0,
+        "window": "rectangle",
+        "fft_points": 333,
+        "overlap": 0.25,
+        "detrend": "mean"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 1.4901161193847656e-08,
+          "max_relative_error_nonzero_expected": 2.1840170235701006e-16,
+          "bin": 0,
+          "frequency_hz": -79759759.75975977,
+          "actual": -79759759.75975975,
+          "expected": -79759759.75975977
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 2.5849394142282115e-25,
+          "max_relative_error_nonzero_expected": 2.6593094483381634,
+          "bin": 63,
+          "frequency_hz": -49489489.489489496,
+          "actual": 1.4459604494323913e-10,
+          "expected": 1.4459604494323887e-10
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 2.842170943040401e-14,
+          "max_relative_error_nonzero_expected": 2.88020748457909e-16,
+          "bin": 7,
+          "frequency_hz": -76396396.3963964,
+          "actual": -98.70606153177386,
+          "expected": -98.70606153177388
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 2.1316282072803006e-14,
+          "max_relative_error_nonzero_expected": 5.036502515589424e-16,
+          "bin": 102,
+          "frequency_hz": -30750750.750750754,
+          "actual": -42.32358071265321,
+          "expected": -42.32358071265323
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 333,
+          "expected": 333
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 160000000,
+          "expected": 160000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 480480.4804804805,
+          "expected": 480480.4804804805
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 480480.4804804805,
+          "expected": 480480.4804804805
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 333,
+          "expected": 333.0
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 261,
+          "expected": 261
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "rectangle",
+          "expected": "rectangle"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "complex",
+          "expected": "complex"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "welch",
+          "expected": "welch"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 83,
+          "expected": 83
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 250,
+          "expected": 250
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 65536,
+          "expected": 65536
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 65333,
+          "expected": 65333
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 203,
+          "expected": 203
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "mean",
+          "expected": "mean"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 2.0816681711721685e-17,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 0.0199587968582842,
+          "expected": 0.01995879685828418
+        }
+      ]
+    },
+    {
+      "id": "noise65536_999_0.75_mean",
+      "passed": true,
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": 999,
+        "overlap": 0.75,
+        "detrend": "mean"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 1.4901161193847656e-08,
+          "max_relative_error_nonzero_expected": 3.524209288033571e-16,
+          "bin": 0,
+          "frequency_hz": -79919919.91991994,
+          "actual": -79919919.91991992,
+          "expected": -79919919.91991994
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 6.979336418416171e-25,
+          "max_relative_error_nonzero_expected": 4.732537356002611e-15,
+          "bin": 386,
+          "frequency_hz": -18098098.098098103,
+          "actual": 1.4747556951798423e-10,
+          "expected": 1.4747556951798354e-10
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 4.263256414560601e-14,
+          "max_relative_error_nonzero_expected": 4.327956952879913e-16,
+          "bin": 81,
+          "frequency_hz": -66946946.946946956,
+          "actual": -99.13913164945998,
+          "expected": -99.13913164946003
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 2.1316282072803006e-14,
+          "max_relative_error_nonzero_expected": 4.719343721567939e-16,
+          "bin": 505,
+          "frequency_hz": 960960.9609609612,
+          "actual": -45.564458335201714,
+          "expected": -45.56445833520169
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 999,
+          "expected": 999
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 160000000,
+          "expected": 160000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 160160.16016016016,
+          "expected": 160160.16016016016
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 9.022187441587448e-10,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 240240.2402402393,
+          "expected": 240240.2402402402
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 4.440892098500626e-16,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5000000000000006,
+          "expected": 0.5000000000000001
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 6.252776074688882e-13,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 374.62499999999943,
+          "expected": 374.62500000000006
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 259,
+          "expected": 259
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "hann",
+          "expected": "hann"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "complex",
+          "expected": "complex"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "welch",
+          "expected": "welch"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 749,
+          "expected": 749
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 250,
+          "expected": 250
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 65536,
+          "expected": 65536
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 65499,
+          "expected": 65499
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 37,
+          "expected": 37
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "mean",
+          "expected": "mean"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 6.245004513516506e-17,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 0.01999080172542069,
+          "expected": 0.01999080172542063
+        }
+      ]
+    },
+    {
+      "id": "complex_edge1",
+      "passed": true,
+      "config": {
+        "fs": 125000000.0,
+        "window": "rectangle",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 0,
+          "frequency_hz": 0.0,
+          "actual": 0.0,
+          "expected": 0.0
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 1.3234889800848443e-23,
+          "max_relative_error_nonzero_expected": 1.502484735800064e-16,
+          "bin": 0,
+          "frequency_hz": 0.0,
+          "actual": 8.808668391430244e-08,
+          "expected": 8.808668391430243e-08
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 0,
+          "frequency_hz": 0.0,
+          "actual": -70.55089739029876,
+          "expected": -70.55089739029876
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 0,
+          "frequency_hz": 0.0,
+          "actual": 10.418202739781803,
+          "expected": 10.418202739781803
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 125000000,
+          "expected": 125000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 125000000,
+          "expected": 125000000.0
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 125000000,
+          "expected": 125000000.0
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "rectangle",
+          "expected": "rectangle"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "complex",
+          "expected": "complex"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "periodogram",
+          "expected": "periodogram"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "none",
+          "expected": "none"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 1.7763568394002505e-15,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 11.010835489287805,
+          "expected": 11.010835489287803
+        }
+      ]
+    },
+    {
+      "id": "complex_edge2",
+      "passed": true,
+      "config": {
+        "fs": 125000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 7.450580596923828e-09,
+          "max_relative_error_nonzero_expected": 1.1920928955078126e-16,
+          "bin": 0,
+          "frequency_hz": -62499999.99999999,
+          "actual": -62500000.0,
+          "expected": -62499999.99999999
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 6.617444900424222e-24,
+          "max_relative_error_nonzero_expected": 2.0851674089902553e-16,
+          "bin": 0,
+          "frequency_hz": -62499999.99999999,
+          "actual": 3.1735796712978206e-08,
+          "expected": 3.17357967129782e-08
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 1.4210854715202004e-14,
+          "max_relative_error_nonzero_expected": 1.8951721473941075e-16,
+          "bin": 0,
+          "frequency_hz": -62499999.99999999,
+          "actual": -74.98450594444498,
+          "expected": -74.98450594444499
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 8.881784197001252e-16,
+          "max_relative_error_nonzero_expected": 1.4841080149293345e-16,
+          "bin": 0,
+          "frequency_hz": -62499999.99999999,
+          "actual": 5.9845941856355775,
+          "expected": 5.984594185635577
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 2,
+          "expected": 2
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 125000000,
+          "expected": 125000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 62500000,
+          "expected": 62500000.0
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 125000000,
+          "expected": 125000000.0
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5,
+          "expected": 0.5
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "hann",
+          "expected": "hann"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "complex",
+          "expected": "complex"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "periodogram",
+          "expected": "periodogram"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 2,
+          "expected": 2
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 2,
+          "expected": 2
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 2,
+          "expected": 2
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "none",
+          "expected": "none"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 8.881784197001252e-16,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 3.966974589122276,
+          "expected": 3.966974589122275
+        }
+      ]
+    },
+    {
+      "id": "complex_edge3",
+      "passed": true,
+      "config": {
+        "fs": 125000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 0,
+          "frequency_hz": -41666666.666666664,
+          "actual": -41666666.666666664,
+          "expected": -41666666.666666664
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 2.6469779601696886e-23,
+          "max_relative_error_nonzero_expected": 2.5446695378635368e-15,
+          "bin": 0,
+          "frequency_hz": -41666666.666666664,
+          "actual": 4.585387585038621e-08,
+          "expected": 4.5853875850386183e-08
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 0,
+          "frequency_hz": -41666666.666666664,
+          "actual": -73.38623949213292,
+          "expected": -73.38623949213292
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 1.0658141036401503e-14,
+          "max_relative_error_nonzero_expected": 1.0495901509292885e-15,
+          "bin": 2,
+          "frequency_hz": 41666666.666666664,
+          "actual": -10.154574170656005,
+          "expected": -10.154574170656016
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 3,
+          "expected": 3
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 125000000,
+          "expected": 125000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 41666666.666666664,
+          "expected": 41666666.666666664
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 62500000.000000015,
+          "expected": 62500000.000000015
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5,
+          "expected": 0.5
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1.1250000000000002,
+          "expected": 1.1250000000000002
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "hann",
+          "expected": "hann"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "complex",
+          "expected": "complex"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "periodogram",
+          "expected": "periodogram"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 3,
+          "expected": 3
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 3,
+          "expected": 3
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 3,
+          "expected": 3
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "none",
+          "expected": "none"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 8.881784197001252e-16,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 3.3434355910963647,
+          "expected": 3.343435591096364
+        }
+      ]
+    },
+    {
+      "id": "complex_edge255",
+      "passed": true,
+      "config": {
+        "fs": 125000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 7.450580596923828e-09,
+          "max_relative_error_nonzero_expected": 2.302906729958274e-16,
+          "bin": 0,
+          "frequency_hz": -62254901.960784316,
+          "actual": -62254901.96078431,
+          "expected": -62254901.960784316
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 7.279189390466644e-23,
+          "max_relative_error_nonzero_expected": 2.5529727547774506e-14,
+          "bin": 23,
+          "frequency_hz": -50980392.15686275,
+          "actual": 3.7057682209436e-08,
+          "expected": 3.705768220943593e-08
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 1.2789769243681803e-13,
+          "max_relative_error_nonzero_expected": 1.2309892783425922e-15,
+          "bin": 246,
+          "frequency_hz": 58333333.333333336,
+          "actual": -103.89829926790242,
+          "expected": -103.89829926790254
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 1.1368683772161603e-13,
+          "max_relative_error_nonzero_expected": 2.513322301686302e-15,
+          "bin": 246,
+          "frequency_hz": 58333333.333333336,
+          "actual": -45.2336883516046,
+          "expected": -45.23368835160471
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 255,
+          "expected": 255
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 125000000,
+          "expected": 125000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 490196.07843137253,
+          "expected": 490196.07843137253
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 735294.1176470588,
+          "expected": 735294.1176470588
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 1.1102230246251565e-16,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5000000000000001,
+          "expected": 0.5
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 1.4210854715202004e-14,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 95.62500000000001,
+          "expected": 95.625
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "hann",
+          "expected": "hann"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "complex",
+          "expected": "complex"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "periodogram",
+          "expected": "periodogram"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 255,
+          "expected": 255
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 255,
+          "expected": 255
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 255,
+          "expected": 255
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "none",
+          "expected": "none"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 2.220446049250313e-16,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 1.8036499398214654,
+          "expected": 1.8036499398214652
+        }
+      ]
+    },
+    {
+      "id": "complex_edge256",
+      "passed": true,
+      "config": {
+        "fs": 125000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 7.450580596923828e-09,
+          "max_relative_error_nonzero_expected": 2.2114187047101454e-16,
+          "bin": 0,
+          "frequency_hz": -62499999.99999999,
+          "actual": -62500000.0,
+          "expected": -62499999.99999999
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 7.940933880509066e-23,
+          "max_relative_error_nonzero_expected": 3.9040356676559545e-15,
+          "bin": 85,
+          "frequency_hz": -20996093.749999996,
+          "actual": 1.1213134360756261e-07,
+          "expected": 1.1213134360756269e-07
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 2.842170943040401e-14,
+          "max_relative_error_nonzero_expected": 3.5022945557143573e-16,
+          "bin": 24,
+          "frequency_hz": -50781249.99999999,
+          "actual": -82.07946246496309,
+          "expected": -82.07946246496311
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 2.842170943040401e-14,
+          "max_relative_error_nonzero_expected": 7.349534673416794e-16,
+          "bin": 203,
+          "frequency_hz": 36621093.74999999,
+          "actual": -38.67144070114408,
+          "expected": -38.67144070114411
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 125000000,
+          "expected": 125000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 488281.25,
+          "expected": 488281.25
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 732421.875,
+          "expected": 732421.875
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5,
+          "expected": 0.5
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 96,
+          "expected": 96.0
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "hann",
+          "expected": "hann"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "complex",
+          "expected": "complex"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "periodogram",
+          "expected": "periodogram"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "none",
+          "expected": "none"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 8.881784197001252e-16,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 2.0508506427723825,
+          "expected": 2.0508506427723834
+        }
+      ]
+    },
+    {
+      "id": "complex_edge333",
+      "passed": true,
+      "config": {
+        "fs": 125000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 1.4901161193847656e-08,
+          "max_relative_error_nonzero_expected": 2.7377029945110457e-16,
+          "bin": 17,
+          "frequency_hz": -55930930.93093092,
+          "actual": -55930930.930930935,
+          "expected": -55930930.93093092
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 2.6469779601696886e-22,
+          "max_relative_error_nonzero_expected": 1.7764682855453814e-14,
+          "bin": 236,
+          "frequency_hz": 26276276.27627627,
+          "actual": 1.2409852260712952e-07,
+          "expected": 1.2409852260712925e-07
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 7.105427357601002e-14,
+          "max_relative_error_nonzero_expected": 6.905212134385728e-16,
+          "bin": 224,
+          "frequency_hz": 21771771.77177177,
+          "actual": -102.8994796874997,
+          "expected": -102.89947968749964
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 7.815970093361102e-14,
+          "max_relative_error_nonzero_expected": 1.7218103074963793e-15,
+          "bin": 224,
+          "frequency_hz": 21771771.77177177,
+          "actual": -45.39390930192553,
+          "expected": -45.393909301925454
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 333,
+          "expected": 333
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 125000000,
+          "expected": 125000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 375375.3753753754,
+          "expected": 375375.3753753754
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 4.656612873077393e-10,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 563063.0630630626,
+          "expected": 563063.0630630631
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5,
+          "expected": 0.5
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 8.526512829121202e-14,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 124.87499999999991,
+          "expected": 124.875
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "hann",
+          "expected": "hann"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "complex",
+          "expected": "complex"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "periodogram",
+          "expected": "periodogram"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 333,
+          "expected": 333
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 333,
+          "expected": 333
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 333,
+          "expected": 333
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "none",
+          "expected": "none"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 2.6645352591003757e-15,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 2.0899149361075247,
+          "expected": 2.089914936107522
+        }
+      ]
+    },
+    {
+      "id": "complex_edge999",
+      "passed": true,
+      "config": {
+        "fs": 125000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 7.450580596923828e-09,
+          "max_relative_error_nonzero_expected": 2.2135702650786335e-16,
+          "bin": 0,
+          "frequency_hz": -62437437.43743743,
+          "actual": -62437437.43743744,
+          "expected": -62437437.43743743
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 3.970466940254533e-22,
+          "max_relative_error_nonzero_expected": 4.201757035183613e-14,
+          "bin": 542,
+          "frequency_hz": 5380380.38038038,
+          "actual": 1.3044950921178717e-07,
+          "expected": 1.3044950921178677e-07
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 1.8474111129762605e-13,
+          "max_relative_error_nonzero_expected": 1.6641494310779511e-15,
+          "bin": 957,
+          "frequency_hz": 57307307.3073073,
+          "actual": -111.01233329627165,
+          "expected": -111.01233329627146
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 1.9184653865522705e-13,
+          "max_relative_error_nonzero_expected": 3.2919218134788676e-15,
+          "bin": 957,
+          "frequency_hz": 57307307.3073073,
+          "actual": -58.2779754578941,
+          "expected": -58.27797545789391
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 999,
+          "expected": 999
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 125000000,
+          "expected": 125000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 125125.12512512512,
+          "expected": 125125.12512512512
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 6.984919309616089e-10,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 187687.68768768696,
+          "expected": 187687.68768768766
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 4.440892098500626e-16,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5000000000000006,
+          "expected": 0.5000000000000001
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 6.252776074688882e-13,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 374.62499999999943,
+          "expected": 374.62500000000006
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "hann",
+          "expected": "hann"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "complex",
+          "expected": "complex"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "periodogram",
+          "expected": "periodogram"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 999,
+          "expected": 999
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 999,
+          "expected": 999
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 999,
+          "expected": 999
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "none",
+          "expected": "none"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 5.329070518200751e-15,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 1.9453494112895844,
+          "expected": 1.945349411289579
+        }
+      ]
+    },
+    {
+      "id": "real8193_all",
+      "passed": true,
+      "config": {
+        "fs": 96000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "mean"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 7.450580596923828e-09,
+          "max_relative_error_nonzero_expected": 3.002174163450038e-16,
+          "bin": 2118,
+          "frequency_hz": 24817283.046503108,
+          "actual": 24817283.046503115,
+          "expected": 24817283.046503108
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 5.790264287871194e-23,
+          "max_relative_error_nonzero_expected": 7.374535928638932e-13,
+          "bin": 1468,
+          "frequency_hz": 17201025.265470523,
+          "actual": 8.584996926335485e-09,
+          "expected": 8.584996926335427e-09
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 3.197442310920451e-12,
+          "max_relative_error_nonzero_expected": 3.2281708267048656e-14,
+          "bin": 0,
+          "frequency_hz": 0.0,
+          "actual": -99.04811370172509,
+          "expected": -99.04811370172189
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 3.247180302423658e-12,
+          "max_relative_error_nonzero_expected": 5.737177314109607e-14,
+          "bin": 0,
+          "frequency_hz": 0.0,
+          "actual": -56.59891832936659,
+          "expected": -56.59891832936334
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 8193,
+          "expected": 8193
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 96000000,
+          "expected": 96000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 11717.31966312706,
+          "expected": 11717.31966312706
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 1.9281287677586079e-10,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 17575.979494690397,
+          "expected": 17575.97949469059
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 1.887379141862766e-15,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5000000000000019,
+          "expected": 0.5
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 1.0913936421275139e-11,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 3072.374999999989,
+          "expected": 3072.375
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "hann",
+          "expected": "hann"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "real",
+          "expected": "real"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5,
+          "expected": 0.5
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "periodogram",
+          "expected": "periodogram"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 8193,
+          "expected": 8193
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 8193,
+          "expected": 8193
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 8193,
+          "expected": 8193
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "mean",
+          "expected": "mean"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 1.3183898417423734e-16,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 0.04232089859298004,
+          "expected": 0.04232089859297991
+        }
+      ]
+    },
+    {
+      "id": "real8193_255",
+      "passed": true,
+      "config": {
+        "fs": 96000000.0,
+        "window": "hann",
+        "fft_points": 255,
+        "overlap": 0.5,
+        "detrend": "mean"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 0,
+          "frequency_hz": 0.0,
+          "actual": 0.0,
+          "expected": 0.0
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 1.34416849539867e-24,
+          "max_relative_error_nonzero_expected": 1.751763567433561e-15,
+          "bin": 8,
+          "frequency_hz": 3011764.705882353,
+          "actual": 8.655808929823947e-10,
+          "expected": 8.65580892982396e-10
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 2.842170943040401e-14,
+          "max_relative_error_nonzero_expected": 3.275689981341983e-16,
+          "bin": 5,
+          "frequency_hz": 1882352.9411764704,
+          "actual": -86.87825180934578,
+          "expected": -86.87825180934576
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 1.0658141036401503e-14,
+          "max_relative_error_nonzero_expected": 3.648572167486631e-16,
+          "bin": 8,
+          "frequency_hz": 3011764.705882353,
+          "actual": -30.09840031515624,
+          "expected": -30.09840031515623
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 255,
+          "expected": 255
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 96000000,
+          "expected": 96000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 376470.5882352941,
+          "expected": 376470.5882352941
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 564705.8823529412,
+          "expected": 564705.8823529412
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 1.1102230246251565e-16,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5000000000000001,
+          "expected": 0.5
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 1.4210854715202004e-14,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 95.62500000000001,
+          "expected": 95.625
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 63,
+          "expected": 63
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "hann",
+          "expected": "hann"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "real",
+          "expected": "real"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5,
+          "expected": 0.5
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "welch",
+          "expected": "welch"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 127,
+          "expected": 127
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 128,
+          "expected": 128
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 8193,
+          "expected": 8193
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 8191,
+          "expected": 8191
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 2,
+          "expected": 2
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "mean",
+          "expected": "mean"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 0.042017987292324636,
+          "expected": 0.042017987292324636
+        }
+      ]
+    },
+    {
+      "id": "real8193_256",
+      "passed": true,
+      "config": {
+        "fs": 96000000.0,
+        "window": "rectangle",
+        "fft_points": 256,
+        "overlap": 0.125,
+        "detrend": "mean"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 0,
+          "frequency_hz": 0.0,
+          "actual": 0.0,
+          "expected": 0.0
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 5.169878828456423e-25,
+          "max_relative_error_nonzero_expected": 37.51699114478436,
+          "bin": 127,
+          "frequency_hz": 47625000.0,
+          "actual": 8.528260770114362e-10,
+          "expected": 8.528260770114367e-10
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 2.842170943040401e-14,
+          "max_relative_error_nonzero_expected": 3.2551878147648856e-16,
+          "bin": 26,
+          "frequency_hz": 9750000.0,
+          "actual": -88.76415168090838,
+          "expected": -88.76415168090841
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 7.105427357601002e-15,
+          "max_relative_error_nonzero_expected": 2.286782169698091e-16,
+          "bin": 1,
+          "frequency_hz": 375000.0,
+          "actual": -31.536016609358498,
+          "expected": -31.53601660935849
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 96000000,
+          "expected": 96000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 375000,
+          "expected": 375000.0
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 375000,
+          "expected": 375000.0
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 256,
+          "expected": 256.0
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 36,
+          "expected": 36
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "rectangle",
+          "expected": "rectangle"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "real",
+          "expected": "real"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5,
+          "expected": 0.5
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "welch",
+          "expected": "welch"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 32,
+          "expected": 32
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 224,
+          "expected": 224
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 8193,
+          "expected": 8193
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 8096,
+          "expected": 8096
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 97,
+          "expected": 97
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "mean",
+          "expected": "mean"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 6.938893903907228e-18,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 0.041636875009231904,
+          "expected": 0.04163687500923191
+        }
+      ]
+    },
+    {
+      "id": "real8193_333",
+      "passed": true,
+      "config": {
+        "fs": 96000000.0,
+        "window": "hann",
+        "fft_points": 333,
+        "overlap": 0.8,
+        "detrend": "mean"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 0,
+          "frequency_hz": 0.0,
+          "actual": 0.0,
+          "expected": 0.0
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 2.481541837659083e-24,
+          "max_relative_error_nonzero_expected": 2.608619576159456e-15,
+          "bin": 4,
+          "frequency_hz": 1153153.1531531531,
+          "actual": 1.0925687913949817e-09,
+          "expected": 1.0925687913949792e-09
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 2.842170943040401e-14,
+          "max_relative_error_nonzero_expected": 3.284091155384848e-16,
+          "bin": 7,
+          "frequency_hz": 2018018.018018018,
+          "actual": -86.66536708566989,
+          "expected": -86.66536708566991
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 1.4210854715202004e-14,
+          "max_relative_error_nonzero_expected": 4.4384846730737253e-16,
+          "bin": 23,
+          "frequency_hz": 6630630.630630631,
+          "actual": -32.01735673756589,
+          "expected": -32.017356737565905
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 333,
+          "expected": 333
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 96000000,
+          "expected": 96000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 288288.2882882883,
+          "expected": 288288.2882882883
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 2.9103830456733704e-10,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 432432.43243243214,
+          "expected": 432432.4324324324
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5,
+          "expected": 0.5
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 8.526512829121202e-14,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 124.87499999999991,
+          "expected": 124.875
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 118,
+          "expected": 118
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "hann",
+          "expected": "hann"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "real",
+          "expected": "real"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5,
+          "expected": 0.5
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "welch",
+          "expected": "welch"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 266,
+          "expected": 266
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 67,
+          "expected": 67
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 8193,
+          "expected": 8193
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 8172,
+          "expected": 8172
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 21,
+          "expected": 21
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "mean",
+          "expected": "mean"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 7.632783294297951e-17,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 0.041776002511384455,
+          "expected": 0.04177600251138438
+        }
+      ]
+    },
+    {
+      "id": "zero_complex31",
+      "passed": true,
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fields": [
+        {
+          "field": "frequency_hz",
+          "passed": true,
+          "rtol": 1e-12,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 0,
+          "frequency_hz": -77419354.83870967,
+          "actual": -77419354.83870967,
+          "expected": -77419354.83870967
+        },
+        {
+          "field": "psd_linear",
+          "passed": true,
+          "rtol": 2e-11,
+          "atol": 1e-20,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": 0,
+          "frequency_hz": -77419354.83870967,
+          "actual": 0.0,
+          "expected": 0.0
+        },
+        {
+          "field": "psd_dbfs_per_hz",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": null,
+          "frequency_hz": null,
+          "actual": null,
+          "expected": null
+        },
+        {
+          "field": "rbw_power_dbfs",
+          "passed": true,
+          "rtol": 0.0,
+          "atol": 1e-07,
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_expected": 0.0,
+          "bin": null,
+          "frequency_hz": null,
+          "actual": null,
+          "expected": null
+        },
+        {
+          "field": "fft_size",
+          "passed": true,
+          "actual": 31,
+          "expected": 31
+        },
+        {
+          "field": "fs_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 160000000,
+          "expected": 160000000.0
+        },
+        {
+          "field": "frequency_resolution_hz",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 5161290.322580645,
+          "expected": 5161290.322580645
+        },
+        {
+          "field": "enbw_hz",
+          "passed": true,
+          "max_absolute_error": 9.313225746154785e-10,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 7741935.483870967,
+          "expected": 7741935.483870966
+        },
+        {
+          "field": "coherent_gain",
+          "passed": true,
+          "max_absolute_error": 1.1102230246251565e-16,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 0.5,
+          "expected": 0.5000000000000001
+        },
+        {
+          "field": "window_power_sum",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 11.625,
+          "expected": 11.625
+        },
+        {
+          "field": "segment_count",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "field": "window",
+          "passed": true,
+          "actual": "hann",
+          "expected": "hann"
+        },
+        {
+          "field": "input_type",
+          "passed": true,
+          "actual": "complex",
+          "expected": "complex"
+        },
+        {
+          "field": "reference_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-12,
+          "actual": 1,
+          "expected": 1.0
+        },
+        {
+          "field": "method",
+          "passed": true,
+          "actual": "periodogram",
+          "expected": "periodogram"
+        },
+        {
+          "field": "overlap_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "hop_size",
+          "passed": true,
+          "actual": 31,
+          "expected": 31
+        },
+        {
+          "field": "input_sample_count",
+          "passed": true,
+          "actual": 31,
+          "expected": 31
+        },
+        {
+          "field": "used_sample_count",
+          "passed": true,
+          "actual": 31,
+          "expected": 31
+        },
+        {
+          "field": "discarded_tail_samples",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "field": "detrend",
+          "passed": true,
+          "actual": "none",
+          "expected": "none"
+        },
+        {
+          "field": "integrated_power",
+          "passed": true,
+          "max_absolute_error": 0.0,
+          "rtol": 2e-12,
+          "atol": 1e-15,
+          "actual": 0,
+          "expected": 0.0
+        },
+        {
+          "field": "true_zero_contract",
+          "passed": true
+        }
+      ]
+    }
+  ]
+}

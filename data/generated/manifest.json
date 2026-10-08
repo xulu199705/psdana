@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "random_generator": "NumPy PCG64",
+  "cases": [
+    {
+      "id": "T01",
+      "description": "complex_positive_tone",
+      "csv": "T01_complex_positive_tone.csv",
+      "sample_rate_hz": 160000000.0,
+      "sample_count": 1024,
+      "sample_format": "float",
+      "input_type": "complex",
+      "columns": [
+        "i",
+        "q"
+      ],
+      "signal_frequency_hz": [
+        40000000.0
+      ],
+      "signal_amplitude": [
+        1.0
+      ],
+      "expected_power": 1.0,
+      "expected_power_kind": "analytic before quantization",
+      "realized_mean_power": 1.0,
+      "random_seed": null,
+      "sha256": "40e0b15da7894641e4eb000144933ef20ae480374a3c4190ea3edaa796c57f6a"
+    },
+    {
+      "id": "T02",
+      "description": "complex_negative_tone",
+      "csv": "T02_complex_negative_tone.csv",
+      "sample_rate_hz": 160000000.0,
+      "sample_count": 1024,
+      "sample_format": "float",
+      "input_type": "complex",
+      "columns": [
+        "i",
+        "q"
+      ],
+      "signal_frequency_hz": [
+        -40000000.0
+      ],
+      "signal_amplitude": [
+        1.0
+      ],
+      "expected_power": 1.0,
+      "expected_power_kind": "analytic before quantization",
+      "realized_mean_power": 1.0,
+      "random_seed": null,
+      "sha256": "df257cf4767d9899b86cfc47e71c2c4b58492284a736ac01a5f59cd9dedf706d"
+    },
+    {
+      "id": "T03",
+      "description": "real_full_scale_sine",
+      "csv": "T03_real_full_scale_sine.csv",
+      "sample_rate_hz": 160000000.0,
+      "sample_count": 1024,
+      "sample_format": "float",
+      "input_type": "real",
+      "columns": [
+        "sample"
+      ],
+      "signal_frequency_hz": [
+        40000000.0
+      ],
+      "signal_amplitude": [
+        1.0
+      ],
+      "expected_power": 0.5,
+      "expected_power_kind": "analytic before quantization",
+      "realized_mean_power": 0.5,
+      "random_seed": null,
+      "sha256": "265478b1b43a2b4f86392b4551d1a9a8a56e3eb17e05e3ca1b514b613e18fdcb"
+    },
+    {
+      "id": "T04",
+      "description": "complex_two_tones",
+      "csv": "T04_complex_two_tones.csv",
+      "sample_rate_hz": 160000000.0,
+      "sample_count": 1024,
+      "sample_format": "float",
+      "input_type": "complex",
+      "columns": [
+        "i",
+        "q"
+      ],
+      "signal_frequency_hz": [
+        40000000.0,
+        -25000000.0
+      ],
+      "signal_amplitude": [
+        0.75,
+        0.25
+      ],
+      "expected_power": 0.625,
+      "expected_power_kind": "analytic before quantization",
+      "realized_mean_power": 0.6250000000000004,
+      "random_seed": null,
+      "sha256": "1d7972e9624109e525504ebe85d0fa461fbd3f03dc674f1209dd85a75ac5668e"
+    },
+    {
+      "id": "T05",
+      "description": "complex_white_noise",
+      "csv": "T05_complex_white_noise.csv",
+      "sample_rate_hz": 160000000.0,
+      "sample_count": 8192,
+      "sample_format": "float",
+      "input_type": "complex",
+      "columns": [
+        "i",
+        "q"
+      ],
+      "signal_frequency_hz": [],
+      "signal_amplitude": [],
+      "expected_power": 0.04,
+      "expected_power_kind": "ensemble mean",
+      "realized_mean_power": 0.03983776440756587,
+      "random_seed": 20261008,
+      "sha256": "c0fcb36a11a478e1aebc0267546c86a2109979197b6edfffc1894bd150e4c36e"
+    },
+    {
+      "id": "T06",
+      "description": "noncoherent_tone",
+      "csv": "T06_noncoherent_tone.csv",
+      "sample_rate_hz": 160000000.0,
+      "sample_count": 1024,
+      "sample_format": "float",
+      "input_type": "complex",
+      "columns": [
+        "i",
+        "q"
+      ],
+      "signal_frequency_hz": [
+        40078125.0
+      ],
+      "signal_amplitude": [
+        0.8
+      ],
+      "expected_power": 0.64,
+      "expected_power_kind": "analytic before quantization",
+      "realized_mean_power": 0.6400000000000003,
+      "random_seed": null,
+      "sha256": "53fcbd62e61952f614a4caa989cb3c6ce4a752cc6d79d2d92bb84ae9294c17be"
+    },
+    {
+      "id": "T07",
+      "description": "zero_iq",
+      "csv": "T07_zero_iq.csv",
+      "sample_rate_hz": 160000000.0,
+      "sample_count": 512,
+      "sample_format": "float",
+      "input_type": "complex",
+      "columns": [
+        "i",
+        "q"
+      ],
+      "signal_frequency_hz": [],
+      "signal_amplitude": [],
+      "expected_power": 0.0,
+      "expected_power_kind": "analytic before quantization",
+      "realized_mean_power": 0.0,
+      "random_seed": null,
+      "sha256": "8b76f802aba6c51eb6e9e0727851feedd5925fd7fd47d5a7e5a2aecaae4352ea"
+    },
+    {
+      "id": "T08",
+      "description": "iq_with_dc",
+      "csv": "T08_iq_with_dc.csv",
+      "sample_rate_hz": 160000000.0,
+      "sample_count": 1024,
+      "sample_format": "float",
+      "input_type": "complex",
+      "columns": [
+        "i",
+        "q"
+      ],
+      "signal_frequency_hz": [
+        0.0,
+        20000000.0
+      ],
+      "signal_amplitude": [
+        0.2795084971874737,
+        0.5
+      ],
+      "expected_power": 0.328125,
+      "expected_power_kind": "analytic before quantization",
+      "realized_mean_power": 0.328125,
+      "random_seed": null,
+      "sha256": "6a6526f095333cdd14501ac02821eafef073c8e5d1ba8686b2de129656da7920"
+    },
+    {
+      "id": "T09",
+      "description": "q15_iq",
+      "csv": "T09_q15_iq.csv",
+      "sample_rate_hz": 160000000.0,
+      "sample_count": 1024,
+      "sample_format": "q15",
+      "input_type": "complex",
+      "columns": [
+        "i",
+        "q"
+      ],
+      "signal_frequency_hz": [
+        40000000.0
+      ],
+      "signal_amplitude": [
+        0.8
+      ],
+      "expected_power": 0.64,
+      "expected_power_kind": "analytic before quantization",
+      "realized_mean_power": 0.6399804688990116,
+      "random_seed": null,
+      "sha256": "dad9124a1c33cfd1f04cd2fa0254efd72e63cf814d0a7a5364eda98ae20d4e11"
+    },
+    {
+      "id": "T10",
+      "description": "odd_non_power_two",
+      "csv": "T10_odd_non_power_two.csv",
+      "sample_rate_hz": 160000000.0,
+      "sample_count": 999,
+      "sample_format": "float",
+      "input_type": "complex",
+      "columns": [
+        "i",
+        "q"
+      ],
+      "signal_frequency_hz": [
+        21941941.941941943
+      ],
+      "signal_amplitude": [
+        0.6
+      ],
+      "expected_power": 0.36,
+      "expected_power_kind": "analytic before quantization",
+      "realized_mean_power": 0.36,
+      "random_seed": null,
+      "sha256": "b072a91d56d3d92986dd95a2491a1f44e9b225e04e66f80bcedeaf2538a66e5f"
+    }
+  ]
+}

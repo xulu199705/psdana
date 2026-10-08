@@ -1,0 +1,1586 @@
+{
+  "environment": {
+    "platform": "Windows-11-10.0.26300-SP0",
+    "python": "3.13.14 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:26:41) [MSC v.1942 64 bit (AMD64)]",
+    "numpy": "2.5.1",
+    "go": "go version go1.27.1 windows/amd64",
+    "gonum": "gonum.org/v1/gonum v0.17.0",
+    "git_commit": "50b322ec381b9cf943ffa7920928d9144f78e7dc",
+    "GOMAXPROCS": "runtime default",
+    "OMP_NUM_THREADS": "unset",
+    "revision_note": "Equivalent numerical baseline after privacy-only history sanitization; measurements use the Phase 2 worktree."
+  },
+  "repeats": 5,
+  "iterations_per_trial": 3,
+  "python_measurements_reused": true,
+  "statistic": "median/p90 of per-trial mean time; each trial uses identical iteration count",
+  "memory_policy": "Go B/op=allocated bytes/op, not resident/peak RSS; Python RSS/tracemalloc not measured",
+  "python": [
+    {
+      "case": "complex_999_all",
+      "scope": "Core",
+      "name": "complex_999_all",
+      "csv": "complex_999.csv",
+      "samples": 999,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 999,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 0.07176666743665312,
+      "p90_ms": 0.08155999942876709,
+      "min_ms": 0.06600000051548705,
+      "max_ms": 0.0879333323003569,
+      "trials_ms": [
+        0.0879333323003569,
+        0.07200000012138237,
+        0.07176666743665312,
+        0.06976666675958161,
+        0.06600000051548705
+      ]
+    },
+    {
+      "case": "complex_999_all",
+      "scope": "E2E",
+      "name": "complex_999_all",
+      "csv": "complex_999.csv",
+      "samples": 999,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 999,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 4.815166666958248,
+      "p90_ms": 4.930000000119132,
+      "min_ms": 4.707933333217322,
+      "max_ms": 4.991866666387068,
+      "trials_ms": [
+        4.837200000717227,
+        4.815166666958248,
+        4.707933333217322,
+        4.727933333924739,
+        4.991866666387068
+      ]
+    },
+    {
+      "case": "complex_999_all",
+      "scope": "CSV",
+      "name": "complex_999_all",
+      "csv": "complex_999.csv",
+      "samples": 999,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 999,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 4.58503333235664,
+      "p90_ms": 4.716700000183967,
+      "min_ms": 4.374033333685172,
+      "max_ms": 4.771633333196708,
+      "trials_ms": [
+        4.58503333235664,
+        4.771633333196708,
+        4.541133332774431,
+        4.634300000664855,
+        4.374033333685172
+      ]
+    },
+    {
+      "case": "complex_333_all",
+      "scope": "Core",
+      "name": "complex_333_all",
+      "csv": "complex_333.csv",
+      "samples": 333,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 333,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 0.053866666955097266,
+      "p90_ms": 0.06591333367396146,
+      "min_ms": 0.05046666653167146,
+      "max_ms": 0.06976666675958161,
+      "trials_ms": [
+        0.06976666675958161,
+        0.06013333404553123,
+        0.053866666955097266,
+        0.05079999997785004,
+        0.05046666653167146
+      ]
+    },
+    {
+      "case": "complex_333_all",
+      "scope": "E2E",
+      "name": "complex_333_all",
+      "csv": "complex_333.csv",
+      "samples": 333,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 333,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 3.2253000002431995,
+      "p90_ms": 3.3575999996780106,
+      "min_ms": 3.0319666669432386,
+      "max_ms": 3.410533332498744,
+      "trials_ms": [
+        3.410533332498744,
+        3.2782000004469105,
+        3.2253000002431995,
+        3.0319666669432386,
+        3.0719666659327536
+      ]
+    },
+    {
+      "case": "complex_333_all",
+      "scope": "CSV",
+      "name": "complex_333_all",
+      "csv": "complex_333.csv",
+      "samples": 333,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 333,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 2.991233332674407,
+      "p90_ms": 3.2872799999798494,
+      "min_ms": 2.8451666670055906,
+      "max_ms": 3.3939333334274124,
+      "trials_ms": [
+        2.9126666668162216,
+        2.8451666670055906,
+        3.1272999998085047,
+        2.991233332674407,
+        3.3939333334274124
+      ]
+    },
+    {
+      "case": "complex_1024_all",
+      "scope": "Core",
+      "name": "complex_1024_all",
+      "csv": "complex_1024.csv",
+      "samples": 1024,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 1024,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 0.06273333322800075,
+      "p90_ms": 0.07017333336989395,
+      "min_ms": 0.062433333368971944,
+      "max_ms": 0.07380000048821482,
+      "trials_ms": [
+        0.07380000048821482,
+        0.06473333269241266,
+        0.062433333368971944,
+        0.06273333322800075,
+        0.06263333367921102
+      ]
+    },
+    {
+      "case": "complex_1024_all",
+      "scope": "E2E",
+      "name": "complex_1024_all",
+      "csv": "complex_1024.csv",
+      "samples": 1024,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 1024,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 4.527633333054837,
+      "p90_ms": 4.617126667289995,
+      "min_ms": 4.294099999242462,
+      "max_ms": 4.651966667249023,
+      "trials_ms": [
+        4.504366666272593,
+        4.564866667351453,
+        4.527633333054837,
+        4.294099999242462,
+        4.651966667249023
+      ]
+    },
+    {
+      "case": "complex_1024_all",
+      "scope": "CSV",
+      "name": "complex_1024_all",
+      "csv": "complex_1024.csv",
+      "samples": 1024,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 1024,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 4.43006666682777,
+      "p90_ms": 4.573246667617544,
+      "min_ms": 4.168966666232639,
+      "max_ms": 4.632433334336383,
+      "trials_ms": [
+        4.168966666232639,
+        4.484466667539285,
+        4.43006666682777,
+        4.262533333530882,
+        4.632433334336383
+      ]
+    },
+    {
+      "case": "complex_8192_all",
+      "scope": "Core",
+      "name": "complex_8192_all",
+      "csv": "complex_8192.csv",
+      "samples": 8192,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 8192,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 0.22793333361429782,
+      "p90_ms": 0.377946666412754,
+      "min_ms": 0.21306666652283943,
+      "max_ms": 0.3969999997934792,
+      "trials_ms": [
+        0.34936666634166613,
+        0.3969999997934792,
+        0.22793333361429782,
+        0.21306666652283943,
+        0.21306666652283943
+      ]
+    },
+    {
+      "case": "complex_8192_all",
+      "scope": "E2E",
+      "name": "complex_8192_all",
+      "csv": "complex_8192.csv",
+      "samples": 8192,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 8192,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 19.80096666617707,
+      "p90_ms": 20.376299999528175,
+      "min_ms": 19.4158333336721,
+      "max_ms": 20.69836666608656,
+      "trials_ms": [
+        19.4158333336721,
+        19.893199999690598,
+        19.575366666686023,
+        19.80096666617707,
+        20.69836666608656
+      ]
+    },
+    {
+      "case": "complex_8192_all",
+      "scope": "CSV",
+      "name": "complex_8192_all",
+      "csv": "complex_8192.csv",
+      "samples": 8192,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 8192,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 20.47133333326201,
+      "p90_ms": 22.82283333358161,
+      "min_ms": 19.18353333288299,
+      "max_ms": 22.9586333334737,
+      "trials_ms": [
+        19.18353333288299,
+        20.053366667222388,
+        22.619133333743473,
+        20.47133333326201,
+        22.9586333334737
+      ]
+    },
+    {
+      "case": "complex_8192_welch1024",
+      "scope": "Core",
+      "name": "complex_8192_welch1024",
+      "csv": "complex_8192.csv",
+      "samples": 8192,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": 1024,
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 1024,
+      "method": "welch",
+      "segment_count": 15,
+      "median_ms": 0.4830666669780233,
+      "p90_ms": 0.6996866659998584,
+      "min_ms": 0.428999999712687,
+      "max_ms": 0.8063666658320775,
+      "trials_ms": [
+        0.4830666669780233,
+        0.8063666658320775,
+        0.473966666807731,
+        0.428999999712687,
+        0.5396666662515296
+      ]
+    },
+    {
+      "case": "complex_8192_welch1024",
+      "scope": "E2E",
+      "name": "complex_8192_welch1024",
+      "csv": "complex_8192.csv",
+      "samples": 8192,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": 1024,
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 1024,
+      "method": "welch",
+      "segment_count": 15,
+      "median_ms": 21.747200000390876,
+      "p90_ms": 30.49075333353055,
+      "min_ms": 20.312866666548263,
+      "max_ms": 35.18910000032823,
+      "trials_ms": [
+        35.18910000032823,
+        23.443233333334017,
+        21.747200000390876,
+        20.312866666548263,
+        21.15646666667696
+      ]
+    },
+    {
+      "case": "complex_65536_all",
+      "scope": "Core",
+      "name": "complex_65536_all",
+      "csv": "complex_65536.csv",
+      "samples": 65536,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 65536,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 4.854800000127095,
+      "p90_ms": 5.389846666609325,
+      "min_ms": 4.635266666203582,
+      "max_ms": 5.410099999911229,
+      "trials_ms": [
+        4.854800000127095,
+        4.635266666203582,
+        4.851266666567729,
+        5.359466666656469,
+        5.410099999911229
+      ]
+    },
+    {
+      "case": "complex_65536_all",
+      "scope": "E2E",
+      "name": "complex_65536_all",
+      "csv": "complex_65536.csv",
+      "samples": 65536,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 65536,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 145.5917666668635,
+      "p90_ms": 151.89704000028237,
+      "min_ms": 140.4449666661094,
+      "max_ms": 155.86366666684626,
+      "trials_ms": [
+        155.86366666684626,
+        145.5917666668635,
+        145.94710000043656,
+        142.30140000048172,
+        140.4449666661094
+      ]
+    },
+    {
+      "case": "complex_65536_all",
+      "scope": "CSV",
+      "name": "complex_65536_all",
+      "csv": "complex_65536.csv",
+      "samples": 65536,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 65536,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 135.81909999993513,
+      "p90_ms": 137.9766000000624,
+      "min_ms": 133.10490000003483,
+      "max_ms": 138.44326666609655,
+      "trials_ms": [
+        133.10490000003483,
+        135.81909999993513,
+        135.59813333267812,
+        137.2766000010112,
+        138.44326666609655
+      ]
+    },
+    {
+      "case": "complex_65536_welch1024",
+      "scope": "Core",
+      "name": "complex_65536_welch1024",
+      "csv": "complex_65536.csv",
+      "samples": 65536,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": 1024,
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 1024,
+      "method": "welch",
+      "segment_count": 127,
+      "median_ms": 1.5481999992819813,
+      "p90_ms": 1.693406666648419,
+      "min_ms": 1.5217999995608504,
+      "max_ms": 1.7875000000155221,
+      "trials_ms": [
+        1.5324333326134365,
+        1.7875000000155221,
+        1.5481999992819813,
+        1.5217999995608504,
+        1.5522666665977642
+      ]
+    },
+    {
+      "case": "complex_65536_welch1024",
+      "scope": "E2E",
+      "name": "complex_65536_welch1024",
+      "csv": "complex_65536.csv",
+      "samples": 65536,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": 1024,
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 1024,
+      "method": "welch",
+      "segment_count": 127,
+      "median_ms": 141.63769999989503,
+      "p90_ms": 144.05088666656715,
+      "min_ms": 133.7880333327727,
+      "max_ms": 145.53570000013374,
+      "trials_ms": [
+        140.1067000006151,
+        141.63769999989503,
+        145.53570000013374,
+        141.82366666621724,
+        133.7880333327727
+      ]
+    },
+    {
+      "case": "complex_1048576_all",
+      "scope": "Core",
+      "name": "complex_1048576_all",
+      "csv": "complex_1048576.csv",
+      "samples": 1048576,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 1048576,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 95.8344999999099,
+      "p90_ms": 96.99419333337573,
+      "min_ms": 91.07696666615084,
+      "max_ms": 97.39283333328785,
+      "trials_ms": [
+        91.07696666615084,
+        96.39623333350755,
+        95.06896666668278,
+        95.8344999999099,
+        97.39283333328785
+      ]
+    },
+    {
+      "case": "complex_1048576_all",
+      "scope": "E2E",
+      "name": "complex_1048576_all",
+      "csv": "complex_1048576.csv",
+      "samples": 1048576,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 1048576,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 2903.968500000095,
+      "p90_ms": 3005.8077799993043,
+      "min_ms": 2876.1479333334137,
+      "max_ms": 3026.886099999198,
+      "trials_ms": [
+        3026.886099999198,
+        2974.1902999994636,
+        2903.968500000095,
+        2884.9569666672323,
+        2876.1479333334137
+      ]
+    },
+    {
+      "case": "complex_1048576_all",
+      "scope": "CSV",
+      "name": "complex_1048576_all",
+      "csv": "complex_1048576.csv",
+      "samples": 1048576,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 1048576,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 2812.4468333335244,
+      "p90_ms": 2839.97527333316,
+      "min_ms": 2699.610766666107,
+      "max_ms": 2854.5899666666323,
+      "trials_ms": [
+        2854.5899666666323,
+        2818.0532333329515,
+        2812.4468333335244,
+        2769.5666666659235,
+        2699.610766666107
+      ]
+    },
+    {
+      "case": "complex_1048576_welch1024",
+      "scope": "Core",
+      "name": "complex_1048576_welch1024",
+      "csv": "complex_1048576.csv",
+      "samples": 1048576,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": 1024,
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 1024,
+      "method": "welch",
+      "segment_count": 2047,
+      "median_ms": 25.85973333286044,
+      "p90_ms": 26.194673333278235,
+      "min_ms": 25.502066667589435,
+      "max_ms": 26.318099999722715,
+      "trials_ms": [
+        26.009533333611518,
+        26.318099999722715,
+        25.85973333286044,
+        25.62236666684233,
+        25.502066667589435
+      ]
+    },
+    {
+      "case": "complex_1048576_welch1024",
+      "scope": "E2E",
+      "name": "complex_1048576_welch1024",
+      "csv": "complex_1048576.csv",
+      "samples": 1048576,
+      "input_type": "complex",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": 1024,
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 1024,
+      "method": "welch",
+      "segment_count": 2047,
+      "median_ms": 2767.0966333341007,
+      "p90_ms": 2781.397233333458,
+      "min_ms": 2730.7892333337804,
+      "max_ms": 2785.831833333456,
+      "trials_ms": [
+        2785.831833333456,
+        2774.745333333461,
+        2730.7892333337804,
+        2767.0966333341007,
+        2745.2631000002534
+      ]
+    },
+    {
+      "case": "real_8192_all",
+      "scope": "Core",
+      "name": "real_8192_all",
+      "csv": "real_8192.csv",
+      "samples": 8192,
+      "input_type": "real",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 8192,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 0.19413333332825763,
+      "p90_ms": 0.2154466664554396,
+      "min_ms": 0.17870000010589138,
+      "max_ms": 0.2290999994632633,
+      "trials_ms": [
+        0.2290999994632633,
+        0.18273333383452459,
+        0.17870000010589138,
+        0.19413333332825763,
+        0.1949666669437041
+      ]
+    },
+    {
+      "case": "real_8192_all",
+      "scope": "E2E",
+      "name": "real_8192_all",
+      "csv": "real_8192.csv",
+      "samples": 8192,
+      "input_type": "real",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 8192,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 18.405399999513367,
+      "p90_ms": 18.454906666981213,
+      "min_ms": 17.675333333803184,
+      "max_ms": 18.48466666706372,
+      "trials_ms": [
+        18.307033334470663,
+        17.675333333803184,
+        18.405399999513367,
+        18.41026666685745,
+        18.48466666706372
+      ]
+    },
+    {
+      "case": "real_8192_all",
+      "scope": "CSV",
+      "name": "real_8192_all",
+      "csv": "real_8192.csv",
+      "samples": 8192,
+      "input_type": "real",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 8192,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 18.01303333316658,
+      "p90_ms": 20.295006666856352,
+      "min_ms": 17.8558666666504,
+      "max_ms": 20.983366666769143,
+      "trials_ms": [
+        17.937833332932012,
+        17.8558666666504,
+        20.983366666769143,
+        19.262466666987166,
+        18.01303333316658
+      ]
+    },
+    {
+      "case": "real_8192_welch1024",
+      "scope": "Core",
+      "name": "real_8192_welch1024",
+      "csv": "real_8192.csv",
+      "samples": 8192,
+      "input_type": "real",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": 1024,
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 1024,
+      "method": "welch",
+      "segment_count": 15,
+      "median_ms": 0.20163333344195658,
+      "p90_ms": 0.20767333359496357,
+      "min_ms": 0.20073333265221058,
+      "max_ms": 0.20850000025044815,
+      "trials_ms": [
+        0.20850000025044815,
+        0.20643333361173669,
+        0.20163333344195658,
+        0.20073333265221058,
+        0.20079999982651012
+      ]
+    },
+    {
+      "case": "real_8192_welch1024",
+      "scope": "E2E",
+      "name": "real_8192_welch1024",
+      "csv": "real_8192.csv",
+      "samples": 8192,
+      "input_type": "real",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": 1024,
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 1024,
+      "method": "welch",
+      "segment_count": 15,
+      "median_ms": 17.96220000081424,
+      "p90_ms": 18.733499999992393,
+      "min_ms": 17.75363333338949,
+      "max_ms": 19.211433333111927,
+      "trials_ms": [
+        19.211433333111927,
+        18.016600000313094,
+        17.96220000081424,
+        17.75363333338949,
+        17.78359999904448
+      ]
+    },
+    {
+      "case": "real_65536_all",
+      "scope": "Core",
+      "name": "real_65536_all",
+      "csv": "real_65536.csv",
+      "samples": 65536,
+      "input_type": "real",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 65536,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 3.130433332747392,
+      "p90_ms": 3.300913333562979,
+      "min_ms": 3.103000000313235,
+      "max_ms": 3.310633333361087,
+      "trials_ms": [
+        3.310633333361087,
+        3.120200000315284,
+        3.103000000313235,
+        3.286333333865817,
+        3.130433332747392
+      ]
+    },
+    {
+      "case": "real_65536_all",
+      "scope": "E2E",
+      "name": "real_65536_all",
+      "csv": "real_65536.csv",
+      "samples": 65536,
+      "input_type": "real",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 65536,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 91.30086666724917,
+      "p90_ms": 92.02469999921352,
+      "min_ms": 90.13290000075358,
+      "max_ms": 92.31149999929282,
+      "trials_ms": [
+        92.31149999929282,
+        90.60870000030263,
+        91.30086666724917,
+        90.13290000075358,
+        91.5944999990946
+      ]
+    },
+    {
+      "case": "real_65536_all",
+      "scope": "CSV",
+      "name": "real_65536_all",
+      "csv": "real_65536.csv",
+      "samples": 65536,
+      "input_type": "real",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": "all",
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 65536,
+      "method": "periodogram",
+      "segment_count": 1,
+      "median_ms": 88.45646666668472,
+      "p90_ms": 91.23182666662615,
+      "min_ms": 86.689933334128,
+      "max_ms": 91.38733333384153,
+      "trials_ms": [
+        86.689933334128,
+        91.38733333384153,
+        88.00166666696896,
+        90.99856666580308,
+        88.45646666668472
+      ]
+    },
+    {
+      "case": "real_65536_welch1024",
+      "scope": "Core",
+      "name": "real_65536_welch1024",
+      "csv": "real_65536.csv",
+      "samples": 65536,
+      "input_type": "real",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": 1024,
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 1024,
+      "method": "welch",
+      "segment_count": 127,
+      "median_ms": 1.4493333340700094,
+      "p90_ms": 1.5462066660499356,
+      "min_ms": 1.4269666656521924,
+      "max_ms": 1.6008999991754536,
+      "trials_ms": [
+        1.4382666668097954,
+        1.4493333340700094,
+        1.6008999991754536,
+        1.4641666663616586,
+        1.4269666656521924
+      ]
+    },
+    {
+      "case": "real_65536_welch1024",
+      "scope": "E2E",
+      "name": "real_65536_welch1024",
+      "csv": "real_65536.csv",
+      "samples": 65536,
+      "input_type": "real",
+      "config": {
+        "fs": 160000000.0,
+        "window": "hann",
+        "fft_points": 1024,
+        "overlap": 0.5,
+        "detrend": "none"
+      },
+      "fft_size": 1024,
+      "method": "welch",
+      "segment_count": 127,
+      "median_ms": 87.50923333233611,
+      "p90_ms": 90.70836666675557,
+      "min_ms": 86.86486666677713,
+      "max_ms": 91.24316666687567,
+      "trials_ms": [
+        91.24316666687567,
+        89.9061666665754,
+        87.409233332437,
+        87.50923333233611,
+        86.86486666677713
+      ]
+    }
+  ],
+  "go": [
+    {
+      "case": "complex_999_all",
+      "scope": "Core",
+      "median_ms": 0.055567,
+      "p90_ms": 0.058233,
+      "min_ms": 0.052533,
+      "max_ms": 0.058433,
+      "trials_ms": [
+        0.058433,
+        0.055567,
+        0.057933,
+        0.052933,
+        0.052533
+      ],
+      "bytes_per_op": 106496.0,
+      "allocations_per_op": 8.0
+    },
+    {
+      "case": "complex_999_all",
+      "scope": "CSV",
+      "median_ms": 0.222133,
+      "p90_ms": 0.24435320000000002,
+      "min_ms": 0.214667,
+      "max_ms": 0.2559,
+      "trials_ms": [
+        0.227033,
+        0.2559,
+        0.214667,
+        0.222133,
+        0.219967
+      ],
+      "bytes_per_op": 128538.0,
+      "allocations_per_op": 1063.0
+    },
+    {
+      "case": "complex_999_all",
+      "scope": "E2E",
+      "median_ms": 0.270233,
+      "p90_ms": 0.27497320000000003,
+      "min_ms": 0.266167,
+      "max_ms": 0.2762,
+      "trials_ms": [
+        0.2762,
+        0.270033,
+        0.266167,
+        0.270233,
+        0.273133
+      ],
+      "bytes_per_op": 235034.0,
+      "allocations_per_op": 1071.0
+    },
+    {
+      "case": "complex_333_all",
+      "scope": "Core",
+      "median_ms": 0.018333,
+      "p90_ms": 0.019167,
+      "min_ms": 0.017133,
+      "max_ms": 0.019367,
+      "trials_ms": [
+        0.018333,
+        0.019367,
+        0.017133,
+        0.018867,
+        0.017467
+      ],
+      "bytes_per_op": 35072.0,
+      "allocations_per_op": 8.0
+    },
+    {
+      "case": "complex_333_all",
+      "scope": "CSV",
+      "median_ms": 0.114933,
+      "p90_ms": 0.1255202,
+      "min_ms": 0.112967,
+      "max_ms": 0.126667,
+      "trials_ms": [
+        0.112967,
+        0.1238,
+        0.114433,
+        0.126667,
+        0.114933
+      ],
+      "bytes_per_op": 62522.0,
+      "allocations_per_op": 395.0
+    },
+    {
+      "case": "complex_333_all",
+      "scope": "E2E",
+      "median_ms": 0.1405,
+      "p90_ms": 0.1474734,
+      "min_ms": 0.127933,
+      "max_ms": 0.150567,
+      "trials_ms": [
+        0.1405,
+        0.150567,
+        0.127933,
+        0.142833,
+        0.137233
+      ],
+      "bytes_per_op": 97594.0,
+      "allocations_per_op": 403.0
+    },
+    {
+      "case": "complex_1024_all",
+      "scope": "Core",
+      "median_ms": 0.041233,
+      "p90_ms": 0.045133400000000004,
+      "min_ms": 0.040467,
+      "max_ms": 0.047267,
+      "trials_ms": [
+        0.040467,
+        0.047267,
+        0.0411,
+        0.041233,
+        0.041933
+      ],
+      "bytes_per_op": 106496.0,
+      "allocations_per_op": 8.0
+    },
+    {
+      "case": "complex_1024_all",
+      "scope": "CSV",
+      "median_ms": 0.2239,
+      "p90_ms": 0.236493,
+      "min_ms": 0.2195,
+      "max_ms": 0.240133,
+      "trials_ms": [
+        0.2195,
+        0.2239,
+        0.240133,
+        0.231033,
+        0.221733
+      ],
+      "bytes_per_op": 129754.0,
+      "allocations_per_op": 1088.0
+    },
+    {
+      "case": "complex_1024_all",
+      "scope": "E2E",
+      "median_ms": 0.264,
+      "p90_ms": 0.28198,
+      "min_ms": 0.2581,
+      "max_ms": 0.2925,
+      "trials_ms": [
+        0.2581,
+        0.2662,
+        0.258367,
+        0.2925,
+        0.264
+      ],
+      "bytes_per_op": 236250.0,
+      "allocations_per_op": 1096.0
+    },
+    {
+      "case": "complex_8192_all",
+      "scope": "Core",
+      "median_ms": 0.3997,
+      "p90_ms": 0.4628932,
+      "min_ms": 0.387367,
+      "max_ms": 0.4926,
+      "trials_ms": [
+        0.4926,
+        0.418333,
+        0.387367,
+        0.3997,
+        0.387967
+      ],
+      "bytes_per_op": 851968.0,
+      "allocations_per_op": 8.0
+    },
+    {
+      "case": "complex_8192_all",
+      "scope": "CSV",
+      "median_ms": 1.405367,
+      "p90_ms": 1.417107,
+      "min_ms": 1.3902,
+      "max_ms": 1.417667,
+      "trials_ms": [
+        1.416267,
+        1.4003,
+        1.3902,
+        1.405367,
+        1.417667
+      ],
+      "bytes_per_op": 928474.0,
+      "allocations_per_op": 8262.0
+    },
+    {
+      "case": "complex_8192_all",
+      "scope": "E2E",
+      "median_ms": 1.8551,
+      "p90_ms": 1.9500199999999999,
+      "min_ms": 1.742633,
+      "max_ms": 1.9667,
+      "trials_ms": [
+        1.9667,
+        1.742633,
+        1.925,
+        1.8551,
+        1.836033
+      ],
+      "bytes_per_op": 1780442.0,
+      "allocations_per_op": 8270.0
+    },
+    {
+      "case": "complex_8192_welch1024",
+      "scope": "Core",
+      "median_ms": 0.2036,
+      "p90_ms": 0.21376,
+      "min_ms": 0.202133,
+      "max_ms": 0.2156,
+      "trials_ms": [
+        0.202133,
+        0.211,
+        0.2031,
+        0.2036,
+        0.2156
+      ],
+      "bytes_per_op": 106496.0,
+      "allocations_per_op": 8.0
+    },
+    {
+      "case": "complex_8192_welch1024",
+      "scope": "E2E",
+      "median_ms": 1.726,
+      "p90_ms": 1.7706666,
+      "min_ms": 1.634033,
+      "max_ms": 1.773933,
+      "trials_ms": [
+        1.765767,
+        1.726,
+        1.694133,
+        1.634033,
+        1.773933
+      ],
+      "bytes_per_op": 1034970.0,
+      "allocations_per_op": 8270.0
+    },
+    {
+      "case": "complex_65536_all",
+      "scope": "Core",
+      "median_ms": 3.5837,
+      "p90_ms": 3.8261534,
+      "min_ms": 3.444633,
+      "max_ms": 3.984767,
+      "trials_ms": [
+        3.984767,
+        3.444633,
+        3.588233,
+        3.523033,
+        3.5837
+      ],
+      "bytes_per_op": 6815744.0,
+      "allocations_per_op": 8.0
+    },
+    {
+      "case": "complex_65536_all",
+      "scope": "CSV",
+      "median_ms": 11.021733,
+      "p90_ms": 11.2293134,
+      "min_ms": 10.767833,
+      "max_ms": 11.320367,
+      "trials_ms": [
+        11.092733,
+        10.9514,
+        11.320367,
+        11.021733,
+        10.767833
+      ],
+      "bytes_per_op": 8736536.0,
+      "allocations_per_op": 65616.0
+    },
+    {
+      "case": "complex_65536_all",
+      "scope": "E2E",
+      "median_ms": 14.877067,
+      "p90_ms": 15.07278,
+      "min_ms": 14.701233,
+      "max_ms": 15.0957,
+      "trials_ms": [
+        14.701233,
+        15.0384,
+        14.7963,
+        14.877067,
+        15.0957
+      ],
+      "bytes_per_op": 15553386.0,
+      "allocations_per_op": 65625.0
+    },
+    {
+      "case": "complex_65536_welch1024",
+      "scope": "Core",
+      "median_ms": 1.499133,
+      "p90_ms": 1.5541934,
+      "min_ms": 1.480833,
+      "max_ms": 1.583167,
+      "trials_ms": [
+        1.499133,
+        1.583167,
+        1.494867,
+        1.510733,
+        1.480833
+      ],
+      "bytes_per_op": 106496.0,
+      "allocations_per_op": 8.0
+    },
+    {
+      "case": "complex_65536_welch1024",
+      "scope": "E2E",
+      "median_ms": 12.559133,
+      "p90_ms": 12.735960200000001,
+      "min_ms": 12.475233,
+      "max_ms": 12.840267,
+      "trials_ms": [
+        12.5795,
+        12.559133,
+        12.496433,
+        12.840267,
+        12.475233
+      ],
+      "bytes_per_op": 8843032.0,
+      "allocations_per_op": 65624.0
+    },
+    {
+      "case": "complex_1048576_all",
+      "scope": "Core",
+      "median_ms": 72.266167,
+      "p90_ms": 74.27678,
+      "min_ms": 69.1334,
+      "max_ms": 74.9379,
+      "trials_ms": [
+        74.9379,
+        69.1334,
+        72.266167,
+        73.2851,
+        70.611
+      ],
+      "bytes_per_op": 109051904.0,
+      "allocations_per_op": 8.0
+    },
+    {
+      "case": "complex_1048576_all",
+      "scope": "CSV",
+      "median_ms": 178.4244,
+      "p90_ms": 181.9976666,
+      "min_ms": 177.100333,
+      "max_ms": 184.298733,
+      "trials_ms": [
+        177.606133,
+        178.546067,
+        177.100333,
+        184.298733,
+        178.4244
+      ],
+      "bytes_per_op": 138405088.0,
+      "allocations_per_op": 1048675.0
+    },
+    {
+      "case": "complex_1048576_all",
+      "scope": "E2E",
+      "median_ms": 256.464933,
+      "p90_ms": 260.178047,
+      "min_ms": 252.563567,
+      "max_ms": 262.373567,
+      "trials_ms": [
+        262.373567,
+        252.563567,
+        255.999367,
+        256.884767,
+        256.464933
+      ],
+      "bytes_per_op": 247456949.0,
+      "allocations_per_op": 1048683.0
+    },
+    {
+      "case": "complex_1048576_welch1024",
+      "scope": "Core",
+      "median_ms": 26.336533,
+      "p90_ms": 27.0879,
+      "min_ms": 25.851733,
+      "max_ms": 27.2347,
+      "trials_ms": [
+        26.8677,
+        26.336533,
+        26.321567,
+        25.851733,
+        27.2347
+      ],
+      "bytes_per_op": 106496.0,
+      "allocations_per_op": 8.0
+    },
+    {
+      "case": "complex_1048576_welch1024",
+      "scope": "E2E",
+      "median_ms": 205.502733,
+      "p90_ms": 209.27307299999998,
+      "min_ms": 204.219367,
+      "max_ms": 211.570033,
+      "trials_ms": [
+        204.6142,
+        204.219367,
+        205.827633,
+        205.502733,
+        211.570033
+      ],
+      "bytes_per_op": 138514749.0,
+      "allocations_per_op": 1048685.0
+    },
+    {
+      "case": "real_8192_all",
+      "scope": "Core",
+      "median_ms": 0.2957,
+      "p90_ms": 0.3131734,
+      "min_ms": 0.266633,
+      "max_ms": 0.321667,
+      "trials_ms": [
+        0.300433,
+        0.284767,
+        0.321667,
+        0.2957,
+        0.266633
+      ],
+      "bytes_per_op": 565248.0,
+      "allocations_per_op": 9.0
+    },
+    {
+      "case": "real_8192_all",
+      "scope": "CSV",
+      "median_ms": 0.917233,
+      "p90_ms": 0.9583602,
+      "min_ms": 0.7652,
+      "max_ms": 0.972067,
+      "trials_ms": [
+        0.9378,
+        0.917233,
+        0.7652,
+        0.972067,
+        0.8156
+      ],
+      "bytes_per_op": 485960.0,
+      "allocations_per_op": 8258.0
+    },
+    {
+      "case": "real_8192_all",
+      "scope": "E2E",
+      "median_ms": 1.1512,
+      "p90_ms": 1.2381868,
+      "min_ms": 1.025167,
+      "max_ms": 1.2498,
+      "trials_ms": [
+        1.025167,
+        1.220767,
+        1.2498,
+        1.118233,
+        1.1512
+      ],
+      "bytes_per_op": 1051208.0,
+      "allocations_per_op": 8267.0
+    },
+    {
+      "case": "real_8192_welch1024",
+      "scope": "Core",
+      "median_ms": 0.1879,
+      "p90_ms": 0.28092,
+      "min_ms": 0.178233,
+      "max_ms": 0.291,
+      "trials_ms": [
+        0.1879,
+        0.2658,
+        0.291,
+        0.178233,
+        0.179467
+      ],
+      "bytes_per_op": 69888.0,
+      "allocations_per_op": 9.0
+    },
+    {
+      "case": "real_8192_welch1024",
+      "scope": "E2E",
+      "median_ms": 0.9539,
+      "p90_ms": 0.969633,
+      "min_ms": 0.888033,
+      "max_ms": 0.976233,
+      "trials_ms": [
+        0.888033,
+        0.9249,
+        0.959733,
+        0.976233,
+        0.9539
+      ],
+      "bytes_per_op": 555848.0,
+      "allocations_per_op": 8267.0
+    },
+    {
+      "case": "real_65536_all",
+      "scope": "Core",
+      "median_ms": 2.577267,
+      "p90_ms": 2.6221870000000003,
+      "min_ms": 2.5403,
+      "max_ms": 2.644067,
+      "trials_ms": [
+        2.589367,
+        2.577267,
+        2.5403,
+        2.644067,
+        2.5747
+      ],
+      "bytes_per_op": 4235264.0,
+      "allocations_per_op": 9.0
+    },
+    {
+      "case": "real_65536_all",
+      "scope": "CSV",
+      "median_ms": 5.833733,
+      "p90_ms": 5.9947602,
+      "min_ms": 5.6673,
+      "max_ms": 6.061867,
+      "trials_ms": [
+        5.8941,
+        6.061867,
+        5.6673,
+        5.805667,
+        5.833733
+      ],
+      "bytes_per_op": 4114792.0,
+      "allocations_per_op": 65610.0
+    },
+    {
+      "case": "real_65536_all",
+      "scope": "E2E",
+      "median_ms": 7.7961,
+      "p90_ms": 8.8174534,
+      "min_ms": 7.607133,
+      "max_ms": 9.392267,
+      "trials_ms": [
+        7.955233,
+        9.392267,
+        7.607133,
+        7.670833,
+        7.7961
+      ],
+      "bytes_per_op": 8352282.0,
+      "allocations_per_op": 65622.0
+    },
+    {
+      "case": "real_65536_welch1024",
+      "scope": "Core",
+      "median_ms": 1.4061,
+      "p90_ms": 1.4244332,
+      "min_ms": 1.3982,
+      "max_ms": 1.4275,
+      "trials_ms": [
+        1.4028,
+        1.4061,
+        1.419833,
+        1.3982,
+        1.4275
+      ],
+      "bytes_per_op": 69888.0,
+      "allocations_per_op": 9.0
+    },
+    {
+      "case": "real_65536_welch1024",
+      "scope": "E2E",
+      "median_ms": 6.808233,
+      "p90_ms": 7.1884334,
+      "min_ms": 6.485033,
+      "max_ms": 7.382767,
+      "trials_ms": [
+        7.382767,
+        6.808233,
+        6.485033,
+        6.6429,
+        6.896933
+      ],
+      "bytes_per_op": 4184765.0,
+      "allocations_per_op": 65620.0
+    }
+  ]
+}

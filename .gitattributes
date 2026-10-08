@@ -1,0 +1,2 @@
+* text=auto eol=lf
+data/** -text whitespace=trailing-space,space-before-tab,cr-at-eol

@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "vector_count": 17,
+  "vectors": [
+    {
+      "id": "T01_hann_all",
+      "file": "T01_hann_all.json",
+      "sha256": "867a22cc519ca60908e4732484ecddcd3f96282ee9c7b3f29dd12de25ec4320e"
+    },
+    {
+      "id": "T01_rectangle_all",
+      "file": "T01_rectangle_all.json",
+      "sha256": "cb381d2dc117a9886cab88c6997d40b243ed0de9e31bd3911bb21e223d39820f"
+    },
+    {
+      "id": "T02_hann_all",
+      "file": "T02_hann_all.json",
+      "sha256": "39ecc52d41d8098407ab6f78ed9bfe516f7977fe47e46f9b7080321f3c75b396"
+    },
+    {
+      "id": "T03_hann_all",
+      "file": "T03_hann_all.json",
+      "sha256": "b68b540f0abf0caa0251cb0f4bb44c3e640e55f0d59848df35687b44c624a168"
+    },
+    {
+      "id": "T03_rectangle_all",
+      "file": "T03_rectangle_all.json",
+      "sha256": "653dc48eb443230f329e56a051b75181e329fd6a6cda40cd6e17064d3af2e94c"
+    },
+    {
+      "id": "T03_hann_welch255",
+      "file": "T03_hann_welch255.json",
+      "sha256": "527407c9213e0ebfe0d8d97b8e5f3a26347301a56f407490f98c4444d61e811d"
+    },
+    {
+      "id": "T04_hann_welch256",
+      "file": "T04_hann_welch256.json",
+      "sha256": "d7d78931a1aad541d8265d95010cca762041cf2f2946f1c615b5ce9f81c7bed8"
+    },
+    {
+      "id": "T05_hann_welch255",
+      "file": "T05_hann_welch255.json",
+      "sha256": "6b7a5fd2dac5321c4a585dfe6c74cd6996a45cdc3e15eb94a575bdb21e176905"
+    },
+    {
+      "id": "T05_rectangle_welch256",
+      "file": "T05_rectangle_welch256.json",
+      "sha256": "4286b58710f2526ca9d0effbcf05be84d426ca139072f35a842563d709fa22cd"
+    },
+    {
+      "id": "T06_hann_all",
+      "file": "T06_hann_all.json",
+      "sha256": "a9b7a3c60e1e6bd6209683e1f162914f1d4b2643ddd808c3b8fe957d6ef6cf8e"
+    },
+    {
+      "id": "T06_rectangle_all",
+      "file": "T06_rectangle_all.json",
+      "sha256": "4e7cd36062ae108f303b882e1bfcb380985946c9085d2e0b8fa29e19cc408424"
+    },
+    {
+      "id": "T07_rectangle_all",
+      "file": "T07_rectangle_all.json",
+      "sha256": "e42c36dd26dfdd79711f94d44a6c99b7668b5547eb73ef84fb9e732c22f69c6e"
+    },
+    {
+      "id": "T08_hann_welch256",
+      "file": "T08_hann_welch256.json",
+      "sha256": "aa1aba73a724c7b0d0694a2ea0fe9ad777c53b89db4b7e9f304a2af86a38ab15"
+    },
+    {
+      "id": "T08_hann_welch256_mean",
+      "file": "T08_hann_welch256_mean.json",
+      "sha256": "99909adee9338e9e3a4a8f06011e5ca77c7efe3a8e2e88d1cc1314e403483fb5"
+    },
+    {
+      "id": "T09_hann_welch256",
+      "file": "T09_hann_welch256.json",
+      "sha256": "997ad437105ce588a00727245b70c68d75f5e47a045cfbfbee393118881e8750"
+    },
+    {
+      "id": "T10_hann_all",
+      "file": "T10_hann_all.json",
+      "sha256": "d499862e340e3568d24f154a08f2ea15bfd22df2526beaff88bbc51024464a07"
+    },
+    {
+      "id": "T10_hann_welch333",
+      "file": "T10_hann_welch333.json",
+      "sha256": "b578881c102c0410f0a4961833c320bf59ef3808c1877c37131032322d14468a"
+    }
+  ]
+}

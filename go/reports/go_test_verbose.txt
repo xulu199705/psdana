@@ -1,0 +1,555 @@
+testing: warning: no tests to run
+PASS
+ok  	github.com/xulu199705/psdana/go/bench	0.046s [no tests to run]
+?   	github.com/xulu199705/psdana/go/cmd/psdana	[no test files]
+=== RUN   TestCSVSupportedFormats
+=== RUN   TestCSVSupportedFormats/0
+=== RUN   TestCSVSupportedFormats/1
+=== RUN   TestCSVSupportedFormats/2
+=== RUN   TestCSVSupportedFormats/3
+=== RUN   TestCSVSupportedFormats/4
+=== RUN   TestCSVSupportedFormats/5
+=== RUN   TestCSVSupportedFormats/6
+=== RUN   TestCSVSupportedFormats/7
+=== RUN   TestCSVSupportedFormats/8
+--- PASS: TestCSVSupportedFormats (0.00s)
+    --- PASS: TestCSVSupportedFormats/0 (0.00s)
+    --- PASS: TestCSVSupportedFormats/1 (0.00s)
+    --- PASS: TestCSVSupportedFormats/2 (0.00s)
+    --- PASS: TestCSVSupportedFormats/3 (0.00s)
+    --- PASS: TestCSVSupportedFormats/4 (0.00s)
+    --- PASS: TestCSVSupportedFormats/5 (0.00s)
+    --- PASS: TestCSVSupportedFormats/6 (0.00s)
+    --- PASS: TestCSVSupportedFormats/7 (0.00s)
+    --- PASS: TestCSVSupportedFormats/8 (0.00s)
+=== RUN   TestCSVInvalidInput
+=== RUN   TestCSVInvalidInput/0
+=== RUN   TestCSVInvalidInput/1
+=== RUN   TestCSVInvalidInput/2
+=== RUN   TestCSVInvalidInput/3
+=== RUN   TestCSVInvalidInput/4
+=== RUN   TestCSVInvalidInput/5
+=== RUN   TestCSVInvalidInput/6
+=== RUN   TestCSVInvalidInput/7
+=== RUN   TestCSVInvalidInput/8
+=== RUN   TestCSVInvalidInput/9
+=== RUN   TestCSVInvalidInput/10
+=== RUN   TestCSVInvalidInput/11
+=== RUN   TestCSVInvalidInput/config/0
+=== RUN   TestCSVInvalidInput/config/1
+=== RUN   TestCSVInvalidInput/config/2
+=== RUN   TestCSVInvalidInput/config/3
+=== RUN   TestCSVInvalidInput/config/4
+=== RUN   TestCSVInvalidInput/config/5
+=== RUN   TestCSVInvalidInput/config/6
+=== RUN   TestCSVInvalidInput/config/7
+--- PASS: TestCSVInvalidInput (0.00s)
+    --- PASS: TestCSVInvalidInput/0 (0.00s)
+    --- PASS: TestCSVInvalidInput/1 (0.00s)
+    --- PASS: TestCSVInvalidInput/2 (0.00s)
+    --- PASS: TestCSVInvalidInput/3 (0.00s)
+    --- PASS: TestCSVInvalidInput/4 (0.00s)
+    --- PASS: TestCSVInvalidInput/5 (0.00s)
+    --- PASS: TestCSVInvalidInput/6 (0.00s)
+    --- PASS: TestCSVInvalidInput/7 (0.00s)
+    --- PASS: TestCSVInvalidInput/8 (0.00s)
+    --- PASS: TestCSVInvalidInput/9 (0.00s)
+    --- PASS: TestCSVInvalidInput/10 (0.00s)
+    --- PASS: TestCSVInvalidInput/11 (0.00s)
+    --- PASS: TestCSVInvalidInput/config/0 (0.00s)
+    --- PASS: TestCSVInvalidInput/config/1 (0.00s)
+    --- PASS: TestCSVInvalidInput/config/2 (0.00s)
+    --- PASS: TestCSVInvalidInput/config/3 (0.00s)
+    --- PASS: TestCSVInvalidInput/config/4 (0.00s)
+    --- PASS: TestCSVInvalidInput/config/5 (0.00s)
+    --- PASS: TestCSVInvalidInput/config/6 (0.00s)
+    --- PASS: TestCSVInvalidInput/config/7 (0.00s)
+=== RUN   TestColumnJSONPreservesTypes
+--- PASS: TestColumnJSONPreservesTypes (0.00s)
+PASS
+ok  	github.com/xulu199705/psdana/go/csvio	0.069s
+=== RUN   TestWindowAndParsevalIndependent
+=== RUN   TestWindowAndParsevalIndependent/real/hann/1
+=== RUN   TestWindowAndParsevalIndependent/complex/hann/1
+=== RUN   TestWindowAndParsevalIndependent/real/rectangle/1
+=== RUN   TestWindowAndParsevalIndependent/complex/rectangle/1
+=== RUN   TestWindowAndParsevalIndependent/real/hann/2
+=== RUN   TestWindowAndParsevalIndependent/complex/hann/2
+=== RUN   TestWindowAndParsevalIndependent/real/rectangle/2
+=== RUN   TestWindowAndParsevalIndependent/complex/rectangle/2
+=== RUN   TestWindowAndParsevalIndependent/real/hann/3
+=== RUN   TestWindowAndParsevalIndependent/complex/hann/3
+=== RUN   TestWindowAndParsevalIndependent/real/rectangle/3
+=== RUN   TestWindowAndParsevalIndependent/complex/rectangle/3
+=== RUN   TestWindowAndParsevalIndependent/real/hann/255
+=== RUN   TestWindowAndParsevalIndependent/complex/hann/255
+=== RUN   TestWindowAndParsevalIndependent/real/rectangle/255
+=== RUN   TestWindowAndParsevalIndependent/complex/rectangle/255
+=== RUN   TestWindowAndParsevalIndependent/real/hann/256
+=== RUN   TestWindowAndParsevalIndependent/complex/hann/256
+=== RUN   TestWindowAndParsevalIndependent/real/rectangle/256
+=== RUN   TestWindowAndParsevalIndependent/complex/rectangle/256
+=== RUN   TestWindowAndParsevalIndependent/real/hann/333
+=== RUN   TestWindowAndParsevalIndependent/complex/hann/333
+=== RUN   TestWindowAndParsevalIndependent/real/rectangle/333
+=== RUN   TestWindowAndParsevalIndependent/complex/rectangle/333
+=== RUN   TestWindowAndParsevalIndependent/real/hann/999
+=== RUN   TestWindowAndParsevalIndependent/complex/hann/999
+=== RUN   TestWindowAndParsevalIndependent/real/rectangle/999
+=== RUN   TestWindowAndParsevalIndependent/complex/rectangle/999
+=== RUN   TestWindowAndParsevalIndependent/real/hann/1024
+=== RUN   TestWindowAndParsevalIndependent/complex/hann/1024
+=== RUN   TestWindowAndParsevalIndependent/real/rectangle/1024
+=== RUN   TestWindowAndParsevalIndependent/complex/rectangle/1024
+--- PASS: TestWindowAndParsevalIndependent (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/real/hann/1 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/complex/hann/1 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/real/rectangle/1 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/complex/rectangle/1 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/real/hann/2 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/complex/hann/2 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/real/rectangle/2 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/complex/rectangle/2 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/real/hann/3 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/complex/hann/3 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/real/rectangle/3 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/complex/rectangle/3 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/real/hann/255 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/complex/hann/255 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/real/rectangle/255 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/complex/rectangle/255 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/real/hann/256 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/complex/hann/256 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/real/rectangle/256 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/complex/rectangle/256 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/real/hann/333 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/complex/hann/333 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/real/rectangle/333 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/complex/rectangle/333 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/real/hann/999 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/complex/hann/999 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/real/rectangle/999 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/complex/rectangle/999 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/real/hann/1024 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/complex/hann/1024 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/real/rectangle/1024 (0.00s)
+    --- PASS: TestWindowAndParsevalIndependent/complex/rectangle/1024 (0.00s)
+=== RUN   TestFullScaleAndTwoTones
+=== RUN   TestFullScaleAndTwoTones/hann/-256
+=== RUN   TestFullScaleAndTwoTones/hann/256
+=== RUN   TestFullScaleAndTwoTones/real/hann
+=== RUN   TestFullScaleAndTwoTones/two-tones/hann
+=== RUN   TestFullScaleAndTwoTones/rectangle/-256
+=== RUN   TestFullScaleAndTwoTones/rectangle/256
+=== RUN   TestFullScaleAndTwoTones/real/rectangle
+=== RUN   TestFullScaleAndTwoTones/two-tones/rectangle
+--- PASS: TestFullScaleAndTwoTones (0.00s)
+    --- PASS: TestFullScaleAndTwoTones/hann/-256 (0.00s)
+    --- PASS: TestFullScaleAndTwoTones/hann/256 (0.00s)
+    --- PASS: TestFullScaleAndTwoTones/real/hann (0.00s)
+    --- PASS: TestFullScaleAndTwoTones/two-tones/hann (0.00s)
+    --- PASS: TestFullScaleAndTwoTones/rectangle/-256 (0.00s)
+    --- PASS: TestFullScaleAndTwoTones/rectangle/256 (0.00s)
+    --- PASS: TestFullScaleAndTwoTones/real/rectangle (0.00s)
+    --- PASS: TestFullScaleAndTwoTones/two-tones/rectangle (0.00s)
+=== RUN   TestRealEndpoints
+--- PASS: TestRealEndpoints (0.00s)
+=== RUN   TestWelchLinearMeanAndTail
+--- PASS: TestWelchLinearMeanAndTail (0.00s)
+=== RUN   TestZeroDCDetrendAndNoClipping
+--- PASS: TestZeroDCDetrendAndNoClipping (0.00s)
+=== RUN   TestInvalidConfigAndSamples
+=== RUN   TestInvalidConfigAndSamples/0
+=== RUN   TestInvalidConfigAndSamples/1
+=== RUN   TestInvalidConfigAndSamples/2
+=== RUN   TestInvalidConfigAndSamples/3
+=== RUN   TestInvalidConfigAndSamples/4
+=== RUN   TestInvalidConfigAndSamples/5
+=== RUN   TestInvalidConfigAndSamples/6
+=== RUN   TestInvalidConfigAndSamples/7
+=== RUN   TestInvalidConfigAndSamples/8
+=== RUN   TestInvalidConfigAndSamples/9
+=== RUN   TestInvalidConfigAndSamples/10
+=== RUN   TestInvalidConfigAndSamples/11
+--- PASS: TestInvalidConfigAndSamples (0.00s)
+    --- PASS: TestInvalidConfigAndSamples/0 (0.00s)
+    --- PASS: TestInvalidConfigAndSamples/1 (0.00s)
+    --- PASS: TestInvalidConfigAndSamples/2 (0.00s)
+    --- PASS: TestInvalidConfigAndSamples/3 (0.00s)
+    --- PASS: TestInvalidConfigAndSamples/4 (0.00s)
+    --- PASS: TestInvalidConfigAndSamples/5 (0.00s)
+    --- PASS: TestInvalidConfigAndSamples/6 (0.00s)
+    --- PASS: TestInvalidConfigAndSamples/7 (0.00s)
+    --- PASS: TestInvalidConfigAndSamples/8 (0.00s)
+    --- PASS: TestInvalidConfigAndSamples/9 (0.00s)
+    --- PASS: TestInvalidConfigAndSamples/10 (0.00s)
+    --- PASS: TestInvalidConfigAndSamples/11 (0.00s)
+=== RUN   TestLargePrimeFactorRealAccuracy
+=== RUN   TestLargePrimeFactorRealAccuracy/127
+=== RUN   TestLargePrimeFactorRealAccuracy/257
+=== RUN   TestLargePrimeFactorRealAccuracy/509
+=== RUN   TestLargePrimeFactorRealAccuracy/1009
+=== RUN   TestLargePrimeFactorRealAccuracy/8193
+=== RUN   TestLargePrimeFactorRealAccuracy/5462
+--- PASS: TestLargePrimeFactorRealAccuracy (0.02s)
+    --- PASS: TestLargePrimeFactorRealAccuracy/127 (0.00s)
+    --- PASS: TestLargePrimeFactorRealAccuracy/257 (0.00s)
+    --- PASS: TestLargePrimeFactorRealAccuracy/509 (0.00s)
+    --- PASS: TestLargePrimeFactorRealAccuracy/1009 (0.00s)
+    --- PASS: TestLargePrimeFactorRealAccuracy/8193 (0.01s)
+    --- PASS: TestLargePrimeFactorRealAccuracy/5462 (0.01s)
+=== RUN   TestInputOwnershipAndConcurrentCalls
+--- PASS: TestInputOwnershipAndConcurrentCalls (0.00s)
+=== RUN   TestFFTContract
+=== RUN   TestFFTContract/impulse/1
+=== RUN   TestFFTContract/constant/1
+=== RUN   TestFFTContract/positive/1
+=== RUN   TestFFTContract/negative/1
+=== RUN   TestFFTContract/real-vs-independent-dft/1
+=== RUN   TestFFTContract/impulse/2
+=== RUN   TestFFTContract/constant/2
+=== RUN   TestFFTContract/positive/2
+=== RUN   TestFFTContract/negative/2
+=== RUN   TestFFTContract/real-vs-independent-dft/2
+=== RUN   TestFFTContract/impulse/3
+=== RUN   TestFFTContract/constant/3
+=== RUN   TestFFTContract/positive/3
+=== RUN   TestFFTContract/negative/3
+=== RUN   TestFFTContract/real-vs-independent-dft/3
+=== RUN   TestFFTContract/impulse/15
+=== RUN   TestFFTContract/constant/15
+=== RUN   TestFFTContract/positive/15
+=== RUN   TestFFTContract/negative/15
+=== RUN   TestFFTContract/real-vs-independent-dft/15
+=== RUN   TestFFTContract/impulse/31
+=== RUN   TestFFTContract/constant/31
+=== RUN   TestFFTContract/positive/31
+=== RUN   TestFFTContract/negative/31
+=== RUN   TestFFTContract/real-vs-independent-dft/31
+=== RUN   TestFFTContract/impulse/255
+=== RUN   TestFFTContract/constant/255
+=== RUN   TestFFTContract/positive/255
+=== RUN   TestFFTContract/negative/255
+=== RUN   TestFFTContract/real-vs-independent-dft/255
+=== RUN   TestFFTContract/impulse/256
+=== RUN   TestFFTContract/constant/256
+=== RUN   TestFFTContract/positive/256
+=== RUN   TestFFTContract/negative/256
+=== RUN   TestFFTContract/real-vs-independent-dft/256
+=== RUN   TestFFTContract/impulse/333
+=== RUN   TestFFTContract/constant/333
+=== RUN   TestFFTContract/positive/333
+=== RUN   TestFFTContract/negative/333
+=== RUN   TestFFTContract/real-vs-independent-dft/333
+=== RUN   TestFFTContract/impulse/999
+=== RUN   TestFFTContract/constant/999
+=== RUN   TestFFTContract/positive/999
+=== RUN   TestFFTContract/negative/999
+=== RUN   TestFFTContract/real-vs-independent-dft/999
+=== RUN   TestFFTContract/impulse/1024
+=== RUN   TestFFTContract/constant/1024
+=== RUN   TestFFTContract/positive/1024
+=== RUN   TestFFTContract/negative/1024
+=== RUN   TestFFTContract/real-vs-independent-dft/1024
+--- PASS: TestFFTContract (0.03s)
+    --- PASS: TestFFTContract/impulse/1 (0.00s)
+    --- PASS: TestFFTContract/constant/1 (0.00s)
+    --- PASS: TestFFTContract/positive/1 (0.00s)
+    --- PASS: TestFFTContract/negative/1 (0.00s)
+    --- PASS: TestFFTContract/real-vs-independent-dft/1 (0.00s)
+    --- PASS: TestFFTContract/impulse/2 (0.00s)
+    --- PASS: TestFFTContract/constant/2 (0.00s)
+    --- PASS: TestFFTContract/positive/2 (0.00s)
+    --- PASS: TestFFTContract/negative/2 (0.00s)
+    --- PASS: TestFFTContract/real-vs-independent-dft/2 (0.00s)
+    --- PASS: TestFFTContract/impulse/3 (0.00s)
+    --- PASS: TestFFTContract/constant/3 (0.00s)
+    --- PASS: TestFFTContract/positive/3 (0.00s)
+    --- PASS: TestFFTContract/negative/3 (0.00s)
+    --- PASS: TestFFTContract/real-vs-independent-dft/3 (0.00s)
+    --- PASS: TestFFTContract/impulse/15 (0.00s)
+    --- PASS: TestFFTContract/constant/15 (0.00s)
+    --- PASS: TestFFTContract/positive/15 (0.00s)
+    --- PASS: TestFFTContract/negative/15 (0.00s)
+    --- PASS: TestFFTContract/real-vs-independent-dft/15 (0.00s)
+    --- PASS: TestFFTContract/impulse/31 (0.00s)
+    --- PASS: TestFFTContract/constant/31 (0.00s)
+    --- PASS: TestFFTContract/positive/31 (0.00s)
+    --- PASS: TestFFTContract/negative/31 (0.00s)
+    --- PASS: TestFFTContract/real-vs-independent-dft/31 (0.00s)
+    --- PASS: TestFFTContract/impulse/255 (0.00s)
+    --- PASS: TestFFTContract/constant/255 (0.00s)
+    --- PASS: TestFFTContract/positive/255 (0.00s)
+    --- PASS: TestFFTContract/negative/255 (0.00s)
+    --- PASS: TestFFTContract/real-vs-independent-dft/255 (0.00s)
+    --- PASS: TestFFTContract/impulse/256 (0.00s)
+    --- PASS: TestFFTContract/constant/256 (0.00s)
+    --- PASS: TestFFTContract/positive/256 (0.00s)
+    --- PASS: TestFFTContract/negative/256 (0.00s)
+    --- PASS: TestFFTContract/real-vs-independent-dft/256 (0.00s)
+    --- PASS: TestFFTContract/impulse/333 (0.00s)
+    --- PASS: TestFFTContract/constant/333 (0.00s)
+    --- PASS: TestFFTContract/positive/333 (0.00s)
+    --- PASS: TestFFTContract/negative/333 (0.00s)
+    --- PASS: TestFFTContract/real-vs-independent-dft/333 (0.00s)
+    --- PASS: TestFFTContract/impulse/999 (0.00s)
+    --- PASS: TestFFTContract/constant/999 (0.00s)
+    --- PASS: TestFFTContract/positive/999 (0.00s)
+    --- PASS: TestFFTContract/negative/999 (0.00s)
+    --- PASS: TestFFTContract/real-vs-independent-dft/999 (0.01s)
+    --- PASS: TestFFTContract/impulse/1024 (0.00s)
+    --- PASS: TestFFTContract/constant/1024 (0.00s)
+    --- PASS: TestFFTContract/positive/1024 (0.00s)
+    --- PASS: TestFFTContract/negative/1024 (0.00s)
+    --- PASS: TestFFTContract/real-vs-independent-dft/1024 (0.01s)
+PASS
+ok  	github.com/xulu199705/psdana/go/psd	0.075s
+=== RUN   TestGoldenVectors
+=== RUN   TestGoldenVectors/T01_hann_all
+    golden_test.go:218: T01_hann_all field=frequency_hz max_abs=0 max_rel=0 bin=1023 frequency=7.984375e+07 actual=7.984375e+07 expected=7.984375e+07 rtol=1e-12 atol=1e-07 PASS=true
+    golden_test.go:218: T01_hann_all field=psd_linear max_abs=1.2705494208814505e-21 max_rel=0.3540617260534826 bin=767 frequency=3.984375e+07 actual=1.0666666666666872e-06 expected=1.0666666666666885e-06 rtol=2e-11 atol=1e-20 PASS=true
+    golden_test.go:218: T01_hann_all field=psd_dbfs_per_hz max_abs=0 max_rel=0 bin=769 frequency=4.015625e+07 actual=-59.71971276399765 expected=-59.71971276399765 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T01_hann_all field=rbw_power_dbfs max_abs=7.993605777301127e-15 max_rel=1.3277091805535468e-15 bin=767 frequency=3.984375e+07 actual=-6.020599913279543 expected=-6.020599913279535 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T01_hann_all field=fs_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1.6e+08 expected=1.6e+08 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T01_hann_all field=frequency_resolution_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=156250 expected=156250 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T01_hann_all field=enbw_hz max_abs=1.4551915228366852e-10 max_rel=6.20881716410319e-16 bin=-1 frequency=0 actual=234374.99999999985 expected=234375 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T01_hann_all field=coherent_gain max_abs=2.220446049250313e-16 max_rel=4.440892098500626e-16 bin=-1 frequency=0 actual=0.5000000000000002 expected=0.5 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T01_hann_all field=window_power_sum max_abs=1.1368683772161603e-13 max_rel=2.9605947323337506e-16 bin=-1 frequency=0 actual=384.0000000000001 expected=384 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T01_hann_all field=reference_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T01_hann_all field=integrated_power max_abs=3.3306690738754696e-16 max_rel=3.3306690738754696e-16 bin=-1 frequency=0 actual=0.9999999999999997 expected=1 rtol=2e-12 atol=1e-15 PASS=true
+=== RUN   TestGoldenVectors/T01_rectangle_all
+    golden_test.go:218: T01_rectangle_all field=frequency_hz max_abs=0 max_rel=0 bin=1023 frequency=7.984375e+07 actual=7.984375e+07 expected=7.984375e+07 rtol=1e-12 atol=1e-07 PASS=true
+    golden_test.go:218: T01_rectangle_all field=psd_linear max_abs=2.565854121688508e-49 max_rel=3.633823575195642e-14 bin=331 frequency=-2.828125e+07 actual=6.49805564891372e-34 expected=6.498055648913718e-34 rtol=2e-11 atol=1e-20 PASS=true
+    golden_test.go:218: T01_rectangle_all field=psd_dbfs_per_hz max_abs=0 max_rel=0 bin=768 frequency=4e+07 actual=-51.938200260161125 expected=-51.938200260161125 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T01_rectangle_all field=rbw_power_dbfs max_abs=0 max_rel=0 bin=768 frequency=4e+07 actual=0 expected=0 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T01_rectangle_all field=fs_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1.6e+08 expected=1.6e+08 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T01_rectangle_all field=frequency_resolution_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=156250 expected=156250 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T01_rectangle_all field=enbw_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=156250 expected=156250 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T01_rectangle_all field=coherent_gain max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T01_rectangle_all field=window_power_sum max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1024 expected=1024 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T01_rectangle_all field=reference_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T01_rectangle_all field=integrated_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-15 PASS=true
+=== RUN   TestGoldenVectors/T02_hann_all
+    golden_test.go:218: T02_hann_all field=frequency_hz max_abs=0 max_rel=0 bin=1023 frequency=7.984375e+07 actual=7.984375e+07 expected=7.984375e+07 rtol=1e-12 atol=1e-07 PASS=true
+    golden_test.go:218: T02_hann_all field=psd_linear max_abs=8.470329472543003e-22 max_rel=0.22954478174217183 bin=256 frequency=-4e+07 actual=4.266666666666666e-06 expected=4.266666666666667e-06 rtol=2e-11 atol=1e-20 PASS=true
+    golden_test.go:218: T02_hann_all field=psd_dbfs_per_hz max_abs=0 max_rel=0 bin=257 frequency=-3.984375e+07 actual=-59.71971276399748 expected=-59.71971276399748 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T02_hann_all field=rbw_power_dbfs max_abs=4.440892098500626e-15 max_rel=7.376162114186157e-16 bin=255 frequency=-4.015625e+07 actual=-6.020599913279715 expected=-6.02059991327971 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T02_hann_all field=fs_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1.6e+08 expected=1.6e+08 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T02_hann_all field=frequency_resolution_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=156250 expected=156250 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T02_hann_all field=enbw_hz max_abs=1.4551915228366852e-10 max_rel=6.20881716410319e-16 bin=-1 frequency=0 actual=234374.99999999985 expected=234375 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T02_hann_all field=coherent_gain max_abs=2.220446049250313e-16 max_rel=4.440892098500626e-16 bin=-1 frequency=0 actual=0.5000000000000002 expected=0.5 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T02_hann_all field=window_power_sum max_abs=1.1368683772161603e-13 max_rel=2.9605947323337506e-16 bin=-1 frequency=0 actual=384.0000000000001 expected=384 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T02_hann_all field=reference_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T02_hann_all field=integrated_power max_abs=3.3306690738754696e-16 max_rel=3.3306690738754696e-16 bin=-1 frequency=0 actual=0.9999999999999997 expected=1 rtol=2e-12 atol=1e-15 PASS=true
+=== RUN   TestGoldenVectors/T03_hann_all
+    golden_test.go:218: T03_hann_all field=frequency_hz max_abs=0 max_rel=0 bin=512 frequency=8e+07 actual=8e+07 expected=8e+07 rtol=1e-12 atol=1e-07 PASS=true
+    golden_test.go:218: T03_hann_all field=psd_linear max_abs=4.235164736271502e-22 max_rel=0.06598381965926288 bin=256 frequency=4e+07 actual=2.133333333333333e-06 expected=2.1333333333333334e-06 rtol=2e-11 atol=1e-20 PASS=true
+    golden_test.go:218: T03_hann_all field=psd_dbfs_per_hz max_abs=0 max_rel=0 bin=257 frequency=4.015625e+07 actual=-59.71971276399751 expected=-59.71971276399751 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T03_hann_all field=rbw_power_dbfs max_abs=3.552713678800501e-15 max_rel=5.900929691349067e-16 bin=257 frequency=4.015625e+07 actual=-6.02059991327957 expected=-6.0205999132795665 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T03_hann_all field=fs_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1.6e+08 expected=1.6e+08 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_hann_all field=frequency_resolution_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=156250 expected=156250 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_hann_all field=enbw_hz max_abs=1.4551915228366852e-10 max_rel=6.20881716410319e-16 bin=-1 frequency=0 actual=234374.99999999985 expected=234375 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_hann_all field=coherent_gain max_abs=2.220446049250313e-16 max_rel=4.440892098500626e-16 bin=-1 frequency=0 actual=0.5000000000000002 expected=0.5 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_hann_all field=window_power_sum max_abs=1.1368683772161603e-13 max_rel=2.9605947323337506e-16 bin=-1 frequency=0 actual=384.0000000000001 expected=384 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_hann_all field=reference_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=0.5 expected=0.5 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_hann_all field=integrated_power max_abs=1.1102230246251565e-16 max_rel=2.220446049250313e-16 bin=-1 frequency=0 actual=0.4999999999999999 expected=0.5 rtol=2e-12 atol=1e-15 PASS=true
+=== RUN   TestGoldenVectors/T03_rectangle_all
+    golden_test.go:218: T03_rectangle_all field=frequency_hz max_abs=0 max_rel=0 bin=512 frequency=8e+07 actual=8e+07 expected=8e+07 rtol=1e-12 atol=1e-07 PASS=true
+    golden_test.go:218: T03_rectangle_all field=psd_linear max_abs=3.4211388289180104e-49 max_rel=1.116432609939792e-13 bin=181 frequency=2.828125e+07 actual=3.575630048343904e-34 expected=3.5756300483439074e-34 rtol=2e-11 atol=1e-20 PASS=true
+    golden_test.go:218: T03_rectangle_all field=psd_dbfs_per_hz max_abs=0 max_rel=0 bin=256 frequency=4e+07 actual=-51.938200260161125 expected=-51.938200260161125 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T03_rectangle_all field=rbw_power_dbfs max_abs=0 max_rel=0 bin=256 frequency=4e+07 actual=0 expected=0 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T03_rectangle_all field=fs_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1.6e+08 expected=1.6e+08 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_rectangle_all field=frequency_resolution_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=156250 expected=156250 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_rectangle_all field=enbw_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=156250 expected=156250 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_rectangle_all field=coherent_gain max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_rectangle_all field=window_power_sum max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1024 expected=1024 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_rectangle_all field=reference_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=0.5 expected=0.5 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_rectangle_all field=integrated_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=0.5 expected=0.5 rtol=2e-12 atol=1e-15 PASS=true
+=== RUN   TestGoldenVectors/T03_hann_welch255
+    golden_test.go:218: T03_hann_welch255 field=frequency_hz max_abs=0 max_rel=0 bin=127 frequency=7.968627450980392e+07 actual=7.968627450980392e+07 expected=7.968627450980392e+07 rtol=1e-12 atol=1e-07 PASS=true
+    golden_test.go:218: T03_hann_welch255 field=psd_linear max_abs=4.235164736271502e-22 max_rel=1.3702510912580487e-10 bin=64 frequency=4.015686274509804e+07 actual=4.899442125453552e-07 expected=4.899442125453548e-07 rtol=2e-11 atol=1e-20 PASS=true
+    golden_test.go:218: T03_hann_welch255 field=psd_dbfs_per_hz max_abs=5.951221737632295e-10 max_rel=3.404491334709831e-12 bin=13 frequency=8.1568627450980395e+06 actual=-174.80501938653887 expected=-174.80501938594375 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T03_hann_welch255 field=rbw_power_dbfs max_abs=5.950795411990839e-10 max_rel=5.1715328707242666e-12 bin=13 frequency=8.1568627450980395e+06 actual=-115.06830877376233 expected=-115.06830877316725 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T03_hann_welch255 field=fs_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1.6e+08 expected=1.6e+08 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_hann_welch255 field=frequency_resolution_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=627450.9803921569 expected=627450.9803921569 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_hann_welch255 field=enbw_hz max_abs=1.1641532182693481e-10 max_rel=1.2369127944111824e-16 bin=-1 frequency=0 actual=941176.4705882352 expected=941176.4705882353 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_hann_welch255 field=coherent_gain max_abs=1.1102230246251565e-16 max_rel=2.220446049250313e-16 bin=-1 frequency=0 actual=0.5000000000000001 expected=0.5 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_hann_welch255 field=window_power_sum max_abs=1.4210854715202004e-14 max_rel=1.4861024538773336e-16 bin=-1 frequency=0 actual=95.62500000000001 expected=95.625 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_hann_welch255 field=reference_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=0.5 expected=0.5 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T03_hann_welch255 field=integrated_power max_abs=3.3306690738754696e-16 max_rel=6.661338147750938e-16 bin=-1 frequency=0 actual=0.5000000000000004 expected=0.5000000000000001 rtol=2e-12 atol=1e-15 PASS=true
+=== RUN   TestGoldenVectors/T04_hann_welch256
+    golden_test.go:218: T04_hann_welch256 field=frequency_hz max_abs=0 max_rel=0 bin=255 frequency=7.9375e+07 actual=7.9375e+07 expected=7.9375e+07 rtol=1e-12 atol=1e-07 PASS=true
+    golden_test.go:218: T04_hann_welch256 field=psd_linear max_abs=7.940933880509066e-23 max_rel=0.027361726744417558 bin=191 frequency=3.9375e+07 actual=1.5000000000000116e-07 expected=1.5000000000000124e-07 rtol=2e-11 atol=1e-20 PASS=true
+    golden_test.go:218: T04_hann_welch256 field=psd_dbfs_per_hz max_abs=0 max_rel=0 bin=193 frequency=4.0625e+07 actual=-68.23908740944321 expected=-68.23908740944321 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T04_hann_welch256 field=rbw_power_dbfs max_abs=3.552713678800501e-15 max_rel=4.1701578186842193e-16 bin=191 frequency=3.9375e+07 actual=-8.51937464544559 expected=-8.519374645445586 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T04_hann_welch256 field=fs_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1.6e+08 expected=1.6e+08 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T04_hann_welch256 field=frequency_resolution_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=625000 expected=625000 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T04_hann_welch256 field=enbw_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=937500 expected=937500 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T04_hann_welch256 field=coherent_gain max_abs=0 max_rel=0 bin=-1 frequency=0 actual=0.5 expected=0.5 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T04_hann_welch256 field=window_power_sum max_abs=0 max_rel=0 bin=-1 frequency=0 actual=96 expected=96 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T04_hann_welch256 field=reference_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T04_hann_welch256 field=integrated_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=0.6250000000000003 expected=0.6250000000000003 rtol=2e-12 atol=1e-15 PASS=true
+=== RUN   TestGoldenVectors/T05_hann_welch255
+    golden_test.go:218: T05_hann_welch255 field=frequency_hz max_abs=0 max_rel=0 bin=254 frequency=7.968627450980392e+07 actual=7.968627450980392e+07 expected=7.968627450980392e+07 rtol=1e-12 atol=1e-07 PASS=true
+    golden_test.go:218: T05_hann_welch255 field=psd_linear max_abs=3.101927297073854e-25 max_rel=1.0326908625374489e-15 bin=38 frequency=-5.584313725490196e+07 actual=3.0037326847765836e-10 expected=3.0037326847765805e-10 rtol=2e-11 atol=1e-20 PASS=true
+    golden_test.go:218: T05_hann_welch255 field=psd_dbfs_per_hz max_abs=2.842170943040401e-14 max_rel=2.983863207926517e-16 bin=228 frequency=6.337254901960784e+07 actual=-96.83894250699612 expected=-96.83894250699615 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T05_hann_welch255 field=rbw_power_dbfs max_abs=1.4210854715202004e-14 max_rel=3.935417019691246e-16 bin=158 frequency=1.945098039215686e+07 actual=-36.11016226259273 expected=-36.110162262592745 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T05_hann_welch255 field=fs_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1.6e+08 expected=1.6e+08 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T05_hann_welch255 field=frequency_resolution_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=627450.9803921569 expected=627450.9803921569 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T05_hann_welch255 field=enbw_hz max_abs=1.1641532182693481e-10 max_rel=1.2369127944111824e-16 bin=-1 frequency=0 actual=941176.4705882352 expected=941176.4705882353 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T05_hann_welch255 field=coherent_gain max_abs=1.1102230246251565e-16 max_rel=2.220446049250313e-16 bin=-1 frequency=0 actual=0.5000000000000001 expected=0.5 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T05_hann_welch255 field=window_power_sum max_abs=1.4210854715202004e-14 max_rel=1.4861024538773336e-16 bin=-1 frequency=0 actual=95.62500000000001 expected=95.625 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T05_hann_welch255 field=reference_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T05_hann_welch255 field=integrated_power max_abs=6.938893903907228e-18 max_rel=1.7372006550380854e-16 bin=-1 frequency=0 actual=0.03994296159043932 expected=0.03994296159043933 rtol=2e-12 atol=1e-15 PASS=true
+=== RUN   TestGoldenVectors/T05_rectangle_welch256
+    golden_test.go:218: T05_rectangle_welch256 field=frequency_hz max_abs=0 max_rel=0 bin=255 frequency=7.9375e+07 actual=7.9375e+07 expected=7.9375e+07 rtol=1e-12 atol=1e-07 PASS=true
+    golden_test.go:218: T05_rectangle_welch256 field=psd_linear max_abs=2.0679515313825692e-25 max_rel=6.932218839142561e-16 bin=101 frequency=-1.6875e+07 actual=2.983101917824554e-10 expected=2.983101917824556e-10 rtol=2e-11 atol=1e-20 PASS=true
+    golden_test.go:218: T05_rectangle_welch256 field=psd_dbfs_per_hz max_abs=2.842170943040401e-14 max_rel=2.9896252006263617e-16 bin=248 frequency=7.5e+07 actual=-96.51408048030879 expected=-96.51408048030876 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T05_rectangle_welch256 field=rbw_power_dbfs max_abs=7.105427357601002e-15 max_rel=1.9368117868034258e-16 bin=255 frequency=7.9375e+07 actual=-38.85107591539129 expected=-38.8510759153913 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T05_rectangle_welch256 field=fs_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1.6e+08 expected=1.6e+08 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T05_rectangle_welch256 field=frequency_resolution_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=625000 expected=625000 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T05_rectangle_welch256 field=enbw_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=625000 expected=625000 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T05_rectangle_welch256 field=coherent_gain max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T05_rectangle_welch256 field=window_power_sum max_abs=0 max_rel=0 bin=-1 frequency=0 actual=256 expected=256 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T05_rectangle_welch256 field=reference_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T05_rectangle_welch256 field=integrated_power max_abs=3.469446951953614e-17 max_rel=8.703367765126015e-16 bin=-1 frequency=0 actual=0.039863269547858564 expected=0.03986326954785853 rtol=2e-12 atol=1e-15 PASS=true
+=== RUN   TestGoldenVectors/T06_hann_all
+    golden_test.go:218: T06_hann_all field=frequency_hz max_abs=0 max_rel=0 bin=1023 frequency=7.984375e+07 actual=7.984375e+07 expected=7.984375e+07 rtol=1e-12 atol=1e-07 PASS=true
+    golden_test.go:218: T06_hann_all field=psd_linear max_abs=8.470329472543003e-22 max_rel=9.842340765733922e-06 bin=769 frequency=4.015625e+07 actual=1.9674622492440475e-06 expected=1.9674622492440484e-06 rtol=2e-11 atol=1e-20 PASS=true
+    golden_test.go:218: T06_hann_all field=psd_dbfs_per_hz max_abs=2.90120283352735e-09 max_rel=1.466872392924214e-11 bin=609 frequency=1.515625e+07 actual=-197.78154169915473 expected=-197.78154170205593 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T06_hann_all field=rbw_power_dbfs max_abs=2.9012312552367803e-09 max_rel=2.0135913021220828e-11 bin=609 frequency=1.515625e+07 actual=-144.08242884843676 expected=-144.082428851338 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T06_hann_all field=fs_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1.6e+08 expected=1.6e+08 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T06_hann_all field=frequency_resolution_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=156250 expected=156250 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T06_hann_all field=enbw_hz max_abs=1.4551915228366852e-10 max_rel=6.20881716410319e-16 bin=-1 frequency=0 actual=234374.99999999985 expected=234375 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T06_hann_all field=coherent_gain max_abs=2.220446049250313e-16 max_rel=4.440892098500626e-16 bin=-1 frequency=0 actual=0.5000000000000002 expected=0.5 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T06_hann_all field=window_power_sum max_abs=1.1368683772161603e-13 max_rel=2.9605947323337506e-16 bin=-1 frequency=0 actual=384.0000000000001 expected=384 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T06_hann_all field=reference_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T06_hann_all field=integrated_power max_abs=8.881784197001252e-16 max_rel=1.3877787807814457e-15 bin=-1 frequency=0 actual=0.6399999999999991 expected=0.64 rtol=2e-12 atol=1e-15 PASS=true
+=== RUN   TestGoldenVectors/T06_rectangle_all
+    golden_test.go:218: T06_rectangle_all field=frequency_hz max_abs=0 max_rel=0 bin=1023 frequency=7.984375e+07 actual=7.984375e+07 expected=7.984375e+07 rtol=1e-12 atol=1e-07 PASS=true
+    golden_test.go:218: T06_rectangle_all field=psd_linear max_abs=4.235164736271502e-22 max_rel=3.3706896111091324e-14 bin=768 frequency=4e+07 actual=1.6600475748802303e-06 expected=1.6600475748802307e-06 rtol=2e-11 atol=1e-20 PASS=true
+    golden_test.go:218: T06_rectangle_all field=psd_dbfs_per_hz max_abs=1.4210854715202004e-13 max_rel=1.253159431233052e-15 bin=255 frequency=-4.015625e+07 actual=-114.08230767845977 expected=-114.08230767845991 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T06_rectangle_all field=rbw_power_dbfs max_abs=1.5631940186722204e-13 max_rel=2.5154340187882824e-15 bin=255 frequency=-4.015625e+07 actual=-62.14410741829863 expected=-62.14410741829879 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T06_rectangle_all field=fs_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1.6e+08 expected=1.6e+08 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T06_rectangle_all field=frequency_resolution_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=156250 expected=156250 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T06_rectangle_all field=enbw_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=156250 expected=156250 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T06_rectangle_all field=coherent_gain max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T06_rectangle_all field=window_power_sum max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1024 expected=1024 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T06_rectangle_all field=reference_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T06_rectangle_all field=integrated_power max_abs=1.1102230246251565e-16 max_rel=1.734723475976807e-16 bin=-1 frequency=0 actual=0.6400000000000001 expected=0.64 rtol=2e-12 atol=1e-15 PASS=true
+=== RUN   TestGoldenVectors/T07_rectangle_all
+    golden_test.go:218: T07_rectangle_all field=frequency_hz max_abs=0 max_rel=0 bin=511 frequency=7.96875e+07 actual=7.96875e+07 expected=7.96875e+07 rtol=1e-12 atol=1e-07 PASS=true
+    golden_test.go:218: T07_rectangle_all field=psd_linear max_abs=0 max_rel=0 bin=511 frequency=7.96875e+07 actual=0 expected=0 rtol=2e-11 atol=1e-20 PASS=true
+    golden_test.go:218: T07_rectangle_all field=psd_dbfs_per_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=0 expected=0 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T07_rectangle_all field=rbw_power_dbfs max_abs=0 max_rel=0 bin=-1 frequency=0 actual=0 expected=0 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T07_rectangle_all field=fs_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1.6e+08 expected=1.6e+08 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T07_rectangle_all field=frequency_resolution_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=312500 expected=312500 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T07_rectangle_all field=enbw_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=312500 expected=312500 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T07_rectangle_all field=coherent_gain max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T07_rectangle_all field=window_power_sum max_abs=0 max_rel=0 bin=-1 frequency=0 actual=512 expected=512 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T07_rectangle_all field=reference_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T07_rectangle_all field=integrated_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=0 expected=0 rtol=2e-12 atol=1e-15 PASS=true
+=== RUN   TestGoldenVectors/T08_hann_welch256
+    golden_test.go:218: T08_hann_welch256 field=frequency_hz max_abs=0 max_rel=0 bin=255 frequency=7.9375e+07 actual=7.9375e+07 expected=7.9375e+07 rtol=1e-12 atol=1e-07 PASS=true
+    golden_test.go:218: T08_hann_welch256 field=psd_linear max_abs=1.3234889800848443e-23 max_rel=0.06744707843415412 bin=161 frequency=2.0625e+07 actual=6.666666666666638e-08 expected=6.666666666666639e-08 rtol=2e-11 atol=1e-20 PASS=true
+    golden_test.go:218: T08_hann_welch256 field=psd_dbfs_per_hz max_abs=0 max_rel=0 bin=161 frequency=2.0625e+07 actual=-71.76091259055683 expected=-71.76091259055683 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T08_hann_welch256 field=rbw_power_dbfs max_abs=0 max_rel=0 bin=161 frequency=2.0625e+07 actual=-12.041199826559266 expected=-12.041199826559266 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T08_hann_welch256 field=fs_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1.6e+08 expected=1.6e+08 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T08_hann_welch256 field=frequency_resolution_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=625000 expected=625000 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T08_hann_welch256 field=enbw_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=937500 expected=937500 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T08_hann_welch256 field=coherent_gain max_abs=0 max_rel=0 bin=-1 frequency=0 actual=0.5 expected=0.5 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T08_hann_welch256 field=window_power_sum max_abs=0 max_rel=0 bin=-1 frequency=0 actual=96 expected=96 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T08_hann_welch256 field=reference_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T08_hann_welch256 field=integrated_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=0.32812499999999994 expected=0.32812499999999994 rtol=2e-12 atol=1e-15 PASS=true
+=== RUN   TestGoldenVectors/T08_hann_welch256_mean
+    golden_test.go:218: T08_hann_welch256_mean field=frequency_hz max_abs=0 max_rel=0 bin=255 frequency=7.9375e+07 actual=7.9375e+07 expected=7.9375e+07 rtol=1e-12 atol=1e-07 PASS=true
+    golden_test.go:218: T08_hann_welch256_mean field=psd_linear max_abs=1.3234889800848443e-23 max_rel=0.23589453889478773 bin=159 frequency=1.9375e+07 actual=6.666666666666696e-08 expected=6.666666666666697e-08 rtol=2e-11 atol=1e-20 PASS=true
+    golden_test.go:218: T08_hann_welch256_mean field=psd_dbfs_per_hz max_abs=0 max_rel=0 bin=161 frequency=2.0625e+07 actual=-71.76091259055683 expected=-71.76091259055683 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T08_hann_welch256_mean field=rbw_power_dbfs max_abs=1.7763568394002505e-15 max_rel=1.4752324228372504e-16 bin=161 frequency=2.0625e+07 actual=-12.041199826559264 expected=-12.041199826559266 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T08_hann_welch256_mean field=fs_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1.6e+08 expected=1.6e+08 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T08_hann_welch256_mean field=frequency_resolution_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=625000 expected=625000 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T08_hann_welch256_mean field=enbw_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=937500 expected=937500 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T08_hann_welch256_mean field=coherent_gain max_abs=0 max_rel=0 bin=-1 frequency=0 actual=0.5 expected=0.5 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T08_hann_welch256_mean field=window_power_sum max_abs=0 max_rel=0 bin=-1 frequency=0 actual=96 expected=96 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T08_hann_welch256_mean field=reference_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T08_hann_welch256_mean field=integrated_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=0.25 expected=0.25 rtol=2e-12 atol=1e-15 PASS=true
+=== RUN   TestGoldenVectors/T09_hann_welch256
+    golden_test.go:218: T09_hann_welch256 field=frequency_hz max_abs=0 max_rel=0 bin=255 frequency=7.9375e+07 actual=7.9375e+07 expected=7.9375e+07 rtol=1e-12 atol=1e-07 PASS=true
+    golden_test.go:218: T09_hann_welch256 field=psd_linear max_abs=1.7842584125911398e-39 max_rel=51.14379428508371 bin=127 frequency=-625000 actual=2.52377069795744e-39 expected=7.395122853663002e-40 rtol=2e-11 atol=1e-20 PASS=true
+    golden_test.go:218: T09_hann_welch256 field=psd_dbfs_per_hz max_abs=1.4210854715202004e-14 max_rel=2.0997545999252963e-16 bin=193 frequency=4.0625e+07 actual=-67.6786454746073 expected=-67.67864547460731 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T09_hann_welch256 field=rbw_power_dbfs max_abs=8.881784197001252e-16 max_rel=1.1159516633632666e-16 bin=193 frequency=4.0625e+07 actual=-7.95893271060974 expected=-7.958932710609741 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T09_hann_welch256 field=fs_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1.6e+08 expected=1.6e+08 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T09_hann_welch256 field=frequency_resolution_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=625000 expected=625000 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T09_hann_welch256 field=enbw_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=937500 expected=937500 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T09_hann_welch256 field=coherent_gain max_abs=0 max_rel=0 bin=-1 frequency=0 actual=0.5 expected=0.5 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T09_hann_welch256 field=window_power_sum max_abs=0 max_rel=0 bin=-1 frequency=0 actual=96 expected=96 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T09_hann_welch256 field=reference_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T09_hann_welch256 field=integrated_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=0.6399804688990116 expected=0.6399804688990116 rtol=2e-12 atol=1e-15 PASS=true
+=== RUN   TestGoldenVectors/T10_hann_all
+    golden_test.go:218: T10_hann_all field=frequency_hz max_abs=1.4901161193847656e-08 max_rel=3.524209288033571e-16 bin=998 frequency=7.991991991991994e+07 actual=7.991991991991992e+07 expected=7.991991991991994e+07 rtol=1e-12 atol=1e-07 PASS=true
+    golden_test.go:218: T10_hann_all field=psd_linear max_abs=2.964615315390051e-21 max_rel=1.8808712386070208 bin=636 frequency=2.1941941941941947e+07 actual=1.4985000000000027e-06 expected=1.4984999999999997e-06 rtol=2e-11 atol=1e-20 PASS=true
+    golden_test.go:218: T10_hann_all field=psd_dbfs_per_hz max_abs=7.105427357601002e-15 max_rel=1.2199534006318666e-16 bin=636 frequency=2.1941941941941947e+07 actual=-58.24343252718336 expected=-58.243432527183366 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T10_hann_all field=rbw_power_dbfs max_abs=7.105427357601002e-15 max_rel=1.601412532161762e-15 bin=637 frequency=2.2102102102102105e+07 actual=-10.457574905606648 expected=-10.457574905606641 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T10_hann_all field=fs_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1.6e+08 expected=1.6e+08 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T10_hann_all field=frequency_resolution_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=160160.16016016016 expected=160160.16016016016 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T10_hann_all field=enbw_hz max_abs=9.022187441587448e-10 max_rel=3.755485522560776e-15 bin=-1 frequency=0 actual=240240.2402402393 expected=240240.2402402402 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T10_hann_all field=coherent_gain max_abs=4.440892098500626e-16 max_rel=8.88178419700125e-16 bin=-1 frequency=0 actual=0.5000000000000006 expected=0.5000000000000001 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T10_hann_all field=window_power_sum max_abs=6.252776074688882e-13 max_rel=1.6690760292796477e-15 bin=-1 frequency=0 actual=374.62499999999943 expected=374.62500000000006 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T10_hann_all field=reference_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T10_hann_all field=integrated_power max_abs=7.216449660063518e-16 max_rel=2.004569350017644e-15 bin=-1 frequency=0 actual=0.3600000000000007 expected=0.36 rtol=2e-12 atol=1e-15 PASS=true
+=== RUN   TestGoldenVectors/T10_hann_welch333
+    golden_test.go:218: T10_hann_welch333 field=frequency_hz max_abs=1.4901161193847656e-08 max_rel=2.1840170235701006e-16 bin=332 frequency=7.975975975975977e+07 actual=7.975975975975975e+07 expected=7.975975975975977e+07 rtol=1e-12 atol=1e-07 PASS=true
+    golden_test.go:218: T10_hann_welch333 field=psd_linear max_abs=5.293955920339377e-22 max_rel=2.88998429398085e-08 bin=212 frequency=2.2102102102102105e+07 actual=4.3235906097707254e-07 expected=4.32359060977072e-07 rtol=2e-11 atol=1e-20 PASS=true
+    golden_test.go:218: T10_hann_welch333 field=psd_dbfs_per_hz max_abs=7.048583938740194e-09 max_rel=3.531190567482802e-11 bin=95 frequency=-3.411411411411412e+07 actual=-199.60927635564727 expected=-199.60927636269585 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T10_hann_welch333 field=rbw_power_dbfs max_abs=7.048583938740194e-09 max_rel=4.99787538738941e-11 bin=95 frequency=-3.411411411411412e+07 actual=-141.0316062735944 expected=-141.031606280643 rtol=0 atol=1e-07 PASS=true
+    golden_test.go:218: T10_hann_welch333 field=fs_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1.6e+08 expected=1.6e+08 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T10_hann_welch333 field=frequency_resolution_hz max_abs=0 max_rel=0 bin=-1 frequency=0 actual=480480.4804804805 expected=480480.4804804805 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T10_hann_welch333 field=enbw_hz max_abs=5.820766091346741e-10 max_rel=8.076312951743603e-16 bin=-1 frequency=0 actual=720720.7207207201 expected=720720.7207207207 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T10_hann_welch333 field=coherent_gain max_abs=0 max_rel=0 bin=-1 frequency=0 actual=0.5 expected=0.5 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T10_hann_welch333 field=window_power_sum max_abs=8.526512829121202e-14 max_rel=6.82803830159856e-16 bin=-1 frequency=0 actual=124.87499999999991 expected=124.875 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T10_hann_welch333 field=reference_power max_abs=0 max_rel=0 bin=-1 frequency=0 actual=1 expected=1 rtol=2e-12 atol=1e-12 PASS=true
+    golden_test.go:218: T10_hann_welch333 field=integrated_power max_abs=3.885780586188048e-16 max_rel=1.0793834961633467e-15 bin=-1 frequency=0 actual=0.3600000000000004 expected=0.36 rtol=2e-12 atol=1e-15 PASS=true
+--- PASS: TestGoldenVectors (0.02s)
+    --- PASS: TestGoldenVectors/T01_hann_all (0.00s)
+    --- PASS: TestGoldenVectors/T01_rectangle_all (0.00s)
+    --- PASS: TestGoldenVectors/T02_hann_all (0.00s)
+    --- PASS: TestGoldenVectors/T03_hann_all (0.00s)
+    --- PASS: TestGoldenVectors/T03_rectangle_all (0.00s)
+    --- PASS: TestGoldenVectors/T03_hann_welch255 (0.00s)
+    --- PASS: TestGoldenVectors/T04_hann_welch256 (0.00s)
+    --- PASS: TestGoldenVectors/T05_hann_welch255 (0.00s)
+    --- PASS: TestGoldenVectors/T05_rectangle_welch256 (0.00s)
+    --- PASS: TestGoldenVectors/T06_hann_all (0.00s)
+    --- PASS: TestGoldenVectors/T06_rectangle_all (0.00s)
+    --- PASS: TestGoldenVectors/T07_rectangle_all (0.00s)
+    --- PASS: TestGoldenVectors/T08_hann_welch256 (0.00s)
+    --- PASS: TestGoldenVectors/T08_hann_welch256_mean (0.00s)
+    --- PASS: TestGoldenVectors/T09_hann_welch256 (0.00s)
+    --- PASS: TestGoldenVectors/T10_hann_all (0.00s)
+    --- PASS: TestGoldenVectors/T10_hann_welch333 (0.00s)
+=== RUN   TestJSONConfigTypes
+=== RUN   TestJSONConfigTypes/0
+=== RUN   TestJSONConfigTypes/-1
+=== RUN   TestJSONConfigTypes/255.0
+=== RUN   TestJSONConfigTypes/"255"
+=== RUN   TestJSONConfigTypes/true
+=== RUN   TestJSONConfigTypes/null
+=== RUN   TestJSONConfigTypes/1e3
+--- PASS: TestJSONConfigTypes (0.00s)
+    --- PASS: TestJSONConfigTypes/0 (0.00s)
+    --- PASS: TestJSONConfigTypes/-1 (0.00s)
+    --- PASS: TestJSONConfigTypes/255.0 (0.00s)
+    --- PASS: TestJSONConfigTypes/"255" (0.00s)
+    --- PASS: TestJSONConfigTypes/true (0.00s)
+    --- PASS: TestJSONConfigTypes/null (0.00s)
+    --- PASS: TestJSONConfigTypes/1e3 (0.00s)
+=== RUN   TestOriginalSamplesAndPSD
+--- PASS: TestOriginalSamplesAndPSD (0.00s)
+=== RUN   TestCLIJSONAndPathResolution
+=== RUN   TestCLIJSONAndPathResolution/00_psdana
+=== RUN   TestCLIJSONAndPathResolution/go
+--- PASS: TestCLIJSONAndPathResolution (0.74s)
+    --- PASS: TestCLIJSONAndPathResolution/00_psdana (0.04s)
+    --- PASS: TestCLIJSONAndPathResolution/go (0.04s)
+PASS
+ok  	github.com/xulu199705/psdana/go/tests	0.835s
