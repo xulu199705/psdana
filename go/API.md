@@ -372,3 +372,73 @@ go -C go run ./cmd/psdana --input data/generated/qam/Q13_32768_q15.csv --sample-
 stdout 仅JSON，错误写stderr/非零退出；既不绘图也不调用Python。
 
 逐级验证、相同IQ的Benchmark入口和实际数据见 [V2.1.2报告](reports/v2.1.2_qam_validation.md)。
+
+## WebUI HTTP Adapter（V2.2.0）
+
+启动：仓库根目录 `go -C go run ./cmd/webdemo`；只绑定 `127.0.0.1:8080`。
+原 CLI、csvio、psd、qam 公共接口保持不变，以下限制只适用于 Web Demo。
+
+| 路由 | 行为 |
+|---|---|
+| `GET /` | 内嵌 WebUI；同源提供所有 JS/CSS、字体和 ECharts |
+| `GET /api/health` | `{"status":"ok","version":"2.2.0"}` |
+| `POST /api/analyze` | multipart 上传一个 CSV，同步计算并返回完整 JSON |
+
+六个必填且不得重复的 multipart 字段：
+
+| 字段 | 类型与校验 |
+|---|---|
+| file | 一个 CSV 文件；识别 I/Q 表头（大小写不敏感，Q/I 顺序也可），或一个实数列 |
+| sample_rate_hz | 有限正数 Hz |
+| power_band_left_hz | 有限数 Hz，`-Fs/2 <= lower <= upper <= Fs/2` |
+| power_band_right_hz | 同上；上下界相等时测量单点频率 |
+| symbol_rate_hz | 有限正数 Hz；整数 SPS≥2，满足原 QAMConfig.Validate |
+| rrc_beta | 有限数 `[0,1]` |
+
+固定 `csvio.DefaultConfig().SampleFormat="hex_q15"`、64QAM、FFT all、Hann、Legacy DC；
+其他接收参数来自 DefaultQAMConfig。前端不提交 sample_format，额外字段返回 400。
+默认 RRC span=10 导致可接受 SPS≤100000；默认 CFO 搜索 ±5000 Hz 要求 symbol_rate_hz>10000。
+即使只看 PSD Tab，也校验 QAM 参数，因为每次请求都执行完整分析链。
+相等边界直接传给现有 AnalyzeBandPower：返回 `is_point=true`、`contributing_bins=1`，
+Average 与 Peak 均为最近 FFT bin 的 RBW 校准功率（dBFS）。等距选择低频 bin，+Fs/2 选择严格低于该边界的最高中心。
+前端仍绘制完整 PSD（dBFS/Hz），不把单点测量结果当作 PSD 密度。
+
+HEX 词法完全复用 csvio：1–4 个十六进制数字，可选 `0x` 前缀，按 unsigned 16-bit word 转 signed Q1.15。
+不自动回退到 float/q15/packed。`1234` 同时是合法十六进制文本，固定解释为 0x1234；
+无法从无格式元数据的数字文本判断作者原意是 decimal。无表头两列的 I/Q 歧义按原 csvio 规则拒绝。
+
+成功响应仍使用顶层 PSDResult 字段；额外包含：
+
+| 字段 | 含义 |
+|---|---|
+| power_metrics | AnalyzeBandPower 的完整结果，边界为实际请求 Hz |
+| qam_metrics | 成功时的原 QAMResult，含星座数组与 diagnostics.warnings |
+| qam_error | QAM 失败时的说明；同时省略 qam_metrics |
+| rrc_beta | 实际使用的 RRC roll-off |
+| status | COMPLETE 或 PARTIAL |
+
+PSD/QAM 数值均由现有 Go Core 提供。`psd_dbfs_per_hz` 的 null 表示 −Inf，前端按缺口处理；
+功率 null 显示 −∞，峰值频率 null 显示 N/A，Frequency Error null 显示 N/A。
+相位百分比使用 `phase_error_pct_rms`，不是 `phase_error_deg_rms`。
+
+| HTTP 状态 | 语义 |
+|---|---|
+| 200 COMPLETE | PSD、频段功率、QAM 全部成功；warnings 仍需阅读 |
+| 200 PARTIAL | PSD 和功率有效，QAM 不可用；真实单音与实数输入会走此路径 |
+| 400 | multipart、CSV 格式、字段或参数错误 |
+| 403 | 浏览器 Origin 与本服务不同 |
+| 413 | 完整请求超过 16 MiB（包括 multipart 开销） |
+| 422 | PSD 或频段功率计算失败 |
+| 500 | JSON 序列化失败 |
+| 503 | 另一个分析占用计算入口，请稍后重试 |
+
+错误响应为 `{"status":"ERROR","error":"..."}`。先完成 JSON 编码再写响应，避免半段 JSON。
+请求体使用 MaxBytesReader 限制，multipart 临时文件和流在请求结束释放；不长期保存上传文件。
+Header 超时 5 秒，读取请求超时 60 秒；计算没有虚构进度，也没有硬中断现有 DSP 函数。
+浏览器替换文件或修改参数会废弃旧请求；Go 在阶段边界检查取消，已进入的同步计算仍可执行到返回。
+
+示例（从仓库根目录；Windows 可使用 curl.exe）：
+
+```shell
+curl http://127.0.0.1:8080/api/analyze -F "file=@data/qam64_20MSymPS_160MSPS_RRC0p25.csv" -F "sample_rate_hz=160000000" -F "power_band_left_hz=-20000000" -F "power_band_right_hz=20000000" -F "symbol_rate_hz=20000000" -F "rrc_beta=0.25"
+```

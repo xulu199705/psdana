@@ -1,7 +1,25 @@
 # Go PSD / Power / QAM Receiver
 
 Module：`github.com/xulu199705/psdana/go`，复用既有 Go 1.27.1 配置，仅使用 Gonum v0.17.0。
-核心、CSV、CLI 分离；没有 Go 绘图、TypeScript、GUI 或并行 Welch。
+核心、CSV、CLI 与 HTTP Adapter 分离。V2.2.0 新增原生 JavaScript / ECharts 6 本地 WebUI；没有 TypeScript 或并行 Welch。
+
+## WebUI Demo（V2.2.0）
+
+从仓库根目录执行 `go -C go run ./cmd/webdemo`，访问 <http://127.0.0.1:8080>。
+也可 `go -C go build -o bin/webdemo ./cmd/webdemo` 后直接运行内嵌全部静态资源的可执行文件。
+只监听 IPv4 回环地址；默认端口固定为 8080，按 Ctrl+C 停止前台服务。
+POWER BAND 允许上下界相等，测量最近 FFT bin 的 RBW 校准单点功率；上下界倒置仍报错。
+
+固定 HEX Q1.15、64QAM、FFT all，默认 Legacy；不启动 Python 或 CLI 子进程。
+上传 CSV 仅通过 multipart 接收，不开放本地路径读取接口。QAM 不可靠时保留 PSD 并返回 PARTIAL。
+服务同一时间执行一个分析，其他请求返回 503，可稍后重试。
+
+验证：`go -C go test ./...`、`go -C go vet ./...`。
+HTTP 测试额外通过原 CLI 比较真实文件的全部既有 JSON 字段；该 CLI 子进程仅存在于测试。
+浏览器复测：先启动服务，在 `tools/webdemo` 执行 `npm install`、`npm test`（需本机 Chrome；
+设置 `PSDANA_BROWSER=msedge` 可使用 Edge）。Node / Playwright 仅用于开发验收。
+
+[HTTP API](API.md#webui-http-adapterv220) · [完整实现及验证报告](reports/v2.2.0/REPORT.md)
 
 完整的必选/可选参数、DefaultConfig 默认值、返回字段及多个程序化/CLI 示例见
 [Go API Reference](API.md)。V2.1.1 在Python Stage A Gate通过后新增独立QAM数学基础，原PSD/Power算法不变。

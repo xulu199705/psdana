@@ -1,0 +1,27 @@
+const assert=require('node:assert/strict');
+const {pathToFileURL}=require('node:url');
+const path=require('node:path');
+const moduleURL=file=>pathToFileURL(path.resolve(__dirname,'../../go/cmd/webdemo/static/js',file)).href;
+(async()=>{
+  const {psdOption}=await import(moduleURL('charts/psd.js'));
+  const {qamOption}=await import(moduleURL('charts/qam.js'));
+  const {validate}=await import(moduleURL('parameters.js'));
+  const {state,selectFile,changeParameter}=await import(moduleURL('state.js'));
+  const option=psdOption({frequency_hz:[-2e6,0,2e6],psd_dbfs_per_hz:[-100,null,-80],fs_hz:8e6,input_type:'complex'},1);
+  assert.deepEqual(option.series[0].data,[[-2,-100],[0,null],[2,-80]]);
+  assert.equal(option.series[0].connectNulls,false);
+  assert.deepEqual(qamOption(null,2).series.map(s=>s.data),[[],[]]);
+  const q=qamOption({constellation_i:[-.5,.5],constellation_q:[.5,-.5],ideal_i:[1],ideal_q:[1]},2);
+  assert.deepEqual(q.series[0].data,[[-.5,.5],[.5,-.5]]);
+  assert.equal(q.grid.width,q.grid.height);assert.equal(q.xAxis.min,q.yAxis.min);assert.equal(q.xAxis.max,q.yAxis.max);
+  assert.equal(validate(state.params),'');
+  for(const beta of [0,1])assert.equal(validate({...state.params,rrc_beta:beta}),'');
+  for(const rate of [NaN,Infinity,0,-1])assert(validate({...state.params,sample_rate_hz:rate}));
+  for(const point of [-80e6,0,40e6,80e6])assert.equal(validate({...state.params,power_band_left_hz:point,power_band_right_hz:point}),'');
+  assert(validate({...state.params,power_band_left_hz:41e6,power_band_right_hz:40e6}));
+  assert(validate({...state.params,power_band_left_hz:80e6+1,power_band_right_hz:80e6+1}));
+  const before=state.revision;state.result={qam_metrics:{}};selectFile({name:'test.csv'});
+  assert.equal(state.result,null);assert(state.revision>before);
+  state.result={};changeParameter('rrc_beta',.5);assert(state.stale);assert.equal(state.status,'FILE READY');
+  console.log('PASS null PSD remains a gap; real bin order; empty QAM; equal I/Q scales; parameter boundaries including point frequencies; state invalidation');
+})().catch(e=>{console.error(e);process.exitCode=1;});

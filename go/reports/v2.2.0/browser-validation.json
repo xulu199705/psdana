@@ -1,0 +1,822 @@
+{
+  "status": "PASS",
+  "viewports": [
+    {
+      "width": 540,
+      "height": 960,
+      "mode": "psd",
+      "screenshot": "psd-540x960.png",
+      "x": 0,
+      "y": 0,
+      "scrollWidth": 540,
+      "viewportWidth": 540,
+      "background": "rgb(245, 243, 238)",
+      "appBackground": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "shadow": "none",
+      "grid": {
+        "left": 72,
+        "top": 32,
+        "width": 384,
+        "height": 380,
+        "outerBoundsMode": "none",
+        "show": false,
+        "z": 0,
+        "containLabel": false,
+        "outerBounds": {
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        "outerBoundsContain": "all",
+        "outerBoundsClampWidth": "25%",
+        "outerBoundsClampHeight": "25%",
+        "backgroundColor": "rgba(0,0,0,0)",
+        "borderWidth": 1,
+        "borderColor": "#b7b9be"
+      },
+      "canvas": true,
+      "series": [
+        {
+          "type": "line",
+          "count": 16384
+        }
+      ],
+      "legend": [
+        {
+          "width": 0,
+          "height": 0,
+          "loaded": true
+        },
+        {
+          "width": 0,
+          "height": 0,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 540,
+      "height": 960,
+      "mode": "qam",
+      "screenshot": "qam-540x960.png",
+      "x": 0,
+      "y": 0,
+      "scrollWidth": 540,
+      "viewportWidth": 540,
+      "background": "rgb(245, 243, 238)",
+      "appBackground": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "shadow": "none",
+      "grid": {
+        "left": 72,
+        "top": 30,
+        "width": 378,
+        "height": 378,
+        "outerBoundsMode": "none",
+        "show": false,
+        "z": 0,
+        "containLabel": false,
+        "outerBounds": {
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        "outerBoundsContain": "all",
+        "outerBoundsClampWidth": "25%",
+        "outerBoundsClampHeight": "25%",
+        "backgroundColor": "rgba(0,0,0,0)",
+        "borderWidth": 1,
+        "borderColor": "#b7b9be"
+      },
+      "canvas": true,
+      "series": [
+        {
+          "type": "scatter",
+          "count": 2026
+        },
+        {
+          "type": "scatter",
+          "count": 64
+        }
+      ],
+      "legend": [
+        {
+          "width": 10,
+          "height": 10,
+          "loaded": true
+        },
+        {
+          "width": 5,
+          "height": 5,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 1080,
+      "height": 1920,
+      "mode": "psd",
+      "screenshot": "psd-1080x1920.png",
+      "x": 0,
+      "y": 0,
+      "scrollWidth": 1080,
+      "viewportWidth": 1080,
+      "background": "rgb(245, 243, 238)",
+      "appBackground": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "shadow": "none",
+      "grid": {
+        "left": 144,
+        "top": 64,
+        "width": 768,
+        "height": 760,
+        "outerBoundsMode": "none",
+        "show": false,
+        "z": 0,
+        "containLabel": false,
+        "outerBounds": {
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        "outerBoundsContain": "all",
+        "outerBoundsClampWidth": "25%",
+        "outerBoundsClampHeight": "25%",
+        "backgroundColor": "rgba(0,0,0,0)",
+        "borderWidth": 1,
+        "borderColor": "#b7b9be"
+      },
+      "canvas": true,
+      "series": [
+        {
+          "type": "line",
+          "count": 16384
+        }
+      ],
+      "legend": [
+        {
+          "width": 0,
+          "height": 0,
+          "loaded": true
+        },
+        {
+          "width": 0,
+          "height": 0,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 1080,
+      "height": 1920,
+      "mode": "qam",
+      "screenshot": "qam-1080x1920.png",
+      "x": 0,
+      "y": 0,
+      "scrollWidth": 1080,
+      "viewportWidth": 1080,
+      "background": "rgb(245, 243, 238)",
+      "appBackground": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "shadow": "none",
+      "grid": {
+        "left": 144,
+        "top": 60,
+        "width": 756,
+        "height": 756,
+        "outerBoundsMode": "none",
+        "show": false,
+        "z": 0,
+        "containLabel": false,
+        "outerBounds": {
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        "outerBoundsContain": "all",
+        "outerBoundsClampWidth": "25%",
+        "outerBoundsClampHeight": "25%",
+        "backgroundColor": "rgba(0,0,0,0)",
+        "borderWidth": 1,
+        "borderColor": "#b7b9be"
+      },
+      "canvas": true,
+      "series": [
+        {
+          "type": "scatter",
+          "count": 2026
+        },
+        {
+          "type": "scatter",
+          "count": 64
+        }
+      ],
+      "legend": [
+        {
+          "width": 20,
+          "height": 20,
+          "loaded": true
+        },
+        {
+          "width": 10,
+          "height": 10,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 607.5,
+      "height": 1080,
+      "mode": "psd",
+      "screenshot": "psd-1920x1080.png",
+      "x": 656.25,
+      "y": 0,
+      "scrollWidth": 1920,
+      "viewportWidth": 1920,
+      "background": "rgb(245, 243, 238)",
+      "appBackground": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "shadow": "none",
+      "grid": {
+        "left": 81,
+        "top": 36,
+        "width": 432,
+        "height": 427.5,
+        "outerBoundsMode": "none",
+        "show": false,
+        "z": 0,
+        "containLabel": false,
+        "outerBounds": {
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        "outerBoundsContain": "all",
+        "outerBoundsClampWidth": "25%",
+        "outerBoundsClampHeight": "25%",
+        "backgroundColor": "rgba(0,0,0,0)",
+        "borderWidth": 1,
+        "borderColor": "#b7b9be"
+      },
+      "canvas": true,
+      "series": [
+        {
+          "type": "line",
+          "count": 16384
+        }
+      ],
+      "legend": [
+        {
+          "width": 0,
+          "height": 0,
+          "loaded": true
+        },
+        {
+          "width": 0,
+          "height": 0,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 607.5,
+      "height": 1080,
+      "mode": "qam",
+      "screenshot": "qam-1920x1080.png",
+      "x": 656.25,
+      "y": 0,
+      "scrollWidth": 1920,
+      "viewportWidth": 1920,
+      "background": "rgb(245, 243, 238)",
+      "appBackground": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "shadow": "none",
+      "grid": {
+        "left": 81,
+        "top": 33.75,
+        "width": 425.25,
+        "height": 425.25,
+        "outerBoundsMode": "none",
+        "show": false,
+        "z": 0,
+        "containLabel": false,
+        "outerBounds": {
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        "outerBoundsContain": "all",
+        "outerBoundsClampWidth": "25%",
+        "outerBoundsClampHeight": "25%",
+        "backgroundColor": "rgba(0,0,0,0)",
+        "borderWidth": 1,
+        "borderColor": "#b7b9be"
+      },
+      "canvas": true,
+      "series": [
+        {
+          "type": "scatter",
+          "count": 2026
+        },
+        {
+          "type": "scatter",
+          "count": 64
+        }
+      ],
+      "legend": [
+        {
+          "width": 11.25,
+          "height": 11.25,
+          "loaded": true
+        },
+        {
+          "width": 5.625,
+          "height": 5.625,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 810,
+      "height": 1440,
+      "mode": "psd",
+      "screenshot": "psd-2560x1440.png",
+      "x": 875,
+      "y": 0,
+      "scrollWidth": 2560,
+      "viewportWidth": 2560,
+      "background": "rgb(245, 243, 238)",
+      "appBackground": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "shadow": "none",
+      "grid": {
+        "left": 108,
+        "top": 48,
+        "width": 576,
+        "height": 570,
+        "outerBoundsMode": "none",
+        "show": false,
+        "z": 0,
+        "containLabel": false,
+        "outerBounds": {
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        "outerBoundsContain": "all",
+        "outerBoundsClampWidth": "25%",
+        "outerBoundsClampHeight": "25%",
+        "backgroundColor": "rgba(0,0,0,0)",
+        "borderWidth": 1,
+        "borderColor": "#b7b9be"
+      },
+      "canvas": true,
+      "series": [
+        {
+          "type": "line",
+          "count": 16384
+        }
+      ],
+      "legend": [
+        {
+          "width": 0,
+          "height": 0,
+          "loaded": true
+        },
+        {
+          "width": 0,
+          "height": 0,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 810,
+      "height": 1440,
+      "mode": "qam",
+      "screenshot": "qam-2560x1440.png",
+      "x": 875,
+      "y": 0,
+      "scrollWidth": 2560,
+      "viewportWidth": 2560,
+      "background": "rgb(245, 243, 238)",
+      "appBackground": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "shadow": "none",
+      "grid": {
+        "left": 108,
+        "top": 45,
+        "width": 567,
+        "height": 567,
+        "outerBoundsMode": "none",
+        "show": false,
+        "z": 0,
+        "containLabel": false,
+        "outerBounds": {
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        "outerBoundsContain": "all",
+        "outerBoundsClampWidth": "25%",
+        "outerBoundsClampHeight": "25%",
+        "backgroundColor": "rgba(0,0,0,0)",
+        "borderWidth": 1,
+        "borderColor": "#b7b9be"
+      },
+      "canvas": true,
+      "series": [
+        {
+          "type": "scatter",
+          "count": 2026
+        },
+        {
+          "type": "scatter",
+          "count": 64
+        }
+      ],
+      "legend": [
+        {
+          "width": 15,
+          "height": 15,
+          "loaded": true
+        },
+        {
+          "width": 7.5,
+          "height": 7.5,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 1215,
+      "height": 2160,
+      "mode": "psd",
+      "screenshot": "psd-3840x2160.png",
+      "x": 1312.5,
+      "y": 0,
+      "scrollWidth": 3840,
+      "viewportWidth": 3840,
+      "background": "rgb(245, 243, 238)",
+      "appBackground": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "shadow": "none",
+      "grid": {
+        "left": 162,
+        "top": 72,
+        "width": 864,
+        "height": 855,
+        "outerBoundsMode": "none",
+        "show": false,
+        "z": 0,
+        "containLabel": false,
+        "outerBounds": {
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        "outerBoundsContain": "all",
+        "outerBoundsClampWidth": "25%",
+        "outerBoundsClampHeight": "25%",
+        "backgroundColor": "rgba(0,0,0,0)",
+        "borderWidth": 1,
+        "borderColor": "#b7b9be"
+      },
+      "canvas": true,
+      "series": [
+        {
+          "type": "line",
+          "count": 16384
+        }
+      ],
+      "legend": [
+        {
+          "width": 0,
+          "height": 0,
+          "loaded": true
+        },
+        {
+          "width": 0,
+          "height": 0,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 1215,
+      "height": 2160,
+      "mode": "qam",
+      "screenshot": "qam-3840x2160.png",
+      "x": 1312.5,
+      "y": 0,
+      "scrollWidth": 3840,
+      "viewportWidth": 3840,
+      "background": "rgb(245, 243, 238)",
+      "appBackground": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "shadow": "none",
+      "grid": {
+        "left": 162,
+        "top": 67.5,
+        "width": 850.5,
+        "height": 850.5,
+        "outerBoundsMode": "none",
+        "show": false,
+        "z": 0,
+        "containLabel": false,
+        "outerBounds": {
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        "outerBoundsContain": "all",
+        "outerBoundsClampWidth": "25%",
+        "outerBoundsClampHeight": "25%",
+        "backgroundColor": "rgba(0,0,0,0)",
+        "borderWidth": 1,
+        "borderColor": "#b7b9be"
+      },
+      "canvas": true,
+      "series": [
+        {
+          "type": "scatter",
+          "count": 2026
+        },
+        {
+          "type": "scatter",
+          "count": 64
+        }
+      ],
+      "legend": [
+        {
+          "width": 22.5,
+          "height": 22.5,
+          "loaded": true
+        },
+        {
+          "width": 11.25,
+          "height": 11.25,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 693.328125,
+      "mode": "psd",
+      "screenshot": "psd-390x844.png",
+      "x": 0,
+      "y": 75.328125,
+      "scrollWidth": 390,
+      "viewportWidth": 390,
+      "background": "rgb(245, 243, 238)",
+      "appBackground": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "shadow": "none",
+      "grid": {
+        "left": 52,
+        "top": 23.11111111111111,
+        "width": 277.3333333333333,
+        "height": 274.44444444444446,
+        "outerBoundsMode": "none",
+        "show": false,
+        "z": 0,
+        "containLabel": false,
+        "outerBounds": {
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        "outerBoundsContain": "all",
+        "outerBoundsClampWidth": "25%",
+        "outerBoundsClampHeight": "25%",
+        "backgroundColor": "rgba(0,0,0,0)",
+        "borderWidth": 1,
+        "borderColor": "#b7b9be"
+      },
+      "canvas": true,
+      "series": [
+        {
+          "type": "line",
+          "count": 16384
+        }
+      ],
+      "legend": [
+        {
+          "width": 0,
+          "height": 0,
+          "loaded": true
+        },
+        {
+          "width": 0,
+          "height": 0,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 693.328125,
+      "mode": "qam",
+      "screenshot": "qam-390x844.png",
+      "x": 0,
+      "y": 75.328125,
+      "scrollWidth": 390,
+      "viewportWidth": 390,
+      "background": "rgb(245, 243, 238)",
+      "appBackground": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "shadow": "none",
+      "grid": {
+        "left": 52,
+        "top": 21.666666666666668,
+        "width": 273,
+        "height": 273,
+        "outerBoundsMode": "none",
+        "show": false,
+        "z": 0,
+        "containLabel": false,
+        "outerBounds": {
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        "outerBoundsContain": "all",
+        "outerBoundsClampWidth": "25%",
+        "outerBoundsClampHeight": "25%",
+        "backgroundColor": "rgba(0,0,0,0)",
+        "borderWidth": 1,
+        "borderColor": "#b7b9be"
+      },
+      "canvas": true,
+      "series": [
+        {
+          "type": "scatter",
+          "count": 2026
+        },
+        {
+          "type": "scatter",
+          "count": 64
+        }
+      ],
+      "legend": [
+        {
+          "width": 7.21875,
+          "height": 7.21875,
+          "loaded": true
+        },
+        {
+          "width": 3.609375,
+          "height": 3.609375,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 1215,
+      "height": 2160,
+      "mode": "psd",
+      "screenshot": "psd-2560x3000.png",
+      "x": 672.5,
+      "y": 420,
+      "scrollWidth": 2560,
+      "viewportWidth": 2560,
+      "background": "rgb(245, 243, 238)",
+      "appBackground": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "shadow": "none",
+      "grid": {
+        "left": 162,
+        "top": 72,
+        "width": 864,
+        "height": 855,
+        "outerBoundsMode": "none",
+        "show": false,
+        "z": 0,
+        "containLabel": false,
+        "outerBounds": {
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        "outerBoundsContain": "all",
+        "outerBoundsClampWidth": "25%",
+        "outerBoundsClampHeight": "25%",
+        "backgroundColor": "rgba(0,0,0,0)",
+        "borderWidth": 1,
+        "borderColor": "#b7b9be"
+      },
+      "canvas": true,
+      "series": [
+        {
+          "type": "line",
+          "count": 16384
+        }
+      ],
+      "legend": [
+        {
+          "width": 0,
+          "height": 0,
+          "loaded": true
+        },
+        {
+          "width": 0,
+          "height": 0,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 1215,
+      "height": 2160,
+      "mode": "qam",
+      "screenshot": "qam-2560x3000.png",
+      "x": 672.5,
+      "y": 420,
+      "scrollWidth": 2560,
+      "viewportWidth": 2560,
+      "background": "rgb(245, 243, 238)",
+      "appBackground": "rgba(0, 0, 0, 0)",
+      "border": "0px",
+      "shadow": "none",
+      "grid": {
+        "left": 162,
+        "top": 67.5,
+        "width": 850.5,
+        "height": 850.5,
+        "outerBoundsMode": "none",
+        "show": false,
+        "z": 0,
+        "containLabel": false,
+        "outerBounds": {
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "bottom": 0
+        },
+        "outerBoundsContain": "all",
+        "outerBoundsClampWidth": "25%",
+        "outerBoundsClampHeight": "25%",
+        "backgroundColor": "rgba(0,0,0,0)",
+        "borderWidth": 1,
+        "borderColor": "#b7b9be"
+      },
+      "canvas": true,
+      "series": [
+        {
+          "type": "scatter",
+          "count": 2026
+        },
+        {
+          "type": "scatter",
+          "count": 64
+        }
+      ],
+      "legend": [
+        {
+          "width": 22.5,
+          "height": 22.5,
+          "loaded": true
+        },
+        {
+          "width": 11.25,
+          "height": 11.25,
+          "loaded": true
+        }
+      ]
+    }
+  ],
+  "checks": [
+    "Initial empty state / local ECharts 6",
+    "Global drag overlay / selection only, no automatic upload",
+    "CSV → HTTP → Go → JSON → PSD metrics",
+    "QAM percent metrics / tab preserves results without requests",
+    "14 responsive screenshots / 9:16 / centered / max 2160 CSS px / QAM equal axes",
+    "Scaled click/edit/hover coordinates at mobile and 2x; DPR independent layout",
+    "Enter commit / Escape cancel / shared sample rate / stale / borderless idle",
+    "Keyboard tab navigation and visible parameter focus",
+    "Band, changed Nyquist, SPS and RRC validation",
+    "Equal power bounds enable ANALYZE / real 40 MHz single-bin RBW measurement / reversed bounds rejected",
+    "File replacement clears results / sine 39–41 MHz / PARTIAL clears constellation",
+    "Real parse error / retry enabled",
+    "Long basename truncation and full hover title",
+    "Retry with a real valid CSV succeeds",
+    "Duplicate submit disabled / late real response cannot overwrite replacement file",
+    "Network failure permits retry"
+  ],
+  "errors": []
+}

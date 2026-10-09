@@ -1,0 +1,1 @@
+PASS null PSD remains a gap; real bin order; empty QAM; equal I/Q scales; parameter boundaries including point frequencies; state invalidation

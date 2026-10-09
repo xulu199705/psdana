@@ -1,0 +1,9 @@
+ok  	github.com/xulu199705/psdana/go/bench	0.049s [no tests to run]
+?   	github.com/xulu199705/psdana/go/cmd/psdana	[no test files]
+?   	github.com/xulu199705/psdana/go/cmd/qambench	[no test files]
+?   	github.com/xulu199705/psdana/go/cmd/qamcheck	[no test files]
+ok  	github.com/xulu199705/psdana/go/cmd/webdemo	2.820s
+ok  	github.com/xulu199705/psdana/go/csvio	0.028s
+ok  	github.com/xulu199705/psdana/go/psd	0.077s
+ok  	github.com/xulu199705/psdana/go/qam	13.627s
+ok  	github.com/xulu199705/psdana/go/tests	2.994s

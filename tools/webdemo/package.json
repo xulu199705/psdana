@@ -1,0 +1,6 @@
+{
+  "name": "psdana-webdemo-validation",
+  "private": true,
+  "scripts": {"test": "node mapping-tests.cjs && node validate.cjs"},
+  "devDependencies": {"playwright": "1.62.1"}
+}

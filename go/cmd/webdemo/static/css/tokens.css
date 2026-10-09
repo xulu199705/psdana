@@ -1,0 +1,9 @@
+:root { --page:#f5f3ee; --ink:#191b1c; --secondary:#666a6b; --rule:#d5d1c9; --accent:#e45137; --plot:#191d20; --axis:#cbd0d0; --trace:#ff684a; --recovered:#ffd84a; --s:1; }
+* { box-sizing:border-box; }
+html { font-size:1px; background:var(--page); }
+body { margin:0; color:var(--ink); font-family:'Noto Sans','Noto Sans SC',sans-serif; font-weight:500; font-size:12rem; font-variant-numeric:tabular-nums; }
+button,input { font:inherit; color:inherit; }
+button { cursor:pointer; }
+button:disabled { cursor:default; }
+[hidden] { display:none !important; }
+p,h1 { margin:0; }

@@ -7,7 +7,7 @@ psdana 面向离线采样数据分析和 DSP 算法移植，提供数学定义�
 Python 提供参考计算和独立频谱绘图；Go 提供计算库、CSV 适配和命令行 JSON 输出。
 Python 还提供独立的 QAM 接收链、误差指标和星座图，可与同一 IQ 的 PSD/频段功率组合分析。
 
-当前开发快照：**V2.1.2（未创建发布标签）**，基于 V2.1.1。项目遵循 **Correctness First → Cross-Language Consistency → Performance → Integration**。
+当前版本：**V2.2.0**，基于 V2.1.2，新增本地 WebUI Demo；DSP 算法与 CLI 行为保持不变。
 
 ## 功能
 
@@ -27,7 +27,36 @@ Python 还提供独立的 QAM 接收链、误差指标和星座图，可与同�
 - Go 独立 QAM Receiver：复用Foundation，完成RRC/Polyphase/Timing/CFO/Legacy与Joint；CLI增加qam_metrics。
 - 32768点合成Q1.15与16384点真实捕获分别验收，逐级数组比较及Python/Go性能报告。
 
-当前不提供实时 PSD、GUI、Web 服务或 Go 绘图。
+提供本地 WebUI：拖入 HEX Q1.15 CSV → 原位配置参数 → ANALYZE → Go PSD/QAM → ECharts 6。
+不提供实时流式 PSD、远程部署或用户账户。
+
+## V2.2.0 本地 WebUI
+
+Windows x64 可从 [V2.2.0 Release](https://github.com/xulu199705/psdana/releases/tag/V2.2.0)
+下载已内嵌资源的 Demo 包，解压运行 `webdemo.exe`，包内提供两份示例 CSV。
+
+在仓库根目录运行：
+
+```shell
+go -C go run ./cmd/webdemo
+```
+
+打开 [http://127.0.0.1:8080](http://127.0.0.1:8080)。无需 Python、Node、Docker 或 CDN；
+Go 单进程内嵌 HTML/CSS/原生 JavaScript、ECharts 6.0.0 和 Noto 字体，直接调用已有计算库。
+第一次构建仍需可用的 Go 工具链及 module 依赖。
+
+拖入 `data/qam64_20MSymPS_160MSPS_RRC0p25.csv`，保留 160 MSPS / 20 MSym/s / β=0.25，
+点击 ANALYZE。默认 Legacy EVM 约 2.59619%；PSD 默认功率频段 −20～+20 MHz。
+点击数值编辑，Enter 确认、Escape 取消；修改参数不会自动重新分析。
+POWER BAND 两个边界相等时测量单点频率，沿用最近 FFT bin 的 RBW 校准功率；此时 Average Power 与 Peak Power 相同。
+单音文件 `data/sine_+40MHz_160MSPS.csv` 可将 POWER BAND 设为 39～41 MHz：
+PSD 成功，QAM 拒绝单音，因此状态为 PARTIAL。
+
+页面遵循最新 Figma 540×960 布局，整体 9:16 等比适配，最大 1215×2160 CSS px；
+居中留白与页面均为暖白 `#f5f3ee`。固定 hex_q15，单请求上限 16 MiB。
+
+详情、全部视口截图、交互验证与限制见 [V2.2.0 实现报告](go/reports/v2.2.0/REPORT.md)，
+HTTP 契约见 [Go API](go/API.md#webui-http-adapterv220)。
 
 ## 分析效果
 
@@ -320,12 +349,13 @@ V2.1.1 Joint-fit将真实Blind EVM估计为1.736166%，Legacy仍为2.596191%。�
 | V2.0.1 | 完成 | 频段/点频功率分析、零输入峰值及数值边界修复 |
 | V2.1.0 | 开发验证完成，未打 tag | Python QAM Golden、同步/误差分析/星座图、真实捕获验收；Go 代码不变 |
 | V2.1.1 | 开发验证完成，未打 tag | Legacy兼容、Joint DC拟合、CFO-aware定时、可靠性/性能基线；Go数学基础通过36组向量 |
-| V2.1.2 | 开发验证完成，未打 tag | 独立Go QAM Receiver、CLI、32768 Q1.15与真实捕获、逐级跨语言比较及性能优化；见下方报告 |
-| Phase 3 | 规划 | FFT workspace/跨调用复用、CSV 分配优化、性能剖析、大质因子精度与性能覆盖 |
+| V2.1.2 | 验证完成，tag V2.1.2 | 独立Go QAM Receiver、CLI、32768 Q1.15与真实捕获、逐级跨语言比较及性能优化；见下方报告 |
+| V2.2.0 | 验证完成，tag / Release V2.2.0 | Go HTTP Adapter、Figma WebUI、ECharts 6、9:16 等比缩放、HEX CSV 拖入、原位编辑与单点频率功率测量 |
+| V2.3.0 | 规划 | FFT workspace/plan/buffer 复用、CSV 分配与内存优化、Benchmark/Profiling、大质因子 FFT 性能分析 |
 | 后续 | 评估 | 在保持数学契约的前提下扩展其他语言及应用层 |
 
-Phase 3 优先根据实测瓶颈优化，并在每次更改后复跑 Golden、解析测试和直接比较。
-并行 Welch、实时处理与前端属于后续独立设计，不是当前接口的既有能力。
+原性能优化阶段整体后移至 V2.3.0，优先根据实测瓶颈优化，并在每次更改后复跑 Golden、解析测试和直接比较。
+V2.2.0 仅新增应用层与必要 HTTP 适配；并行 Welch 和实时处理仍属于后续独立设计。
 
 ## V2.1.2 Go QAM 使用与验证
 

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PSDANA / Signal analysis</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <script src="/vendor/echarts-6.0.0.min.js" defer></script>
+  <script type="module" src="/js/main.js"></script>
+</head>
+<body>
+<main id="instrument" aria-label="PSDANA signal analyzer">
+  <header class="masthead"><span>PSDANA</span><span id="signal">SIGNAL / 01</span></header>
+  <section class="mode-title"><h1 id="title">频谱分析</h1><p id="subtitle">POWER SPECTRAL DENSITY</p></section>
+  <nav role="tablist" aria-label="Analysis mode">
+    <button id="tab-psd" role="tab" aria-selected="true" aria-controls="analysis" data-mode="psd">01&nbsp; PSD / 频谱</button>
+    <button id="tab-qam" role="tab" aria-selected="false" aria-controls="analysis" data-mode="qam" tabindex="-1">02&nbsp; QAM / 星座</button>
+  </nav>
+  <div id="analysis" role="tabpanel" aria-labelledby="tab-psd">
+    <div id="chart" aria-label="Power spectral density chart"></div>
+    <section class="results" aria-label="Analysis results">
+      <div class="results-heading"><span id="result-label">RESULTS</span><span id="result-mode">01 / PSD</span><span id="legend" hidden><img src="/assets/ideal.svg" alt=""> IDEAL <img src="/assets/recovered.svg" alt=""> RECOVERED</span></div>
+      <div class="primary-label" id="primary-label">AVERAGE POWER</div>
+      <div class="primary"><span id="primary-value">—</span><span id="primary-unit">dBFS</span></div>
+      <div class="auxiliary" id="auxiliary"></div>
+      <div class="divider"></div>
+      <div class="secondary" id="secondary"></div>
+    </section>
+  </div>
+  <footer>
+    <div class="file-row"><button id="choose-file" title="Choose a hex_q15 CSV"><span id="filename">DROP / SELECT CSV</span></button><span class="format">HEX Q1.15</span><button id="analyze" disabled>ANALYZE</button></div>
+    <div class="status-row"><span id="status" role="status" aria-live="polite">NO FILE</span><span>V2.2.0 · ECHARTS 6</span></div>
+    <div id="message" role="status" aria-live="polite"></div>
+  </footer>
+  <input id="file-input" type="file" accept=".csv,text/csv" hidden>
+</main>
+<div id="drop-overlay" hidden><span>DROP CSV TO LOAD</span></div>
+</body>
+</html>
